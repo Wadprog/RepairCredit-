@@ -38,8 +38,11 @@ const clientSchema = mongoose.Schema({
   address: [{}],
   phone: [{}],
   email: [{}],
-  monitoring_service: {
-    name: { type: String },
+  monitoringService: {
+    name: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "monitoringService",
+    },
     userName: { type: String },
     password: { type: String },
   },

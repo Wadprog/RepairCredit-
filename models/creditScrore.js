@@ -5,18 +5,12 @@ const creditScoreSchema = mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "client",
   },
-  transunuion: {
-    type: String,
-    required: true,
-  },
-  experian: {
-    type: String,
-    required: true,
-  },
-  equifax: {
-    type: String,
-    required: true,
-  },
+  score: [
+    {
+      score: { type: Number, required: true },
+      bureau: { type: mongoose.Schema.Types.ObjectId, ref: "creditBureau" },
+    },
+  ],
 
   datePulled: {
     type: Date,

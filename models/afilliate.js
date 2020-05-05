@@ -5,10 +5,13 @@ const afilliateSchema = mongoose.Schema({
     type: String,
     required: true,
   },
-  phones: [
+  phone: [
     {
-      number: { type: String, required: true },
-      classification: { type: String, required: true },
+      arreaCode: { type: Number, required: true },
+      number: { type: Number, required: true },
+      extension: { type: Number },
+      current: { type: Boolean, default: true },
+      tag: { type: mongoose.Schema.Types.ObjectId, ref: "phonetags" }, // Home, work
     },
   ],
   address: {
@@ -17,10 +20,6 @@ const afilliateSchema = mongoose.Schema({
     zipcode: { type: String, required: true },
     fax: { type: String, required: true },
     description: { type: String },
-    geo: {
-      lat: { type: Number },
-      lng: { type: Number },
-    },
   },
 });
 

@@ -35,6 +35,15 @@ const clientSchema = mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "employee",
   },
+  phone: [
+    {
+      arreaCode: { type: Number, required: true },
+      number: { type: Number, required: true },
+      extension: { type: Number },
+      current: { type: Boolean, default: true },
+      tag: { type: mongoose.Schema.Types.ObjectId, ref: "phonetags" }, // Home, work
+    },
+  ],
   address: [{}],
   phone: [{}],
   email: [{}],

@@ -1,18 +1,6 @@
-const express = require(`express`);
-const router = express.Router();
-const Employees = require("../../models/employee");
+const Employees = require("../models/employee");
 
-router.get(`/:id`, async (req, res) => {
-  try {
-    const employees = await Employees.findById(req.params.id);
-    return res.json(employees);
-  } catch (error) {
-    console.log(`Error ${error}`);
-    res.json({ msg: `Error creating new employee ${error}` });
-  }
-});
-
-router.get(`/`, async (req, res) => {
+exports.getEmployees = async (req, res) => {
   try {
     const employees = await Employees.find();
     return res.json(employees);
@@ -20,12 +8,14 @@ router.get(`/`, async (req, res) => {
     console.log(`Error ${error}`);
     res.json({ msg: `Error creating new employee ${error}` });
   }
-});
-router.post(`/`, async (req, res) => {
+};
+
+exports.postEmployee = async (req, res) => {
   try {
     const {
       firstname,
       lastname,
+      ssn,
       dob,
       email,
       levelAccess,
@@ -44,6 +34,7 @@ router.post(`/`, async (req, res) => {
     employee = new Employees({
       firstname,
       lastname,
+      ssn,
       dob,
       email,
       levelAccess,
@@ -62,6 +53,4 @@ router.post(`/`, async (req, res) => {
     console.log(`Error creating new employee${error}`);
     res.json({ msg: `Error creating new employee ${error}` });
   }
-});
-
-module.exports = router;
+};

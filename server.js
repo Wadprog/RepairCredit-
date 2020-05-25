@@ -1,7 +1,7 @@
-const express = require('express');
-const connectDB = require('./config/db');
+const express = require("express");
+const connectDB = require("./config/db");
 
-const cors = require('cors');
+const cors = require("cors");
 
 //using express
 const app = express();
@@ -26,7 +26,8 @@ connectDB();
 
 //use the routes
 
-app.use('/api/client', require('./routes/api/client'));
+app.use("/api/client", require("./routes/api/client"));
+app.use("/api/employee", require("./routes/api/employee"));
 //app.use("/api/employee", require("./routes/api/employee"));
 //app.use("/api/afilliate", require("./routes/api/afiliate"));
 

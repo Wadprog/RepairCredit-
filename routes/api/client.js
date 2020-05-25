@@ -1,6 +1,11 @@
-const express = require('express');
+const express = require(`express`);
 const router = express.Router();
-const Client = require('../../models/client');
+
+const { fillData } = require(`../../controller/creditItems`);
+
+router.post(`/`, fillData);
+
+module.exports = router;
 
 /*----------------------------------------------------------
                          Routes||||||||||||||||||||||||||||

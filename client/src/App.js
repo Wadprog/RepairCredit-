@@ -1,4 +1,5 @@
 import React, { useEffect, Fragment } from 'react';
+import Navbar from './components/layouts/NavBar';
 import Alert from './components/Alert';
 import './App.css';
 //Routing ..
@@ -16,9 +17,10 @@ function App() {
 		<Provider store={store}>
 			<div className="App">
 				<Fragment>
+					<Navbar/>
 					<Alert />
 					Hello From React
-					<Switch></Switch>
+					<Switch />
 				</Fragment>
 			</div>
 		</Provider>

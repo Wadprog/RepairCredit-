@@ -1,15 +1,11 @@
 const mongoose = require("mongoose");
 
-const clientSchema = mongoose.Schema({
+const employeeSchema = mongoose.Schema({
   firstname: {
     type: String,
     required: true,
   },
   lastname: {
-    type: String,
-    required: true,
-  },
-  ssn: {
     type: String,
     required: true,
   },
@@ -31,7 +27,6 @@ const clientSchema = mongoose.Schema({
       number: { type: Number, required: true },
       extension: { type: Number },
       current: { type: Boolean, default: true },
-      tag: { type: mongoose.Schema.Types.ObjectId, ref: "phonetags" },
     },
   ],
   addresses: [
@@ -49,4 +44,4 @@ const clientSchema = mongoose.Schema({
   password: { type: String },
 });
 
-module.exports = Client = mongoose.model("client", clientSchema);
+module.exports = Employee = mongoose.model("employees", employeeSchema);

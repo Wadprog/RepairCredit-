@@ -1,26 +1,27 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useEffect, Fragment } from 'react';
+import Alert from './component/Alert';
 import './App.css';
+//Routing ..
+
+import { Switch, Route } from 'react-router-dom';
+import PrivateRoute from './component/PrivateRoute';
+
+//Redux
+
+import { Provider } from 'react-redux';
+import store from './redux/store';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	return (
+		<Provider store={store}>
+			<div className="App">
+				<Fragment>
+					<Alert />
+					<Switch>Hello From React</Switch>
+				</Fragment>
+			</div>
+		</Provider>
+	);
 }
 
 export default App;

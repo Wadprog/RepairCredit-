@@ -1,11 +1,11 @@
 const express = require(`express`);
 const router = express.Router();
+const Client = require('../../models/client')
 
-const { fillData } = require(`../../controller/creditItems`);
+//const { fillData } = require(`../../controller/creditItems`);
+//router.post(`/`, fillData);
 
-router.post(`/`, fillData);
 
-module.exports = router;
 
 /*----------------------------------------------------------
                          Routes||||||||||||||||||||||||||||
@@ -19,7 +19,7 @@ router.get('/', async (req, res) => {
 		let clients = await Client.find();
 		res.json(clients);
 	} catch (error) {
-		console.log(`Could not find any ge all client`);
+		console.log(`Could not find any get all client`);
 		res.json({ msg: 'Server error ${error}' });
 	}
 });

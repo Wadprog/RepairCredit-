@@ -19,24 +19,26 @@ const PhoneTag = require(`../../models/phoneTag`);
 router.post('/', async (req, res) => {
     try {
 
-        const { email } = req.body;
-
-        let afilliate = await Afiliate.findOne({ mail: email });
-        //res.json(afilliate);
+        let { mail, phones, address } = req.body;
+        let afilliate = await Afiliate.findOne({ mail: mail });
 
         if (afilliate)
             return res.
                 status(409)
-                .json({ msg: `this email is already afilliate ${email}` });
+                .json({ msg: `this email is already afilliate ${mail}` });
 
-        afilliate = new Afiliate(req.body);
+        afilliate = new Afiliate({ mail, address });
+        phones.map((phone) => {
+            afilliate.phone.push(phone);
+        });
+
         await afilliate.save();
 
-        res.json(afilliate);
+        return res.json(afilliate);
 
     } catch (error) {
         console.log(`${error}`);
-        res.status(204).json({ msg: `Server error ${error}` })
+        res.status(204).json({ msg: `Server error ${error}` });
     }
 });
 

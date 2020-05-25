@@ -18,7 +18,7 @@ const NoAuth = () => {
 					</label>
 					<input type="password" className="form-control-sm" placeholder="Password" />
 				</div>
-				<button type="submit" className="btn btn-primary mb-2">
+				<button type="submit" className="btn btn-sm btn-outline-primary mb-2">
 					Sign in
 				</button>
 			</form>

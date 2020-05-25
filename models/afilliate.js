@@ -7,7 +7,7 @@ const afilliateSchema = mongoose.Schema({
   },
   phone: [
     {
-      arreaCode: { type: Number, required: true },
+      areaCode: { type: Number, required: true },
       number: { type: Number, required: true },
       extension: { type: Number },
       current: { type: Boolean, default: true },

@@ -18,7 +18,8 @@
     "config": "^3.3.1",
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.9.11"
+    "mongoose": "^5.9.11",
+    "puppeteer": "^3.0.4"
   },
   "devDependencies": {
     "concurrently": "^5.2.0",

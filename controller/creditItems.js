@@ -1,5 +1,5 @@
-const Clients = require(`../../models/client`);
-const CreditItems = require(`../../models/creditItems`);
+const Clients = require(`../models/client`);
+const CreditItems = require(`../models/creditItems`);
 exports.fillData = async (req, res) => {
   try {
     const { client, creditor, data } = req.body;

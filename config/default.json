@@ -1,0 +1,4 @@
+{
+	"mongoUri": "mongodb+srv://Wadson:Poupouy12@cluster0-8et6g.mongodb.net/test?retryWrites=true&w=majority",
+	"jwtSecret": "Encrypt Data For the dream Software"
+}

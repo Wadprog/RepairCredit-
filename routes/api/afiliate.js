@@ -21,7 +21,8 @@ router.post('/', async (req, res) => {
 
         const { email } = req.body;
 
-        let afilliate = await Afiliate.find({ mail: email });
+        let afilliate = await Afiliate.findOne({ mail: email });
+        //res.json(afilliate);
 
         if (afilliate)
             return res.

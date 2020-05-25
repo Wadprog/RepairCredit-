@@ -28,8 +28,10 @@ connectDB();
 
 app.use("/api/client", require("./routes/api/client"));
 app.use("/api/employee", require("./routes/api/employee"));
+app.use("/api/phoneTag", require("./routes/api/phoneTag"));
+
 //app.use("/api/employee", require("./routes/api/employee"));
-//app.use("/api/afilliate", require("./routes/api/afiliate"));
+app.use("/api/afilliate", require("./routes/api/afiliate"));
 
 // Serve static assets in production
 /*if (process.env.NODE_ENV === "production") {

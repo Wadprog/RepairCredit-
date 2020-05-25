@@ -1,5 +1,5 @@
-const Afiliate = require(`../../models/afiliate`);
-const PhoneTag = require(`../../models/phoneTag`);
+const Afiliate = require(`../models/afilliate`);
+const PhoneTag = require(`../models/phoneTag`);
 
 exports.addData = async (req, res) => {
     try {

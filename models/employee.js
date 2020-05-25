@@ -27,6 +27,7 @@ const employeeSchema = mongoose.Schema({
       number: { type: Number, required: true },
       extension: { type: Number },
       current: { type: Boolean, default: true },
+      tag: { type: mongoose.Schema.Types.ObjectId, ref: "phonetags" },
     },
   ],
   addresses: [
@@ -44,4 +45,4 @@ const employeeSchema = mongoose.Schema({
   password: { type: String },
 });
 
-module.exports = Employee = mongoose.model("employees", employeeSchema);
+module.exports = Employee = mongoose.model("employee", employeeSchema);

@@ -19,7 +19,16 @@ const PhoneTag = require(`../../models/phoneTag`);
 router.post('/', async (req, res) => {
     try {
 
-        let afilliate = new Afiliate(req.body);
+        const { email } = req.body;
+
+        let afilliate = await Afiliate.find({ mail: email });
+
+        if (afilliate)
+            return res.
+                status(409)
+                .json({ msg: `this email is already afilliate ${email}` });
+
+        afilliate = new Afiliate(req.body);
         await afilliate.save();
 
         res.json(afilliate);
@@ -48,15 +57,14 @@ router.get('/:id', async (req, res) => {
     }
 });
 
-//@routes put api/Afilliate/
+//@routes get api/Afilliate/
 //@desc Create new  afilliate route
 //@desc access public temp
 
-router.put('/:id', async (req, res) => {
+router.get('/', async (req, res) => {
     try {
 
-        let afilliate = await Afiliate.findById(req.params.id);
-        if (!afilliate) res.status(404).json({ msg: 'This Afilliate does not exist' });
+        const afilliate = await Afiliate.find();
 
         res.json(afilliate);
 
@@ -65,3 +73,5 @@ router.put('/:id', async (req, res) => {
         res.status(500).json({ msg: `Server error ${error}` })
     }
 });
+
+

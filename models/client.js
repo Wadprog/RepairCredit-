@@ -11,11 +11,11 @@ const clientSchema = mongoose.Schema({
   },
   ssn: {
     type: String,
-    required: true,
+    
   },
   dob: {
     type: Date,
-    required: true,
+    
   },
   notes: [
     {

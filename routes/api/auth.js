@@ -19,7 +19,7 @@ router.get('/', simpleAuth, async (req, res) => {
 		const user = await User.findById(req.user.id).select('-password');
 		res.json(user);
 	} catch (error) {
-		res.status(500).send('Server error fething user from database' + error);
+		return res.status(500).send('Server error fething user from database' + error);
 	}
 });
 

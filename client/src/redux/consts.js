@@ -1,2 +1,9 @@
 export const SET_ALERT = 'SET_ALERT';
 export const REMOVE_ALERT = 'REMOVE_ALERT';
+export const LOG_OUT = 'LOG_OUT';
+export const LOG_IN_FAIL = 'LOG_IN_FAIL';
+export const LOG_IN_SUCCESS = 'LOG_IN_SUCCESS';
+export const LOG_IN_REQUEST = 'LOG_IN_REQUEST';
+export const LOAD_USER_REQUEST = 'LOAD_USER_REQUEST';
+export const LOAD_USER_SUCCESS = 'LOAD_USER_SUCCESS';
+export const LOAD_USER_FAIL = 'LOAD_USER_FAIL';

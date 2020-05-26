@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const config = require('config');
 const { check, validationResult } = require('express-validator');
-const User = require('./user');
+const User = require('../../models/user');
 
 /*----------------------------------------------------------
                          Routes
@@ -30,7 +30,7 @@ router.post(
 	'/',
 	[
 		check('email', 'Provide email address').not().isEmpty(),
-		check('password', 'Please enter a valid password').not().isEmpty()
+		check('password', 'Please enter a password').not().isEmpty()
 	],
 	async (req, res) => {
 		const error = validationResult(req);
@@ -47,7 +47,7 @@ router.post(
 			const payload = {
 				user: {
 					id: user.id,
-					level: access
+					level: user.level
 				}
 			};
 			jwt.sign(payload, config.get('jwtSecret'), (err, token) => {

@@ -1,4 +1,4 @@
-import api from '../utils/api';
+import api from '../../utils/api';
 
 import {
 	LOG_OUT,
@@ -8,7 +8,7 @@ import {
 	LOAD_USER_REQUEST,
 	LOAD_USER_SUCCESS,
 	LOAD_USER_FAIL
-} from '../consts';
+} from './../consts';
 
 import { setAlert } from './alert';
 import setAuthToken from '../../utils/setAuthToken';
@@ -29,7 +29,7 @@ export const login = ({ email, password }) => async dispatch => {
 		});
 
 		const res = await api.post('/auth', body);
-		setAuthToken(res.data);
+	
 		dispatch({
 			type: LOG_IN_SUCCESS,
 			payload: res.data
@@ -37,7 +37,7 @@ export const login = ({ email, password }) => async dispatch => {
 		dispatch(loadUser());
 		dispatch(setAlert(`Welcome Back`, 'success'));
 	} catch (error) {
-		const errors = err.response.data.errors;
+		const errors = error.response.data.errors;
 		if (errors) {
 			errors.forEach(error => dispatch(setAlert(error.msg, 'danger')));
 		}

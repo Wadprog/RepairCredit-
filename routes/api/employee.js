@@ -35,11 +35,11 @@ router.post(`/`, async (req, res) => {
       address,
     } = req.body;
 
-    let employee = await Employees.findOne({ username: username });
+    let employee = await Employees.findOne({ email: email });
     if (employee)
       return res
         .status(409)
-        .json({ msg: `This username is already exist ${username}..` });
+        .json({ msg: `This Email is already exist ${email}..` });
 
     employee = new Employees({
       firstname,

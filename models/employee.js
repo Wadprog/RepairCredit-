@@ -27,7 +27,7 @@ const employeeSchema = mongoose.Schema({
       number: { type: Number, required: true },
       extension: { type: Number },
       current: { type: Boolean, default: true },
-      tag: { type: mongoose.Schema.Types.ObjectId, ref: "phonetags" },
+      tag: { type: mongoose.Schema.Types.ObjectId, ref: "phoneTag" },
     },
   ],
   addresses: [
@@ -40,7 +40,7 @@ const employeeSchema = mongoose.Schema({
       status: { type: String, default: "current" },
     },
   ],
-  levelAccess: { type: String, required: true },
+  levelAccess: { type: String },
   userName: { type: String },
   password: { type: String },
 });

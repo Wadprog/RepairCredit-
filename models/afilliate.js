@@ -14,13 +14,15 @@ const afilliateSchema = mongoose.Schema({
       tag: { type: mongoose.Schema.Types.ObjectId, ref: "phoneTag" }, // Home, work
     },
   ],
-  address: {
-    state: { type: String, required: true },
-    city: { type: String, required: true },
-    zipcode: { type: String, required: true },
-    fax: { type: String, required: true },
-    description: { type: String },
-  },
+  address: [
+    {
+      state: { type: String, required: true },
+      city: { type: String, required: true },
+      zipcode: { type: String, required: true },
+      fax: { type: String, required: true },
+      description: { type: String },
+    },
+  ],
 });
 
 module.exports = Afilliate = mongoose.model("afilliate", afilliateSchema);

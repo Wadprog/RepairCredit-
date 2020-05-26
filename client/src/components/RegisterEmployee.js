@@ -5,6 +5,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { addEmployee } from '../redux/actions/employee';
 import { loadPhonetag } from '../redux/actions/phonetag';
+import stateOfUsa from '../utils/data/stateofUsa.json';
+import months from '../utils/data/months.json';
 
 const RegisterEmployee = props => {
 
@@ -17,14 +19,9 @@ const RegisterEmployee = props => {
     const [formData, setFormData] = useState({
         firstname: '',
         lastname: '',
-        dob: '',
         email: '',
         phones: [],
         addresses: [],
-        levelAccess: '',
-        userName: '',
-        password: '',
-
     });
 
     const [phones, setPhones] = useState({
@@ -42,6 +39,12 @@ const RegisterEmployee = props => {
         description: '',
     });
 
+    const [date, setDate] = useState({
+        month: '',
+        day: '',
+        year: '',
+    });
+
     const handleChange = e => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
@@ -54,19 +57,20 @@ const RegisterEmployee = props => {
         setAddresses({ ...addresses, [e.target.name]: e.target.value });
     };
 
+    const handleDate = e => {
+        setDate({ ...date, [e.target.name]: e.target.value });
+    }
+
     const handleSubmit = e => {
         e.preventDefault();
+        phones.arreaCode = '1';
         formData.phones.push(phones);
         formData.addresses.push(addresses);
-        formData.dob = new Date();
+        formData.dob = date.month + '/' + date.day + '/' + date.year;
         console.log(formData);
-        //addEmployee(formData);
-        //setFormData({ ...formData });
+        addEmployee(formData);
+        setFormData({ ...formData });
     };
-
-    const {
-
-    } = formData;
 
 
     return (
@@ -96,6 +100,46 @@ const RegisterEmployee = props => {
                     </div>
                 </div>
                 <div className="row">
+                    <div class="col-md-4 col-sm-6 my-2">
+                        <select
+                            required="true"
+                            onChange={handleDate}
+                            name="month"
+                            className="form-control"
+                            placeholder="Birth month"
+                        >
+                            <option selected>Birth month...</option>
+                            {months.map((month) => (
+                                <option key={month.value} value={month.value}>{month.name}</option>
+                            ))}
+                        </select>
+                    </div>
+                    <div class="col-sm-9 col-md-4 my-2">
+                        <input
+                            required="true"
+                            onChange={handleDate}
+                            name="day"
+                            type="number"
+                            min="1"
+                            max='31'
+                            className="form-control"
+                            placeholder="Birth day"
+                        />
+                    </div>
+                    <div class="col-md-2 col-sm-6 my-2">
+                        <input
+                            required="true"
+                            onChange={handleDate}
+                            name="year"
+                            type="number"
+                            min="1970"
+                            max="9999"
+                            className="form-control"
+                            placeholder="Birth year"
+                        />
+                    </div>
+                </div>
+                <div className="row">
                     <div className="col-md-6 col-sm-12 my-2">
                         <input
                             required="true"
@@ -108,36 +152,13 @@ const RegisterEmployee = props => {
                     </div>
                 </div>
                 <div className="row">
-                    <div className="col-md-6 col-sm-12 my-2">
-                        <input
-                            required="true"
-                            onChange={handleChange}
-                            name="userName"
-                            type="text"
-                            className="form-control"
-                            placeholder="Username"
-                        />
-                    </div>
-                    <div className="col-md-6 col-sm-12 my-2">
-                        <input
-                            required="true"
-                            onChange={handleChange}
-                            name="password"
-                            type="password"
-                            className="form-control"
-                            placeholder="Password"
-                        />
-                    </div>
-                </div>
-                <div className="row">
                     <div class="col-sm-3 col-md-2 my-2">
                         <input
                             required="true"
                             onChange={handlePhone}
                             name="arreaCode"
-                            disabled="true"
                             type="text"
-                            value="+1"
+                            value="1"
                             className="form-control"
                             placeholder="Area Code"
                         />
@@ -165,13 +186,13 @@ const RegisterEmployee = props => {
                         <select
                             required="true"
                             onChange={handlePhone}
-                            name="type"
+                            name="tag"
                             className="form-control"
                             placeholder="Type"
                         >
                             <option selected>Type...</option>
-                            {phonetag.map((phone) => (
-                                <option key={phone.id} value={phone.id}>{phone.name}</option>
+                            {phonetag.map((tag) => (
+                                <option key={tag.id} value={tag.id}>{tag.name}</option>
                             ))}
 
                         </select>
@@ -219,7 +240,9 @@ const RegisterEmployee = props => {
                             placeholder="State"
                         >
                             <option selected>State...</option>
-                            <option>...</option>
+                            {stateOfUsa.map((state) => (
+                                <option key={state.abbreviation} value={state.name}>{state.name}</option>
+                            ))}
                         </select>
                     </div>
                     <div class="col-md-2 col-sm-6 my-2">

@@ -1,4 +1,4 @@
-import { FETCH_PHONETAG_REQUEST, FETCH_PHONETAG_SUCCESS, FETCH_PHONETAG_FAIL } from '../consts';
+import { LOAD_PHONETAG_REQUEST, LOAD_PHONETAG_SUCCESS, LOAD_PHONETAG_FAIL } from '../consts';
 const initialState = {
     phonetag: [],
     loading: false,
@@ -7,18 +7,18 @@ const initialState = {
 export default function (state = initialState, action) {
     const { type, payload } = action;
     switch (type) {
-        case FETCH_PHONETAG_REQUEST:
+        case LOAD_PHONETAG_REQUEST:
             return {
                 ...state,
                 loading: true
             };
-        case FETCH_PHONETAG_SUCCESS:
+        case LOAD_PHONETAG_SUCCESS:
             return {
                 ...state,
                 phonetag: payload,
                 loading: false,
             };
-        case FETCH_PHONETAG_FAIL:
+        case LOAD_PHONETAG_FAIL:
             return {
                 ...state,
                 error: payload,

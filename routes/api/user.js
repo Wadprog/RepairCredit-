@@ -1,10 +1,11 @@
+const express = require('express');
 const router = express.Router();
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const config = require('config');
 const { check, validationResult } = require('express-validator');
 //The model
- 
+const User = require('../../models/user');
 /*----------------------------------------------------------
                          Routes||||||||||||||||||||||||||
 ------------------------------------------------------------*/
@@ -26,15 +27,19 @@ router.get('/', async (req, res) => {
 //@desc create new user
 //@desc access public will be protected
 router.post('/', async (req, res) => {
-	
-	const { name, password } = req.body;
+	const { email, password, level, reference } = req.body;
 	try {
-		let user = await User.findOne({ name });
-		if (user) return res.status(400).json({ errors: [ { msg: 'Existe un usuario con este nombre' } ] });
+		if (!level) return res.status(400).json({ errors: [ { msg: 'Specify user access' } ] });
+		if (!reference) return res.status(400).json({ errors: [ { msg: 'Specify user reference' } ] });
+
+		let user = await User.findOne({ email });
+		if (user) return res.status(400).json({ errors: [ { msg: 'This email is taken' } ] });
+
+		user = await User.findOne({ reference });
+		if (user) return res.status(400).json({ errors: [ { msg: 'A User axist for this Perseon' } ] });
 
 		//If user does not exist let create one
 		user = new User(req.body);
-		console.log(user)
 
 		//Hashing the password.
 		const salt = await bcrypt.genSalt(10);

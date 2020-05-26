@@ -1,7 +1,7 @@
-const express = require("express");
-const connectDB = require("./config/db");
+const express = require('express');
+const connectDB = require('./config/db');
 
-const cors = require("cors");
+const cors = require('cors');
 
 //using express
 const app = express();
@@ -26,12 +26,14 @@ connectDB();
 
 //use the routes
 
-app.use("/api/client", require("./routes/api/client"));
-app.use("/api/employee", require("./routes/api/employee"));
-app.use("/api/phoneTag", require("./routes/api/phoneTag"));
+app.use('/api/client', require('./routes/api/client'));
+app.use('/api/employee', require('./routes/api/employee'));
+app.use('/api/phoneTag', require('./routes/api/phoneTag'));
+app.use('/api/user', require('./routes/api/user'));
+app.use('/api/auth', require('./routes/api/auth'));
 
 //app.use("/api/employee", require("./routes/api/employee"));
-app.use("/api/afilliate", require("./routes/api/afiliate"));
+app.use('/api/afilliate', require('./routes/api/afiliate'));
 
 // Serve static assets in production
 /*if (process.env.NODE_ENV === "production") {

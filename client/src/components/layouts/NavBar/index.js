@@ -1,12 +1,11 @@
 import React, { Fragment } from 'react';
 import NoAuth from './NoAuth';
-import { Link } from 'react-router-dom';
+import Authenticated from './Authenticated';
 
-//import { logout } from '../../redux/actions/auth';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-const Navbar = ({ user, isAuthLoading }) => {
+const Navbar = ({ isAuthenticated }) => {
 	return (
 		<nav className="navbar navbar-expand-lg navbar-light bg-light col-12">
 			<a className="navbar-brand" href="#">
@@ -23,13 +22,17 @@ const Navbar = ({ user, isAuthLoading }) => {
 			>
 				<span className="navbar-toggler-icon" />
 			</button>
-			<NoAuth />
+			<Fragment>{isAuthenticated == true ? <Authenticated /> : <NoAuth />}</Fragment>
 		</nav>
 
 	);
 };
-
-/*const mapStateToProps = state => ({
-	user: state.auth.user
-});*/
-export default connect(null, {})(Navbar);
+Navbar.propTypes = {
+	isAuthenticated: PropTypes.bool.isRequired,
+	loading: PropTypes.bool.isRequired
+};
+const mapStateToProps = state => ({
+	isAuthenticated: state.auth.isAuthenticated,
+	loading: state.auth.loading
+});
+export default connect(mapStateToProps, {})(Navbar);

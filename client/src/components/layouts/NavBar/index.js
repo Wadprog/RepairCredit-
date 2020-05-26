@@ -25,6 +25,7 @@ const Navbar = ({ user, isAuthLoading }) => {
 			</button>
 			<NoAuth />
 		</nav>
+
 	);
 };
 

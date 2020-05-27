@@ -2,6 +2,7 @@ import React, {  Fragment } from 'react';
 import Navbar from './components/layouts/NavBar';
 import Alert from './components/Alert';
 import RegisterEmployee from './components/RegisterEmployee';
+import Home from './Pages/Home'
 import './App.css';
 //Routing ..
 
@@ -20,7 +21,7 @@ function App() {
 				<Fragment>
 					<Navbar />
 					<Alert />
-					Hello From React
+					<Home/>
 					<Switch />
 					<RegisterEmployee />
 				</Fragment>

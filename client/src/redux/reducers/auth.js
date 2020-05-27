@@ -35,6 +35,7 @@ export default function (state = initialState, action) {
 			};
 
 		case LOG_IN_SUCCESS:
+			localStorage.setItem('token', payload.token);
 			return {
 				...state,
 				...payload,
@@ -48,7 +49,7 @@ export default function (state = initialState, action) {
 			return {
 				...state,
 				token: null,
-				//isAuthenticated: false,
+				isAuthenticated: false,
 				loading: false,
 				user: null
 			};

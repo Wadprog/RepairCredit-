@@ -29,7 +29,7 @@ export const login = ({ email, password }) => async dispatch => {
 		});
 
 		const res = await api.post('/auth', body);
-	
+
 		dispatch({
 			type: LOG_IN_SUCCESS,
 			payload: res.data
@@ -51,11 +51,12 @@ export const login = ({ email, password }) => async dispatch => {
 
 export const loadUser = () => async dispatch => {
 	if (localStorage.token) setAuthToken(localStorage.token);
+	else console.log("there is no token in local storage")
 	try {
 		dispatch({
 			type: LOAD_USER_REQUEST
 		});
-		const res = await api.get('/api/auth');
+		const res = await api.get('/auth');
 		dispatch({
 			type: LOAD_USER_SUCCESS,
 			payload: res.data

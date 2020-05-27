@@ -15,11 +15,12 @@ const User = require('../../models/user');
 //@desc test route
 //@desc access private
 router.get('/', simpleAuth, async (req, res) => {
+	console.log('I am here ');
 	try {
 		const user = await User.findById(req.user.id).select('-password');
 		res.json(user);
 	} catch (error) {
-		return res.status(500).send('Server error fething user from database' + error);
+		return res.status(500).send({ msg: 'Server error fething user from database' + error });
 	}
 });
 

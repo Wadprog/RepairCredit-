@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import Landing from './Landing';
+import Landing from './Landing/index';
 import Authenticated from './Authenticated';
 import Loading from '../../components/Loading';
 

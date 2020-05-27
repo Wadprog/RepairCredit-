@@ -23,7 +23,7 @@ function App() {
 					<Alert />
 					<Home/>
 					<Switch />
-					<RegisterEmployee />
+					
 				</Fragment>
 			</div>
 		</Provider>

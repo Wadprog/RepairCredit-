@@ -3,21 +3,21 @@ import SideBar from '../../components/layouts/SideBar';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import SideNav from '../../components/layouts/SideBar/index';
-
+import './home.css'
 const AdminHome = ({ isAuthenticated }) => {
 	return (
 		<Fragment>
-			<div className="page-wrapper chiller-theme toggled">
-				<a id="show-sidebar" class="btn btn-sm btn-dark" href="#">
-					<i className="fa fa-bars" />
-				</a>
-				<SideNav />
-				<main class="page-content">
-					<div class="container-fluid">
-						<h2>Pro Sidebar</h2>
+			<div className="container">
+				
+				<main className="page-wrapper bg-danger">
+					<div className="d-flex h-100 py-2 px-3">
+						<aside className="sidebar bg-primary h-100 mr-2 ">a</aside>
+						<section className="bg-white w-100 rounded p-2">
+							<div className="row bg-success h-100">r</div>
+						</section>
 					</div>
-				</main>
-			</div>
+					</main> 
+				</div>
 		</Fragment>
 	);
 };

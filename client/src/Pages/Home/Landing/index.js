@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
 import Loading from '../../../components/Loading';
-import './Landing.css'
+import happyFace from '../../../img/happyFace2.jpg';
+import './Landing.css';
 const Landing = () => {
 	return (
 		<Fragment>
@@ -24,7 +25,7 @@ const Landing = () => {
 									<div className="device">
 										<div className="screen">
 											<img
-												src="images/happyFace2.jpg"
+												src={happyFace}
 												className="img-fluid"
 												alt=""
 												style={{ width: 800, height: 500 }}

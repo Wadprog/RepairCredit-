@@ -3,7 +3,7 @@ import Navbar from './components/layouts/NavBar';
 import Alert from './components/Alert';
 import RegisterEmployee from './components/RegisterEmployee';
 import Home from './Pages/Home'
-import './App.css';
+
 //Routing ..
 
 import { Switch, Route } from 'react-router-dom';

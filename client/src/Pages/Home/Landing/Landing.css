@@ -64,8 +64,8 @@ header.masthead {
 	padding-top: 150px;
 	padding-bottom: 100px;
 	color: white;
-	background: url("../pages/images/happyFace.jpg"), #7b4397;
-	background: url("../pages/images/happyFace.jpg"), linear-gradient(to left, #7b4397, #dc2430);
+	background: url("../../../img/happyFace.jpg"), #7b4397;
+	background: url("../../../img/happyFace.jpg"), linear-gradient(to left, #7b4397, #dc2430);
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;
@@ -111,19 +111,8 @@ header.masthead .device-container .screen img {
 	}
 }
 
-.bg-primary {
-	background: #fdcc52;
-	background: linear-gradient(#fdcc52, #fdc539);
-}
 
-.text-primary {
-	color: #fdcc52;
-}
 
-.no-gutter > [class*='col-'] {
-	padding-right: 0;
-	padding-left: 0;
-}
 
 .btn-outline {
 	color: white;
@@ -150,4 +139,30 @@ header.masthead .device-container .screen img {
 .btn-xl {
 	font-size: 11px;
 	padding: 15px 45px;
+}
+.view .mask {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-attachment: fixed
+}
+
+.overlay .mask {
+    opacity: 0;
+    -webkit-transition: all 0.4s ease-in-out;
+    transition: all 0.4s ease-in-out
+}
+
+.overlay .mask:hover {
+    opacity: 1
+}
+
+.rgba-black-light,
+.rgba-black-light:after {
+    background-color: rgba(0, 0, 0, 0.3)
 }

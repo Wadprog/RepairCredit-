@@ -1,5 +1,5 @@
 import React, { useEffect, Fragment } from 'react';
-//import AdminHome from './AdminLink';
+import AdminHome from './AdminHome';
 //import EmployeeHome from './EmployeeLink';
 //import AffiliateHome from './AffiliateLink';
 
@@ -11,13 +11,7 @@ const Authenticated = ({ user, logout }) => {
 			{user != null &&
 			user && (
 				<Fragment>
-					{user.level < 1 ? (
-						<p> He is admin</p>
-					) : user.level < 2 ? (
-						<p>He is an Employee</p>
-					) : (
-						<p>He is just aff</p>
-					)}
+					{user.level < 1 ? <AdminHome /> : user.level < 2 ? <p>He is an Employee</p> : <p>He is just aff</p>}
 				</Fragment>
 			)}
 		</Fragment>
@@ -28,4 +22,4 @@ const mapStateToProps = state => ({
 	isAuthenticated: state.auth.isAuthenticated,
 	user: state.auth.user
 });
-export default connect(mapStateToProps, {  })(Authenticated);
+export default connect(mapStateToProps, {})(Authenticated);

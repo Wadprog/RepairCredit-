@@ -25,7 +25,7 @@ const SideNav = () => {
 						</span>
 						<span className="user-role">Administrator</span>
 						<span className="user-status">
-							<i className="fa fa-circle" />
+							<i className="fa fa-circl" />
 							<span>Online</span>
 						</span>
 					</div>

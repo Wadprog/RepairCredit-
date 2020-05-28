@@ -22,7 +22,7 @@ import LibraryBooks from '@material-ui/icons/LibraryBooks';
 import BubbleChart from '@material-ui/icons/BubbleChart';
 import LocationOn from '@material-ui/icons/LocationOn';
 import Notifications from '@material-ui/icons/Notifications';
-import Unarchive from '@material-ui/icons/Unarchive';
+import SupervisorAccountIcon from '@material-ui/icons/SupervisorAccount';
 import Language from '@material-ui/icons/Language';
 
 // core components/views for Admin layout
@@ -33,7 +33,7 @@ import Typography from './views/Typography/Typography.js';
 import Icons from './views/Icons/Icons.js';
 import Maps from './views/Maps/Maps.js';
 import NotificationsPage from './views/Notifications/Notifications.js';
-import UpgradeToPro from './views/UpgradeToPro/UpgradeToPro.js';
+import Clients from './views/ClientList/ClientList.js';
 // core components/./views for RTL layout
 
 import RTLPage from './views/RTLPage/RTLPage.js';
@@ -95,6 +95,15 @@ const dashboardRoutes = [
 		component: NotificationsPage,
 		layout: '/admin'
 	},
+
+	{
+		path: '/employee',
+		name: 'Co-Workers',
+		rtlName: 'پشتیبانی از راست به چپ',
+		icon: SupervisorAccountIcon,
+		component: Clients,
+		layout: '/admin'
+	},
 	{
 		path: '/rtl-page',
 		name: 'RTL Support',
@@ -102,14 +111,6 @@ const dashboardRoutes = [
 		icon: Language,
 		component: RTLPage,
 		layout: '/rtl'
-	},
-	{
-		path: '/upgrade-to-pro',
-		name: 'Upgrade To PRO',
-		rtlName: 'التطور للاحترافية',
-		icon: Unarchive,
-		component: UpgradeToPro,
-		layout: '/admin'
 	}
 ];
 

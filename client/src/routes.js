@@ -34,6 +34,7 @@ import Icons from './views/Icons/Icons.js';
 import Maps from './views/Maps/Maps.js';
 import NotificationsPage from './views/Notifications/Notifications.js';
 import Clients from './views/ClientList/ClientList.js';
+import ListClient from './Pages/ListClient/ListClient'
 // core components/./views for RTL layout
 
 import RTLPage from './views/RTLPage/RTLPage.js';
@@ -110,6 +111,14 @@ const dashboardRoutes = [
 		rtlName: 'پشتیبانی از راست به چپ',
 		icon: Language,
 		component: RTLPage,
+		layout: '/rtl'
+	},
+	{
+		path: '/client-list',
+		name: 'Client List',
+		rtlName: 'پشتیبانی از راست به چپ',
+		icon: Language,
+		component: ListClient,
 		layout: '/rtl'
 	}
 ];

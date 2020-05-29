@@ -10,7 +10,7 @@ import Card from "../../components/Card/Card.js";
 import CardHeader from "../../components/Card/CardHeader.js";
 import CardBody from "../../components/Card/CardBody.js";
 
-import { loadCoworkers } from "../../redux/actions/employee";
+import { loadCoworkers } from "../../redux/actions/client";
 
 const styles = {
   cardCategoryWhite: {
@@ -55,14 +55,14 @@ const TableList = ({ loadCoworkers, coworkers }) => {
       <GridItem xs={12} sm={12} md={12}>
         <Card>
           <CardHeader color='primary'>
-            <h4 className={classes.cardTitleWhite}>Employees'list</h4>
+            <h4 className={classes.cardTitleWhite}>Clients'list</h4>
             <p className={classes.cardCategoryWhite}>
-              List of all employess in the organization
+              List of all clients in the organization
               <a className='ml-2 btn btn-primary '> add New</a>
             </p>
           </CardHeader>
           <CardBody>
-            {coworkers != null && coworkers && (
+            {coworkers ? (
               <Table
                 tableHeaderColor='primary'
                 tableHead={["Name", "Type", "Phone", "Email", "-"]}
@@ -76,7 +76,7 @@ const TableList = ({ loadCoworkers, coworkers }) => {
                   ];
                 })}
               />
-            )}
+            ) : null}
           </CardBody>
         </Card>
       </GridItem>

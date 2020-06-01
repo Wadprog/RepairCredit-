@@ -4,8 +4,8 @@ const Persorns = require("../../models/persorn");
 const Clients = require("../../models/client");
 let ObjectId = require("mongodb").ObjectID;
 
-// get every one affiliate or employee
-router.get(`/person/:id`, async (req, res) => {
+// get one cowrocker
+router.get(`/cowrorker/:id`, async (req, res) => {
   try {
     let persorns = await Persorns.findById(req.params.id);
     return res.json(persorns);
@@ -19,29 +19,17 @@ router.get(`/person/:id`, async (req, res) => {
   }
 });
 
-// get every every affiliate or employee
+// get every every cowrockers.
 router.get(`/cowrokers`, async (req, res) => {
   try {
-    let persorns = await Persorns.find({ levelAccess: !"Client" });
-    return res.json(persorns);
-  } catch (error) {
-    console.log(`Error ${error}`);
-    res.json({
-      msg: `The server is crash thus we can't fecth data of the ${
-        req.params.levelAccess === "employee" ? "employee" : "afilliate"
-      }' list ${error}`,
+    let persorns = await Persorns.find({
+      $or: [{ levelAccess: "employee" }, { levelAccess: "affiliate" }],
     });
-  }
-});
-
-router.get(`/:id`, async (req, res) => {
-  try {
-    const persorns = await Persorns.findById(req.params.id);
     return res.json(persorns);
   } catch (error) {
     console.log(`Error ${error}`);
     res.json({
-      msg: `The server is crash thus we can't fecth the data of the persorn ${error}`,
+      msg: `The server is crash thus we can't fecth the cowrockers' list ${error}`,
     });
   }
 });
@@ -49,31 +37,8 @@ router.get(`/:id`, async (req, res) => {
 //get one client
 router.get(`/client/:id`, async (req, res) => {
   try {
-    Persorns.aggregate([
-      {
-        $match: {
-          _id: ObjectId(req.params.id),
-        },
-      },
-      {
-        $lookup: {
-          from: "clients",
-          localField: "_id",
-          foreignField: "persorn",
-          as: "Clients",
-        },
-      },
-      {
-        $unwind: "$Clients",
-      },
-    ])
-      .exec()
-      .then((response) => {
-        return res.json(response);
-      })
-      .catch((err) => {
-        console.error(err);
-      });
+    let client = await Clients.findById(req.params.id).populate(`persorn`);
+    return res.json(client);
   } catch (error) {
     console.log(`Error ${error}`);
     res.json({
@@ -83,27 +48,25 @@ router.get(`/client/:id`, async (req, res) => {
 });
 
 // get every clients
-router.get(``, async (req, res) => {
+router.get(`/`, async (req, res) => {
   try {
-    Persorns.aggregate([
-      {
-        $match: {
-          levelAccess: "client",
-        },
-      },
-    ])
-      .exec()
-      .then((response) => {
-        return res.json(response);
-      })
-      .catch((err) => {
-        console.error(err);
-      });
+    let clients = await Clients.find().populate(`persorn`);
+
+    return res.json(clients);
   } catch (error) {
     console.log(`Error ${error}`);
     res.json({
       msg: `The server is crash thus we can't fecth the clients' list ${error}`,
     });
+  }
+});
+
+router.delete("/", async (req, res) => {
+  try {
+    await Persorns.deleteMany({ levelAccess: "afilliate" });
+    return res.json("ok");
+  } catch (error) {
+    console.log(error);
   }
 });
 
@@ -141,29 +104,30 @@ router.post(`/`, async (req, res) => {
       password,
     });
 
-    persorn.addresses.push(address);
     phones.map((phone) => {
       persorn.phones.push(phone);
     });
 
     await persorn.save();
 
-    if (!levelAccess === "client") return res.json(persorn);
+    if (levelAccess !== "client") return res.json(persorn);
+    else {
+      clientData.persorn = persorn._id;
+      clientData.referredBy = referredBy;
+      clientData.assignedTo = assignedTo;
+      console.log(`jnjnjasd ${clientData.ssn}`);
+      let client = new Clients(clientData);
 
-    clientData.persorn = persorn._id;
-    clientData.referredBy = referredBy;
-    clientData.assignedTo = assignedTo;
-    console.log(`jnjnjasd ${clientData.ssn}`);
-    let client = new Clients(clientData);
+      monitoringService
+        ? monitoringService.map((item) => {
+            client.monitoringService.add(item);
+          })
+        : null;
 
-    monitoringService
-      ? monitoringService.map((item) => {
-          client.monitoringService.add(item);
-        })
-      : null;
-
-    await client.save();
-    return res.json({ persorn, client });
+      client.addresses.push(address);
+      await client.save();
+      return res.json({ persorn, client });
+    }
   } catch (error) {
     console.log(`Error creating new employee${error}`);
     res.json({ msg: `Error creating new employee ${error}` });

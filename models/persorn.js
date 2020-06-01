@@ -30,16 +30,6 @@ const persornSchema = mongoose.Schema({
       tag: { type: mongoose.Schema.Types.ObjectId, ref: "phoneTag" },
     },
   ],
-  addresses: [
-    {
-      state: { type: String, required: true },
-      city: { type: String, required: true },
-      zipcode: { type: String, required: true },
-      fax: { type: String, required: true },
-      description: { type: String },
-      status: { type: String, default: "current" },
-    },
-  ],
   levelAccess: { type: String, required: true },
   userName: { type: String },
   password: { type: String },

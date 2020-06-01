@@ -36,6 +36,16 @@ const clientSchema = mongoose.Schema({
       password: { type: String },
     },
   ],
+  addresses: [
+    {
+      state: { type: String, required: true },
+      city: { type: String, required: true },
+      zipcode: { type: String, required: true },
+      fax: { type: String, required: true },
+      description: { type: String },
+      status: { type: String, default: "current" },
+    },
+  ],
 });
 
 module.exports = Client = mongoose.model("client", clientSchema);

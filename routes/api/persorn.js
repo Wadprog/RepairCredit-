@@ -61,15 +61,6 @@ router.get(`/`, async (req, res) => {
   }
 });
 
-router.delete("/", async (req, res) => {
-  try {
-    await Persorns.deleteMany({ levelAccess: "afilliate" });
-    return res.json("ok");
-  } catch (error) {
-    console.log(error);
-  }
-});
-
 router.post(`/`, async (req, res) => {
   try {
     const {

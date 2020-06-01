@@ -58,7 +58,7 @@ const TableList = ({ loadCoworkers, coworkers }) => {
             <h4 className={classes.cardTitleWhite}>Employees'list</h4>
             <p className={classes.cardCategoryWhite}>
               List of all employess in the organization
-              <a className='ml-2 btn btn-primary '> add New</a>
+              <a className='ml-2 btn btn-primary'> add New</a>
             </p>
           </CardHeader>
           <CardBody>

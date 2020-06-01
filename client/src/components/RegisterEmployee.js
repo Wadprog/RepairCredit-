@@ -12,6 +12,7 @@ import SelectCreatable from "./form-input/select-creatable/select-creatable";
 const RegisterEmployee = (props) => {
   useEffect(() => {
     loadPhonetag();
+
   }, []);
 
   const {

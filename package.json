@@ -24,7 +24,9 @@
 		"express": "^4.17.1",
 		"express-validator": "^6.5.0",
 		"jsonwebtoken": "^8.5.1",
-		"mongoose": "^5.9.11"
+		"mongoose": "^5.9.11",
+		"puppeteer": "^3.3.0",
+		"puppeteer-autoscroll-down": "^0.1.5"
 	},
 	"devDependencies": {
 		"concurrently": "^5.2.0",

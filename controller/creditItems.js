@@ -1,18 +1,24 @@
-const Clients = require(`../models/client`);
+const Persorns = require(`../models/persorn`);
 const CreditItems = require(`../models/creditItems`);
+const { Scrapper } = require("./scrappes/identityIq");
+
 exports.fillData = async (req, res) => {
   try {
-    const { client, creditor, data } = req.body;
-    const tempClient = await Clients.findById(client);
-    if (!tempClient)
-      return res.status(404).json({ msg: `Client doesn't exist ${client}..` });
-    if (data === null || data.length === 0)
-      return res.status(417).json({ msg: `Expectation failed data...` });
-    if (!creditor)
-      return res.status(417).json({ msg: `Expectation failed  creditor...` });
-    let creditItem = new CreditItems({ client, creditor });
+    const { persorn, username, password, code } = req.body;
+    const tempPersorn = await Persorns.findById(persorn);
+    if (!tempPersorn)
+      return res
+        .status(404)
+        .json({ msg: `persorn doesn't exist ${persorn}..` });
+    const data = await Scrapper(username, password, code);
+    let creditItem = new CreditItems({ persorn });
+    let i = 0;
     data.map((item) => {
       creditItem.creditBureauData.push(item);
+      item.creditData.map((a) => {
+        creditItem.creditBureauData[i].creditData.push(a);
+      });
+      i++;
     });
     await creditItem.save();
     return res.json(creditItem);

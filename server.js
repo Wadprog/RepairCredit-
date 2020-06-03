@@ -27,11 +27,10 @@ connectDB();
 //use the routes
 
 app.use("/api/client", require("./routes/api/client"));
-app.use("/api/employee", require("./routes/api/employee"));
 app.use("/api/phoneTag", require("./routes/api/phoneTag"));
 app.use("/api/user", require("./routes/api/user"));
 app.use("/api/auth", require("./routes/api/auth"));
-
+app.use("/api/credit-items", require("./routes/api/creditItems"));
 //app.use("/api/employee", require("./routes/api/employee"));
 app.use("/api/persorn", require("./routes/api/persorn"));
 

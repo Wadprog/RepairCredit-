@@ -1,7 +1,7 @@
-import React, {  Fragment } from 'react';
+import React, { Fragment } from 'react';
 import Navbar from './components/layouts/NavBar';
 import Alert from './components/Alert';
-import RegisterEmployee from './components/RegisterEmployee';
+import HomeConnect from './Pages/Home/HomeConnect';
 import Home from './Pages/Admin'
 
 //Routing ..
@@ -21,9 +21,9 @@ function App() {
 				<Fragment>
 					<Navbar />
 					<Alert />
-					<Home/>
+					<Home />
 					<Switch />
-					
+
 				</Fragment>
 			</div>
 		</Provider>

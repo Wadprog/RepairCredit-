@@ -24,8 +24,10 @@ import LocationOn from "@material-ui/icons/LocationOn";
 import Notifications from "@material-ui/icons/Notifications";
 import SupervisorAccountIcon from "@material-ui/icons/SupervisorAccount";
 import Language from "@material-ui/icons/Language";
+import HomeConnect from "./Pages/Home/HomeConnect";
 
 // core components/views for Admin layout
+/*
 import DashboardPage from "./views/Dashboard/Dashboard.js";
 import UserProfile from "./views/UserProfile/UserProfile.js";
 import TableList from "./views/TableList/TableList.js";
@@ -34,12 +36,13 @@ import Icons from "./views/Icons/Icons.js";
 import Maps from "./views/Maps/Maps.js";
 import NotificationsPage from "./views/Notifications/Notifications.js";
 import Clients from "./views/ClientList/ClientList.js";
-import ListClient from "./views/client/client.js";
+
 // core components/./views for RTL layout
 
 import RTLPage from "./views/RTLPage/RTLPage.js";
-
+*/
 const dashboardRoutes = [
+  /*
   {
     path: "/dashboard",
     name: "Dashboard",
@@ -113,12 +116,13 @@ const dashboardRoutes = [
     component: RTLPage,
     layout: "/rtl",
   },
+  */
   {
-    path: "/client-list",
-    name: "Client List",
+    path: "/HomeConnect",
+    name: "Home Connect",
     rtlName: "پشتیبانی از راست به چپ",
     icon: SupervisorAccountIcon,
-    component: ListClient,
+    component: HomeConnect,
     layout: "/admin",
   },
 ];

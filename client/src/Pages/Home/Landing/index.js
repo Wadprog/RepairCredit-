@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 import Loading from "../../../components/Loading";
-import happyFace from "../../../img/happyFace2.jpg";
+import happyFace from "../../../assets/img/happyFace2.jpg";
 import "./index.css";
 const Landing = () => {
   return (

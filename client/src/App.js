@@ -1,33 +1,26 @@
-import React, { Fragment } from 'react';
-import Navbar from './components/layouts/NavBar';
-import Alert from './components/Alert';
-import HomeConnect from './Pages/Home/HomeConnect';
-import Home from './Pages/Admin'
+import React, { Fragment } from "react";
+//Components and pages
+import PageWraper from "./components/layouts/PageWraper";
+import Home from "./Pages/Home/";
 
 //Routing ..
-
-import { Switch, Route } from 'react-router-dom';
-import PrivateRoute from './components/PrivateRoute';
-
+import { Switch, Route } from "react-router-dom";
+import Routes from "./components/Routes";
 //Redux
-
-import { Provider } from 'react-redux';
-import store from './redux/store';
+import { Provider } from "react-redux";
+import store from "./redux/store";
 
 function App() {
-	return (
-		<Provider store={store}>
-			<div className="App">
-				<Fragment>
-					<Navbar />
-					<Alert />
-					<Home />
-					<Switch />
-
-				</Fragment>
-			</div>
-		</Provider>
-	);
+  return (
+    <Provider store={store}>
+      <PageWraper>
+        <Switch>
+          <Route exact path='/' component={Home} />
+          <Route component={Routes} />
+        </Switch>
+      </PageWraper>
+    </Provider>
+  );
 }
 
 export default App;

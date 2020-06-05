@@ -1,0 +1,28 @@
+import React from "react";
+import { Route, Switch } from "react-router-dom";
+import NotFound from "../../Pages/NotFound";
+import PrivateRoute from "./PrivateRoute";
+import HomeConnect from "../../Pages/Home/HomeConnect";
+const Routes = props => {
+  return (
+    <section className='container'>
+      <Switch>
+        {/*<Route exact path="/register" component={} />
+        <Route exact path="/login" component={Login} />
+        <Route exact path="/profiles" component={Profiles} />
+        <Route exact path="/profile/:id" component={Profile} />
+        <PrivateRoute exact path="/dashboard" component={Dashboard} />
+        <PrivateRoute exact path="/create-profile" component={ProfileForm} />
+        <PrivateRoute exact path="/edit-profile" component={ProfileForm} />
+        <PrivateRoute exact path="/add-experience" component={AddExperience} />
+        <PrivateRoute exact path="/add-education" component={AddEducation} />
+        <PrivateRoute exact path="/posts" component={Posts} />
+  <PrivateRoute exact path="/posts/:id" component={Post} />*/}
+        <PrivateRoute exact path='/homeconnect' component={HomeConnect} />
+        <Route component={NotFound} />
+      </Switch>
+    </section>
+  );
+};
+
+export default Routes;

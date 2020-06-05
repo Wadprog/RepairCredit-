@@ -64,8 +64,8 @@ header.masthead {
   padding-top: 150px;
   padding-bottom: 100px;
   color: white;
-  background: url("../../../img/happyFace.jpg"), #7b4397;
-  background: url("../../../img/happyFace.jpg"),
+  background: url("../../../assets/img/happyFace.jpg"), #7b4397;
+  background: url("../../../assets/img/happyFace.jpg"),
     linear-gradient(to left, #7b4397, #dc2430);
   -webkit-background-size: cover;
   -moz-background-size: cover;

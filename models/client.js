@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const clientSchema = mongoose.Schema({
   persorn: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "persorn",
+    ref: "person",
   },
   ssn: {
     type: String,

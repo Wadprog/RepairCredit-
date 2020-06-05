@@ -1,4 +1,4 @@
-const Persorns = require(`../models/persorn`);
+const Persorns = require(`../models/person`);
 const CreditItems = require(`../models/creditItems`);
 const { Scrapper } = require("./scrappes/identityIq");
 

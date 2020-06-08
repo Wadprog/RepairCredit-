@@ -6,7 +6,8 @@ import {
 } from "../consts";
 import { setAlert } from "../actions/alerts";
 
-export const loadCoworkers = () => async (dispatch) => {
+export const loadClient = () => async dispatch => {};
+export const loadCoworkers = () => async dispatch => {
   dispatch({
     type: LOAD_COWORKER_REQUEST,
   });

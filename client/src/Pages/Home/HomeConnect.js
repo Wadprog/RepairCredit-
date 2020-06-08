@@ -1,253 +1,248 @@
-import React, { Fragment } from 'react';
-import { Link } from 'react-router-dom';
-import Home from '@material-ui/icons/Home';
-
-
+import React, { Fragment } from "react";
+import { Link } from "react-router-dom";
+import Home from "@material-ui/icons/Home";
 
 const HomeConnect = props => {
+  const f = "folder";
+  return (
+    <Fragment>
+      <div className='container-fluid'>
+        <div className='row'>
+          <div className='col-12 mb-2'>
+            <div className='card p-0'>
+              <div className='card-body p-0'>
+                <p className='bg-warning p-2 text-dark m-0'>
+                  You have a full account with all access! Get started with the
+                  Welcome Video, the Guided Tour and learn with your Sample
+                  Client. Be sure to read our User Guides. For the best possible
+                  experience, tune-up your web browser. For account changes
+                  click here. Need help? See help and support options.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div className='col-12 '>
+            <div className='card p-2'>
+              <div className='card-body p-0'>
+                <p>
+                  <span className='h5'>
+                    CheckList for starting a Credit Repair Business
+                  </span>
+                </p>
 
-    return (
-        <Fragment>
-            <div className="container-fluid">
-                <div className="row">
-                    <div className="col-12 ">
-                        <p className="border p-3">
-                            <span className="h5">CheckList for starting a Credit Repair Business</span>
-                            <span class="progress w-25">
-                                <span className="progress-bar" style={{ width: 25 + "%" }} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</span>
-                            </span>
-                        </p>
-                    </div>
+                <div class='progress w-100'>
+                  <span
+                    className='progress-bar'
+                    style={{ width: 25 + "%" }}
+                    aria-valuenow='25'
+                    aria-valuemin='0'
+                    aria-valuemax='100'
+                  >
+                    Progress 25%
+                  </span>
                 </div>
-                <div className="row mt-3">
-                    <div class="col-4">
-                        <div className="border p-1">
-                            <p> <span className="font-weight-bold">Quick start </span><span>(Your most common task):</span></p>
-                            <div className="card" style={{ width: 18.5 + "rem" }}>
+                <h6 className='text-center my-2'>
+                  <Link className='text-success' to='/#'>
+                    Open My CheckList
+                  </Link>
+                </h6>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className='row mt-3'>
+          <div class='col-4'>
+            <div className='card p-1 box'>
+              <div className='card-header'>
+                <h5 className='card-title'>
+                  {" "}
+                  <span className='font-weight-bold'>Quick start </span>
+                  <span>(Your most common task):</span>
+                </h5>
+              </div>
+              <div className='card-body'>
+                <MiniItem
+                  title='Add New Client'
+                  subTitile='Sign up a new client and add to database'
+                  icontext='A'
+                  link='/#'
+                />
+                <MiniItem
+                  title='Select an existing client'
+                  subTitile='Work with an existing client'
+                  icontext='B'
+                  link='/#'
+                />
 
-                                <Link className="text-decoration-none" to="/#">
-                                    <div className="row no-gutters border-bottom">
-                                        <div class="col-md-2 mx-auto">
-                                            <Home />
-                                        </div>
-                                        <div class="col-md-10">
-                                            <span className="font-weight-bold">Add a new client </span> <br />
-                                            <span className=""><small>Sign up a new client and add to database</small></span>
-                                        </div>
-                                    </div>
-                                </Link>
+                <MiniItem
+                  title='Run Credit Dispute Wizard'
+                  subTitile=' Order Reports, review reports, correct errors'
+                  icontext='C'
+                  link='/#'
+                />
+              </div>
+            </div>
+          </div>
 
-                                <Link className="text-decoration-none" to="/#">
-                                    <div className="row no-gutters  border-bottom">
-                                        <div class="col-md-2 mx-auto">
-                                            <Home />
-                                        </div>
-                                        <div class="col-md-10">
-                                            <span className="font-weight-bold">Select an existing client </span> <br />
-                                            <span className=""><small>Work with an existing client</small></span>
-                                        </div>
-                                    </div>
-                                </Link>
+          <div class='col-8'>
+            <div className=' card box'>
+              <div className='card-body'>
+                <div className='row '>
+                  <Item
+                    iconClass='home'
+                    iconColor='green'
+                    title=' My company Profile'
+                    subTitile='Configure users, permissions, billing'
+                    link='/#'
+                  />
 
-                                <Link className="text-decoration-none" to="/#">
-                                    <div className="row no-gutters">
-                                        <div class="col-md-2 mx-auto">
-                                            <Home />
-                                        </div>
-                                        <div class="col-md-10">
-                                            <span className="font-weight-bold">Run Credit Dispute Wizard </span> <br />
-                                            <span className=""><small>Order Reports, review reports, correct errors</small></span>
-                                        </div>
-                                    </div>
-                                </Link>
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-8">
-                        <div className=" border p-3">
-                            <div className="row no-gutters">
-                                <div className="col-6">
-                                    <Link className="text-decoration-none" to="/#">
-                                        <div className="row no-gutters">
-                                            <div class="col-md-2 mx-auto">
-                                                <Home />
-                                            </div>
-                                            <div class="col-md-10">
-                                                <span className="font-weight-bold">My company Profile</span> <br />
-                                                <span className=""><small>Configure users, permissions, billing</small></span>
-                                            </div>
-                                        </div>
-                                    </Link>
-                                </div>
-                                <div className="col-6">
-                                    <Link className="text-decoration-none" to="/#">
-                                        <div className="row no-gutters">
-                                            <div class="col-md-2 mx-auto">
-                                                <Home />
-                                            </div>
-                                            <div class="col-md-10">
-                                                <span className="font-weight-bold">Free Live Software class</span> <br />
-                                                <span className=""><small>Daily for all credits Heroes!</small></span>
-                                            </div>
-                                        </div>
-                                    </Link>
-                                </div>
-                            </div>
-
-                            <div className="row no-gutters mt-4">
-                                <div className="col-6">
-                                    <Link className="text-decoration-none" to="/#">
-                                        <div className="row no-gutters">
-                                            <div class="col-md-2 mx-auto">
-                                                <Home />
-                                            </div>
-                                            <div class="col-md-10">
-                                                <span className="font-weight-bold">My Clients</span> <br />
-                                                <span className=""><small>Add or Delete clients and records</small></span>
-                                            </div>
-                                        </div>
-                                    </Link>
-                                </div>
-                                <div className="col-6">
-                                    <Link className="text-decoration-none" to="/#">
-                                        <div className="row no-gutters">
-                                            <div class="col-md-2 mx-auto">
-                                                <Home />
-                                            </div>
-                                            <div class="col-md-10">
-                                                <span className="font-weight-bold">Free Videos and Ressources</span> <br />
-                                                <span className=""><small>Credit Repair cloud user guides</small></span>
-                                            </div>
-                                        </div>
-                                    </Link>
-                                </div>
-                            </div>
-
-                            <div className="row no-gutters mt-4">
-                                <div className="col-6">
-                                    <Link className="text-decoration-none" to="/#">
-                                        <div className="row no-gutters">
-                                            <div class="col-md-2 mx-auto">
-                                                <Home />
-                                            </div>
-                                            <div class="col-md-10">
-                                                <span className="font-weight-bold">My Contacts</span> <br />
-                                                <span className=""><small>Manage contacts and addresses</small></span>
-                                            </div>
-                                        </div>
-                                    </Link>
-                                </div>
-                                <div className="col-6">
-                                    <Link className="text-decoration-none" to="/#">
-                                        <div className="row no-gutters">
-                                            <div class="col-md-2 mx-auto">
-                                                <Home />
-                                            </div>
-                                            <div class="col-md-10">
-                                                <span className="font-weight-bold">Credit Repair Academy</span> <br />
-                                                <span className=""><small>Get Credit Repair Training and Certificate</small></span>
-                                            </div>
-                                        </div>
-                                    </Link>
-                                </div>
-                            </div>
-
-                            <div className="row no-gutters mt-4">
-                                <div className="col-6">
-                                    <Link className="text-decoration-none" to="/#">
-                                        <div className="row no-gutters">
-                                            <div class="col-md-2 mx-auto">
-                                                <Home />
-                                            </div>
-                                            <div class="col-md-10">
-                                                <span className="font-weight-bold">Schedule</span> <br />
-                                                <span className=""><small>Time organizatiion and appointments</small></span>
-                                            </div>
-                                        </div>
-                                    </Link>
-                                </div>
-                                <div className="col-6">
-                                    <Link className="text-decoration-none" to="/#">
-                                        <div className="row no-gutters">
-                                            <div class="col-md-2 mx-auto">
-                                                <Home />
-                                            </div>
-                                            <div class="col-md-10">
-                                                <span className="font-weight-bold">Business Website</span> <br />
-                                                <span className=""><small>Get a Professional site in minutes</small></span>
-                                            </div>
-                                        </div>
-                                    </Link>
-                                </div>
-                            </div>
-
-                            <div className="row no-gutters mt-4">
-                                <div className="col-6">
-                                    <Link className="text-decoration-none" to="/#">
-                                        <div className="row no-gutters">
-                                            <div class="col-md-2 mx-auto">
-                                                <Home />
-                                            </div>
-                                            <div class="col-md-10">
-                                                <span className="font-weight-bold">Client and Affiliate Portal</span> <br />
-                                                <span className=""><small>Clients and Affiliates log in here</small></span>
-                                            </div>
-                                        </div>
-                                    </Link>
-                                </div>
-                                <div className="col-6">
-                                    <Link className="text-decoration-none" to="/#">
-                                        <div className="row no-gutters">
-                                            <div class="col-md-2 mx-auto">
-                                                <Home />
-                                            </div>
-                                            <div class="col-md-10">
-                                                <span className="font-weight-bold">Get CRC Certified</span> <br />
-                                                <span className=""><small>Get FREE step-by-step training get the most out of CRC</small></span>
-                                            </div>
-                                        </div>
-                                    </Link>
-                                </div>
-                            </div>
-
-                            <div className="row no-gutters mt-4">
-                                <div className="col-6">
-                                    <Link className="text-decoration-none" to="/#">
-                                        <div className="row no-gutters">
-                                            <div class="col-md-2 mx-auto">
-                                                <Home />
-                                            </div>
-                                            <div class="col-md-10">
-                                                <span className="font-weight-bold">library of Dispute Letters</span> <br />
-                                                <span className=""><small>Also add your custom letters</small></span>
-                                            </div>
-                                        </div>
-                                    </Link>
-                                </div>
-                                <div className="col-6">
-                                    <Link className="text-decoration-none" to="/#">
-                                        <div className="row no-gutters">
-                                            <div class="col-md-2 mx-auto">
-                                                <Home />
-                                            </div>
-                                            <div class="col-md-10">
-                                                <span className="font-weight-bold">Bonus Materials</span> <br />
-                                                <span className=""><small>Legal docs and marketting materials</small></span>
-                                            </div>
-                                        </div>
-                                    </Link>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
+                  <Item
+                    iconClass='bookmark'
+                    iconColor='blue'
+                    title=' Free Live Software class'
+                    subTitile='Dailly for all credits heroes!'
+                    link='/#'
+                  />
                 </div>
-            </div >
-        </Fragment >
-    );
 
+                <div className='row  mt-4'>
+                  <Item
+                    iconClass='users'
+                    iconColor='blue'
+                    title=' My Clients'
+                    subTitile='Add or delete cleints and records'
+                    link='/customers'
+                  />
+
+                  <Item
+                    iconClass='cloud'
+                    iconColor='#AFFBA'
+                    title=' Free Videos and Ressources'
+                    subTitile='Credit Repair cloud user guides'
+                    link='/#'
+                  />
+                </div>
+
+                <div className='row  mt-4'>
+                  <Item
+                    iconClass='address-book'
+                    iconColor='#F8D775'
+                    title=' My Contacts '
+                    subTitile='Manage contact and Address'
+                    link='/#'
+                  />
+
+                  <Item
+                    iconClass='graduation-cap'
+                    iconColor='green'
+                    title=' Credit Repair Academy '
+                    subTitile=' Get Credit Repair Training and Certificate'
+                    link='/#'
+                  />
+                </div>
+
+                <div className='row  mt-4'>
+                  <Item
+                    iconClass='calendar'
+                    iconColor='orange'
+                    title=' Schedule '
+                    subTitile=' Time organisation and appointments'
+                    link='/#'
+                  />
+                  <Item
+                    iconClass='calculator'
+                    iconColor='blue'
+                    title=' Business Website '
+                    subTitile='Get a Professional site in minutes'
+                    link='/#'
+                  />
+                </div>
+
+                <div className='row  mt-4'>
+                  <Item
+                    iconClass='grav'
+                    iconColor='blue'
+                    title=' Client and Affiliate Portal '
+                    subTitile='Client and Affiliate log in here'
+                    link='/#'
+                  />
+                  <Item
+                    iconClass='telegram'
+                    iconColor='orange'
+                    title=' Get CRC Certified '
+                    subTitile='Get Free step by step training most out of CRC'
+                    link='/#'
+                  />
+                </div>
+
+                <div className='row  mt-4'>
+                  <Item
+                    iconClass='grav'
+                    iconColor='blue'
+                    title=' Library of disspute Letters '
+                    subTitile='Also add your ow custom letters'
+                    link='/#'
+                  />
+                  <Item
+                    iconClass='folder'
+                    iconColor='orange'
+                    title='Bonus Materials '
+                    subTitile='Legal docs and marketing materials'
+                    link='/#'
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </Fragment>
+  );
 };
 
 export default HomeConnect;
+
+const Item = ({ title, subTitile, link, iconClass, iconColor }) => {
+  return (
+    <div className=' box box-item p-2 col-6'>
+      <Link className='text-decoration-none text-dark' to={link}>
+        <div className='row no-gutters'>
+          <div class='col-md-2 mx-auto'>
+            <i
+              className={`fa fa-${iconClass} fa-2x`}
+              style={{ color: `${iconColor}` }}
+            ></i>
+          </div>
+          <div class='col-md-10'>
+            <span className='font-weight-bold'>{title}</span> <br />
+            <span className=''>
+              <small>{subTitile}</small>
+            </span>
+          </div>
+        </div>
+      </Link>
+    </div>
+  );
+};
+
+const MiniItem = ({ title, subTitile, link, icontext }) => {
+  return (
+    <div className=' box mb-2 box-item '>
+      <Link className='text-decoration-none text-dark' to={link}>
+        <div className='row p-3'>
+          <div class='col-md-2 mx-auto'>
+            <div className='bg-danger text-white text-bold rounded-circle miniItem-icon'>
+              {icontext}
+            </div>
+          </div>
+          <div class='col-md-10'>
+            <span className='font-weight-bold'>{title} </span> <br />
+            <span className=''>
+              <small>{subTitile}</small>
+            </span>
+          </div>
+        </div>
+      </Link>
+    </div>
+  );
+};

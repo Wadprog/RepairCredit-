@@ -3,6 +3,7 @@ import { Route, Switch } from "react-router-dom";
 import NotFound from "../../Pages/NotFound";
 import PrivateRoute from "./PrivateRoute";
 import HomeConnect from "../../Pages/Home/HomeConnect";
+import ListClient from "../../Pages/ListClient";
 const Routes = props => {
   return (
     <section className='container'>
@@ -18,6 +19,7 @@ const Routes = props => {
         <PrivateRoute exact path="/add-education" component={AddEducation} />
         <PrivateRoute exact path="/posts" component={Posts} />
   <PrivateRoute exact path="/posts/:id" component={Post} />*/}
+        <PrivateRoute exact path='/customers' component={ListClient} />
         <PrivateRoute exact path='/homeconnect' component={HomeConnect} />
         <Route component={NotFound} />
       </Switch>

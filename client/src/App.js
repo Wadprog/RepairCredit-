@@ -10,10 +10,14 @@ import Routes from "./components/Routes";
 import { Provider } from "react-redux";
 import store from "./redux/store";
 
+//Test Componenet and pages
+import ListClient from "./Pages/ListClient";
+import "./App.css";
 function App() {
   return (
     <Provider store={store}>
       <PageWraper>
+        <ListClient />
         <Switch>
           <Route exact path='/' component={Home} />
           <Route component={Routes} />

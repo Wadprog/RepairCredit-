@@ -4,36 +4,6 @@ const Persorns = require("../../models/person");
 const Clients = require("../../models/client");
 let ObjectId = require("mongodb").ObjectID;
 
-// get one cowrocker
-router.get(`/cowrorker/:id`, async (req, res) => {
-  try {
-    let persorns = await Persorns.findById(req.params.id);
-    return res.json(persorns);
-  } catch (error) {
-    console.log(`Error ${error}`);
-    res.json({
-      msg: `The server is crash thus we can't fecth data of the ${
-        req.params.levelAccess === "employee" ? "employee" : "afilliate"
-      }' list ${error}`,
-    });
-  }
-});
-
-// get every every cowrockers.
-router.get(`/cowrokers`, async (req, res) => {
-  try {
-    let persorns = await Persorns.find({
-      $or: [{ levelAccess: "employee" }, { levelAccess: "affiliate" }],
-    });
-    return res.json(persorns);
-  } catch (error) {
-    console.log(`Error ${error}`);
-    res.json({
-      msg: `The server is crash thus we can't fecth the cowrockers' list ${error}`,
-    });
-  }
-});
-
 //get one client
 router.get(`/client/:id`, async (req, res) => {
   try {
@@ -95,7 +65,7 @@ router.post(`/`, async (req, res) => {
       password,
     });
 
-    phones.map((phone) => {
+    phones.map(phone => {
       persorn.phones.push(phone);
     });
 
@@ -110,7 +80,7 @@ router.post(`/`, async (req, res) => {
       let client = new Clients(clientData);
 
       monitoringService
-        ? monitoringService.map((item) => {
+        ? monitoringService.map(item => {
             client.monitoringService.add(item);
           })
         : null;
@@ -122,6 +92,36 @@ router.post(`/`, async (req, res) => {
   } catch (error) {
     console.log(`Error creating new employee${error}`);
     res.json({ msg: `Error creating new employee ${error}` });
+  }
+});
+
+// get one cowrocker
+router.get(`/cowrorker/:id`, async (req, res) => {
+  try {
+    let persorns = await Persorns.findById(req.params.id);
+    return res.json(persorns);
+  } catch (error) {
+    console.log(`Error ${error}`);
+    res.json({
+      msg: `The server is crash thus we can't fecth data of the ${
+        req.params.levelAccess === "employee" ? "employee" : "afilliate"
+      }' list ${error}`,
+    });
+  }
+});
+
+// get every every cowrockers.
+router.get(`/cowrokers`, async (req, res) => {
+  try {
+    let persorns = await Persorns.find({
+      $or: [{ levelAccess: "employee" }, { levelAccess: "affiliate" }],
+    });
+    return res.json(persorns);
+  } catch (error) {
+    console.log(`Error ${error}`);
+    res.json({
+      msg: `The server is crash thus we can't fecth the cowrockers' list ${error}`,
+    });
   }
 });
 

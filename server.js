@@ -19,7 +19,7 @@ app.use("/api/auth", require("./routes/api/auth"));
 app.use("/api/credit-items", require("./routes/api/creditItems"));
 //app.use("/api/employee", require("./routes/api/employee"));
 app.use("/api/person", require("./routes/api/person"));
-
+app.use("/api/customer", require("./routes/api/customer"));
 // Serve static assets in production
 if (process.env.NODE_ENV === "production") {
   const path = require("path");

@@ -10,9 +10,14 @@ import {
 
 const initialState = {
 	token: localStorage.getItem('token'),
-	isAuthenticated: false,
+	isAuthenticated: true,
 	loading: false,
-	user: null
+	user: {
+		email: "me@onkeydown.com",
+		  level: "Admin",
+		  status: true,
+		  
+	}
 };
 
 export default function (state = initialState, action) {

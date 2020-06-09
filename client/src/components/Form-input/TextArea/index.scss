@@ -1,0 +1,55 @@
+$sub-color: #5e2a2a;
+$main-color: #5e2a2a 90%;
+
+@mixin shrinkLabel {
+  top: -14px;
+  font-size: 14px;
+  color: $main-color;
+}
+
+.group {
+  position: relative;
+  margin: 45px 0;
+  width: 95%;
+
+  .form-input {
+    background: none;
+    background-color: rgb(231, 239, 247) 0%;
+    color: $sub-color;
+    font-family: "Open Sans Condensed";
+    font-size: 1em;
+    font-weight: 600;
+    padding: 5px 10px;
+    display: block;
+    width: 100%;
+    border: none;
+    border-radius: 0;
+    border-bottom: 1px solid $sub-color;
+    margin: 25px 0;
+
+    &:focus {
+      outline: none;
+    }
+
+    &:focus ~ .form-input-label {
+      @include shrinkLabel();
+    }
+  }
+
+  .form-input-label {
+    color: $sub-color;
+    font-size: 16px;
+    font-weight: normal;
+    position: absolute;
+    font-family: "Open Sans Condensed";
+    font-weight: 600;
+    pointer-events: none;
+    left: 8px;
+    top: 5px;
+    transition: 300ms ease all;
+
+    &.shrink {
+      @include shrinkLabel();
+    }
+  }
+}

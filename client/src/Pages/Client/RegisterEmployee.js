@@ -3,16 +3,15 @@ import { Link } from "react-router-dom";
 
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { addEmployee } from "../redux/actions/employee";
-import { loadPhonetag } from "../redux/actions/phonetag";
-import stateOfUsa from "../utils/data/stateofUsa.json";
-import months from "../utils/data/months.json";
-import SelectCreatable from "./form-input/select-creatable/select-creatable";
+import { addEmployee } from "../../redux/actions/employee";
+import { loadPhonetag } from "../../redux/actions/phonetag";
+import stateOfUsa from "../../utils/data/stateofUsa.json";
+import months from "../../utils/data/months.json";
+import SelectCreatable from "../../components/Form-input/select-creatable";
 
-const RegisterEmployee = (props) => {
+const RegisterEmployee = props => {
   useEffect(() => {
     loadPhonetag();
-
   }, []);
 
   const {
@@ -53,19 +52,19 @@ const RegisterEmployee = (props) => {
     year: "",
   });
 
-  const handleChange = (e) => {
+  const handleChange = e => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handlePhone = (e) => {
+  const handlePhone = e => {
     setPhones({ ...phones, [e.target.name]: e.target.value });
   };
 
-  const handleAdresses = (e) => {
+  const handleAdresses = e => {
     setAddresses({ ...addresses, [e.target.name]: e.target.value });
   };
 
-  const handleDate = (e) => {
+  const handleDate = e => {
     setDate({ ...date, [e.target.name]: e.target.value });
   };
 
@@ -74,7 +73,7 @@ const RegisterEmployee = (props) => {
     console.groupEnd();
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = e => {
     e.preventDefault();
     phones.arreaCode = "1";
     formData.phones.push(phones);
@@ -121,7 +120,7 @@ const RegisterEmployee = (props) => {
               placeholder='Birth month'
             >
               <option selected>Birth month...</option>
-              {months.map((month) => (
+              {months.map(month => (
                 <option key={month.value} value={month.value}>
                   {month.name}
                 </option>
@@ -217,7 +216,7 @@ const RegisterEmployee = (props) => {
               className='form-control'
               placeholder='Type'
             >
-              {phonetag.map((tag) => (
+              {phonetag.map(tag => (
                 <option key={tag._id} value={tag._id}>
                   {tag.name}
                 </option>
@@ -297,7 +296,7 @@ RegisterEmployee.prototype = {
   loadPhonetag: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   error: state.employee.errors || state.phonetag.error,
   employee: state.employee.employee,
   phonetag: state.phonetag.phonetag,

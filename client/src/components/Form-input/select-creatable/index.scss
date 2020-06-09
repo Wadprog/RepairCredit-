@@ -1,0 +1,21 @@
+.creatable {
+  position: relative;
+  background: #f1b7b700;
+  border: 0px;
+  font-family: "Open Sans Condensed";
+  font-size: 1em;
+  font-weight: 600;
+  color: #5e2a2a;
+  margin: auto 0;
+
+  display: block;
+  height: 50px;
+  font-family: "Open Sans Condensed";
+  font-size: 1em;
+  font-weight: 600;
+  color: #5e2a2a;
+  &:focus {
+    outline: none;
+    outline-color: rgb(6, 6, 49);
+  }
+}

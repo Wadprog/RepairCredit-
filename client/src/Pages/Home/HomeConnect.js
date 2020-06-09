@@ -65,7 +65,7 @@ const HomeConnect = props => {
                   title='Add New Client'
                   subTitile='Sign up a new client and add to database'
                   icontext='A'
-                  link='/#'
+                  link='/register'
                 />
                 <MiniItem
                   title='Select an existing client'

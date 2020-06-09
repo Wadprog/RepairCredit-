@@ -1,11 +1,11 @@
 import React, { Fragment, useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { ButtonGroup, Button, Dropdown, SplitButton } from "react-bootstrap";
-import {loadClient} from '../../redux/actions/client'
-const ListClient = {loadClient} => {
-  useEffect(()=>{
-    loadClient(); 
-  },[])
+import { loadClient } from "../../redux/actions/client";
+const ListClient = ({ loadClient, customers }) => {
+  useEffect(() => {
+    loadClient();
+  }, []);
   return (
     <Fragment>
       <div className='row row-cols-4 no-gutters pt-3 text-dark'>
@@ -23,7 +23,7 @@ const ListClient = {loadClient} => {
           <span className='arrow'></span>
           <div className='px-1'>
             <ul className='list-group'>
-              <ClientCard />
+              {customers !== null && customers.map(customer => <ClientCard />)}
 
               <li className='list-group-item mb-2'>
                 <div className='row ml-2'>
@@ -150,9 +150,11 @@ const ListClient = {loadClient} => {
   );
 };
 
-const mapStateToProps = state => ({});
+const mapStateToProps = state => ({
+  customers: state.customer.customers,
+});
 
-export default connect(mapStateToProps, {loadClient})(ListClient);
+export default connect(mapStateToProps, { loadClient })(ListClient);
 
 const ClientCard = ({ name, _id }) => {
   return (

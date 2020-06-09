@@ -8,6 +8,7 @@ import {
   LOAD_CUSTOMERS_REQUEST,
 } from "../consts";
 import { setAlert } from "../actions/alerts";
+export const addCustomer = () => async dispatch => {};
 export const loadClient = () => async dispatch => {
   dispatch({
     type: LOAD_CUSTOMER_REQUEST,

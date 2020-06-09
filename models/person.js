@@ -30,7 +30,7 @@ const personSchema = mongoose.Schema({
       tag: { type: mongoose.Schema.Types.ObjectId, ref: "phoneTag" },
     },
   ],
-  levelAccess: { type: String, required: true },
+  AcessLevel: { type: String, required: true },
   userName: { type: String },
   password: { type: String },
 });

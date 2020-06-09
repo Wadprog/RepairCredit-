@@ -63,7 +63,7 @@ const AddClient = ({ loading, partners, addCustomer, loadPartners }) => {
                 />
               </Col>
               <Col>
-                <Form.Label>Middle name</Form.Label>
+                <Form.Label>Middl name</Form.Label>
                 <Form.Control
                   size='sm'
                   className='box'

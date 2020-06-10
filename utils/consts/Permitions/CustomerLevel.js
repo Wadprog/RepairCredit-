@@ -1,7 +1,7 @@
 const AccessLevel = {
-  High: 0,
-  Medium: 1,
-  Low: 2,
+  Lead: 0,
+  Client: 2,
+  inProcess: 1,
 };
 
 module.exports = AccessLevel;

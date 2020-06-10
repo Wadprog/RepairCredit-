@@ -1,36 +1,68 @@
 const mongoose = require("mongoose");
-
+const AcessLevel = require("../utils/consts/Permitions/AccessLevel");
+const CustomerLevel = require("../utils/consts/Permitions/CustomerLevel");
 const personSchema = mongoose.Schema({
-  firstname: {
+  firstName: {
     type: String,
     required: true,
   },
-  lastname: {
+  lastnName: {
     type: String,
-    required: true,
+   
+  },
+
+  middleName: {
+    type: String,
+    
+  },
+  suffix: {
+    type: String,
+    
   },
   dob: {
     type: Date,
-    required: true,
+    
+  },
+  address: {
+    type: String,
+  },
+  city: {
+    type: String,
+  },
+  state: {
+    type: String,
+  },
+  zip: {
+    type: String,
+  },
+  type: {
+    type: Number,
+    default: CustomerLevel.Lead,
   },
   status: {
     type: Boolean,
-    default: true,
+    default: true, //active
   },
   email: {
     type: String,
-    required: true,
+    
   },
-  phones: [
-    {
-      arreaCode: { type: Number, required: true },
-      number: { type: Number, required: true },
-      extension: { type: Number },
-      current: { type: Boolean, default: true },
-      tag: { type: mongoose.Schema.Types.ObjectId, ref: "phoneTag" },
-    },
-  ],
-  AcessLevel: { type: String, required: true },
+  phoneH: { type: String },
+  phoneW: { type: String },
+  phoneM: { type: String },
+  fax: { type: String },
+  AccessLevel: {
+    type: Number,
+    
+  },
+  assignedTo: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "person",
+  },
+  referredBy: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "person",
+  },
   userName: { type: String },
   password: { type: String },
 });

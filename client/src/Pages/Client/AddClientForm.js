@@ -1,20 +1,20 @@
-import React, { Fragment, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Button, Form, Col } from "react-bootstrap";
 import stateOfUsa from "../../utils/data/stateofUsa.json";
 import SelectCreatable from "../../components/Form-input/select-creatable";
-import { addCustomer } from "../../redux/actions/customer";
-import loadPartners from "../../redux/actions/partners";
+
+import { loadCoworkers, addPerson } from "../../redux/actions/person";
 /////////////////////////////////////Dealing with Access Level////////////////////////////////////////////////////////
 import { AccessLevel } from "../../utils/consts/Permitions/AccessLevel";
 /********************************************************************************************************************/
 /////////////////////////////////// Defining the Component////////////////////////////////////////////////////////////
 /*********************************************************************************************************************/
 
-const AddClient = ({ loading, partners, addCustomer, loadPartners }) => {
+const AddClient = ({ loading, partners, addPerson, loadCoworkers }) => {
   useEffect(() => {
-    loadPartners();
+    loadCoworkers();
   }, []);
 
   /**
@@ -22,22 +22,56 @@ const AddClient = ({ loading, partners, addCustomer, loadPartners }) => {
    * INFO: We are getting the employes for the partners array
    * ? REASON FOR Const Employess Because clients can be only assigned only to employess not to affiliates
    * ** Partnes will pull both Affiliate and Employes
-   * @Gervens and @Fenley  and Admin is just an employee will all access level
+   * @Gervens and @Fenley  and Admin is just an employee with all access level
    *
    */
 
   const Employees = partners.filter(partner => {
     if (
-      partner.AcessLevel < AccessLevel.Employee ||
-      partner.AcessLevel == AccessLevel.Employee
-    )
+      partner.AccessLevel < AccessLevel.Employee ||
+      partner.AccessLevel == AccessLevel.Employee
+    ) {
+      console.log(`We have ${partner.firstName} as an employee`);
       return partner;
+    }
   });
-  const [formData, setFormdata] = useState({});
 
-  const handleSubmit = e => {
-    e.preveentDefault();
+  const [formData, setFormdata] = useState({
+    firstName: "",
+    lastName: "",
+    middleName: "",
+    Suffix: "",
+    email: "",
+    hasEmail: false,
+    ssn: "",
+    dob: "",
+    phoneH: "",
+    phoneW: "",
+    phoneM: "",
+    fax: "",
+    address: "",
+    city: "",
+    state: "",
+    country: "United States",
+    zipCode: "",
+    status: "",
+    dateStarted: "",
+    assignedTo: "",
+    referedBy: "",
+    fireRedirect: false,
+    AccessLevel: AccessLevel.Client,
+  });
+
+  const handleChange = e => {
+    console.log(e.target.type);
+    setFormdata({ ...formData, [e.target.name]: e.target.value });
     console.log(formData);
+    console.log({ ...formData.referedBy.firstName });
+  };
+  const handleSubmit = e => {
+    e.preventDefault();
+    console.log(formData);
+    addPerson(formData);
   };
   return (
     <div>
@@ -45,7 +79,6 @@ const AddClient = ({ loading, partners, addCustomer, loadPartners }) => {
         <div className='col-12 d-flex justify-content-between'>
           <h6 className=' text-bold '>Add Client</h6>
           <Button variant='outline-secondary' href='/'>
-            {" "}
             <i className='fa fa-arrow-left'></i>Back
           </Button>
         </div>
@@ -53,48 +86,33 @@ const AddClient = ({ loading, partners, addCustomer, loadPartners }) => {
       <div className='row mt-2'>
         <div className='col-12'>
           <Form onSubmit={handleSubmit}>
-            <Form.Row>
-              <Col>
-                <Form.Label>First name*</Form.Label>
-                <Form.Control
-                  className='box'
-                  size='sm'
-                  placeholder='First name'
-                />
-              </Col>
-              <Col>
-                <Form.Label>Middl name</Form.Label>
-                <Form.Control
-                  size='sm'
-                  className='box'
-                  placeholder='Last name'
-                />
-              </Col>
-            </Form.Row>
+            <FormRow
+              labe1='First name*'
+              value1={formData.firstName}
+              name1='firstName'
+              label2='Middle name'
+              value2={formData.middleName}
+              name2='middleName'
+              handleChange={handleChange}
+            />
 
-            <Form.Row className='mt-3'>
-              <Col>
-                <Form.Label>Last name*</Form.Label>
-                <Form.Control
-                  size='sm'
-                  className='box'
-                  placeholder='First name'
-                />
-              </Col>
-              <Col>
-                <Form.Label>Suffix </Form.Label> (Jr, Sr, etc.)
-                <Form.Control
-                  size='sm'
-                  className='box'
-                  placeholder='Last name'
-                />
-              </Col>
-            </Form.Row>
+            <FormRow
+              labe1='Last name*'
+              value1={formData.lastName}
+              name1='lastName'
+              label2='Suffix (Jr, Sr, etc)'
+              value2={formData.Suffix}
+              name2='Suffix'
+              handleChange={handleChange}
+            />
 
             <Form.Row className='mt-3'>
               <Col>
                 <Form.Label>Email</Form.Label>
                 <Form.Control
+                  onChange={handleChange}
+                  name='email'
+                  value={formData.email}
                   type='email'
                   size='sm'
                   className='box'
@@ -105,15 +123,26 @@ const AddClient = ({ loading, partners, addCustomer, loadPartners }) => {
                 <Form.Check type='checkbox' label='Client has no Email' />
               </Col>
             </Form.Row>
+
             <Form.Row className='mt-3'>
               <Col>
                 <Form.Label>Last 4 of ssn</Form.Label>
-                <Form.Control size='sm' className='box' placeholder='9999' />
+                <Form.Control
+                  onChange={handleChange}
+                  name='ssn'
+                  value={formData.ssn}
+                  size='sm'
+                  className='box'
+                  placeholder='9999'
+                />
               </Col>
               <Col>
                 <Form.Label>DOB</Form.Label>
                 <Form.Control
                   type='date'
+                  name='dob'
+                  onChange={handleChange}
+                  value={formData.dob}
                   size='sm'
                   className='box'
                   placeholder='First name'
@@ -125,6 +154,10 @@ const AddClient = ({ loading, partners, addCustomer, loadPartners }) => {
               <Col>
                 <Form.Label>Phone (H)</Form.Label>
                 <Form.Control
+                  type='tel'
+                  name='phoneH'
+                  onChange={handleChange}
+                  value={formData.phoneH}
                   size='sm'
                   className='box'
                   placeholder='First name'
@@ -133,6 +166,10 @@ const AddClient = ({ loading, partners, addCustomer, loadPartners }) => {
               <Col>
                 <Form.Label>Phone W</Form.Label>
                 <Form.Control
+                  type='tel'
+                  name='phoneW'
+                  onChange={handleChange}
+                  value={formData.phoneW}
                   size='sm'
                   className='box'
                   placeholder='First name'
@@ -144,6 +181,10 @@ const AddClient = ({ loading, partners, addCustomer, loadPartners }) => {
               <Col>
                 <Form.Label>Phone (M)</Form.Label>
                 <Form.Control
+                  type='tel'
+                  name='phoneM'
+                  onChange={handleChange}
+                  value={formData.phoneM}
                   size='sm'
                   className='box'
                   placeholder='First name'
@@ -152,6 +193,10 @@ const AddClient = ({ loading, partners, addCustomer, loadPartners }) => {
               <Col>
                 <Form.Label>Fax</Form.Label>
                 <Form.Control
+                  type='tel'
+                  name='fax'
+                  onChange={handleChange}
+                  value={formData.fax}
                   size='sm'
                   className='box'
                   placeholder='First name'
@@ -163,9 +208,13 @@ const AddClient = ({ loading, partners, addCustomer, loadPartners }) => {
               <Col>
                 <Form.Label>Mailing address</Form.Label>
                 <Form.Control
+                  name='address'
+                  onChange={handleChange}
+                  value={formData.address}
+                  as='textarea'
                   size='sm'
                   className='box'
-                  placeholder='First name'
+                  placeholder='Adress'
                 />
               </Col>
             </Form.Row>
@@ -177,19 +226,30 @@ const AddClient = ({ loading, partners, addCustomer, loadPartners }) => {
                   size='sm'
                   className='box'
                   placeholder='First name'
+                  name='city'
+                  onChange={handleChange}
+                  value={formData.city}
                 />
               </Col>
               <Col>
                 <Form.Label>State</Form.Label>
-                <SelectCreatable
+                <Form.Control
+                  as='select'
+                  htmlSize={3}
+                  custom
                   className='box form-control-sm'
                   required
                   className='form-control'
-                  onChange={null}
+                  onChange={handleChange}
                   name='state'
-                  placeholder='State'
-                  items={stateOfUsa}
-                />
+                  items={partners}
+                >
+                  {stateOfUsa.map(state => (
+                    <option key={state.abbreviation} value={state.value}>
+                      {state.abbreviation}
+                    </option>
+                  ))}
+                </Form.Control>
               </Col>
             </Form.Row>
 
@@ -200,6 +260,9 @@ const AddClient = ({ loading, partners, addCustomer, loadPartners }) => {
                   size='sm'
                   className='box'
                   placeholder='First name'
+                  onChange={handleChange}
+                  name='zipCode'
+                  value={formData.state}
                 />
               </Col>
               <Col>
@@ -208,7 +271,10 @@ const AddClient = ({ loading, partners, addCustomer, loadPartners }) => {
                   className='border-0 text-bold'
                   size='sm'
                   disabled
-                  value='United State'
+                  placeholder='First name'
+                  onChange={handleChange}
+                  name='zipCode'
+                  value={formData.country}
                 />
               </Col>
             </Form.Row>
@@ -224,34 +290,56 @@ const AddClient = ({ loading, partners, addCustomer, loadPartners }) => {
               </Col>
               <Col>
                 <Form.Label>Date of Start</Form.Label>
-                <Form.Control className='box' value='United State' />
+                <Form.Control
+                  name='dateStarted'
+                  value={formData.dateStarted}
+                  onChange={handleChange}
+                  className='box'
+                  type='date'
+                />
               </Col>
             </Form.Row>
 
             <Form.Row className='mt-3'>
               <Col>
                 <Form.Label>Assigned to</Form.Label>
-                <SelectCreatable
+                <Form.Control
+                  as='select'
+                  htmlSize={3}
+                  custom
                   className='box form-control-sm'
                   required
                   className='form-control'
-                  onChange={null}
-                  name='Employess'
-                  placeholder='Employees'
-                  items={["Jhon", "paul"]}
-                />
+                  onChange={handleChange}
+                  name='assignedTo'
+                >
+                  {Employees.map(Employee => (
+                    <option key={Employee._id} value={Employee._id}>
+                      {Employee.firstName}
+                    </option>
+                  ))}
+                </Form.Control>
               </Col>
               <Col>
                 <Form.Label>Referred by</Form.Label>
-                <SelectCreatable
+
+                <Form.Control
+                  as='select'
+                  htmlSize={3}
+                  custom
                   className='box form-control-sm'
                   required
                   className='form-control'
-                  onChange={null}
-                  name='Affiliates and employees'
-                  placeholder='Employees'
-                  items={["Jhon", "paul", "Antoine"]}
-                />
+                  onChange={handleChange}
+                  name='referedBy'
+                  items={partners}
+                >
+                  {partners.map(partner => (
+                    <option key={partner._id} value={partner._id}>
+                      {partner.firstName}
+                    </option>
+                  ))}
+                </Form.Control>
               </Col>
             </Form.Row>
             <hr></hr>
@@ -274,12 +362,49 @@ AddClient.prototype = {
 };
 const mapStateToProps = state => ({
   loading: state.partners.loading,
-  partners: state.partners.partners,
+  partners: state.person.coworkers,
 });
 
 const mapDispatchToProps = {
-  addCustomer,
-  loadPartners,
+  addPerson,
+  loadCoworkers,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddClient);
+
+const FormRow = ({
+  labe1,
+  value1,
+  name1,
+  label2,
+  value2,
+  name2,
+  handleChange,
+}) => {
+  return (
+    <Form.Row className='mt-3'>
+      <Col>
+        <Form.Label>{labe1}</Form.Label>
+        <Form.Control
+          value={value1}
+          name={name1}
+          onChange={handleChange}
+          className='box'
+          size='sm'
+          placeholder='First name'
+        />
+      </Col>
+      <Col>
+        <Form.Label>{label2}</Form.Label>
+        <Form.Control
+          value={value2}
+          name={name2}
+          onChange={handleChange}
+          size='sm'
+          className='box'
+          placeholder='Last name'
+        />
+      </Col>
+    </Form.Row>
+  );
+};

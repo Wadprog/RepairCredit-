@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const AcessLevel = require("../utils/consts/Permissions/AccessLevel");
+const AcessLevel = require('../utils/consts/Permitions/AccessLevel')// require("../utils/consts/Permitions/AccessLevel");
 const userSchema = mongoose.Schema({
   email: {
     type: String,
@@ -10,9 +10,9 @@ const userSchema = mongoose.Schema({
     type: String,
     required: true
   },
-  level: {
+  AccessLevel: {
     type: Number,
-    default: 0//AcessLevel.Low
+    default: AcessLevel.client
   },
   status: {
     type: Boolean,

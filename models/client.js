@@ -1,9 +1,10 @@
 const mongoose = require("mongoose");
 
 const clientSchema = mongoose.Schema({
-  persorn: {
+  person: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "person",
+    require:true
   },
   ssn: {
     type: String,
@@ -26,26 +27,16 @@ const clientSchema = mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "employee",
   },
-  monitoringService: [
-    {
-      name: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "monitoringService",
-      },
-      userName: { type: String },
-      password: { type: String },
+  monitoringService: {
+    name: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "monitoringService",
     },
-  ],
-  addresses: [
-    {
-      state: { type: String, required: true },
-      city: { type: String, required: true },
-      zipcode: { type: String, required: true },
-      fax: { type: String, required: true },
-      description: { type: String },
-      status: { type: String, default: "current" },
-    },
-  ],
+    userName: { type: String },
+    password: { type: String },
+  },
+
+  
 });
 
 module.exports = Client = mongoose.model("client", clientSchema);

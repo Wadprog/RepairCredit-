@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
 import Home from "@material-ui/icons/Home";
-
+import { Alert, ProgressBar } from "react-bootstrap";
 const HomeConnect = props => {
   const f = "folder";
   return (
@@ -9,17 +9,13 @@ const HomeConnect = props => {
       <div className='container-fluid'>
         <div className='row'>
           <div className='col-12 mb-2'>
-            <div className='card p-0'>
-              <div className='card-body p-0'>
-                <p className='bg-warning p-2 text-dark m-0'>
-                  You have a full account with all access! Get started with the
-                  Welcome Video, the Guided Tour and learn with your Sample
-                  Client. Be sure to read our User Guides. For the best possible
-                  experience, tune-up your web browser. For account changes
-                  click here. Need help? See help and support options.
-                </p>
-              </div>
-            </div>
+            <Alert variant='warning'>
+              You have a full account with all access! Get started with the
+              Welcome Video, the Guided Tour and learn with your Sample Client.
+              Be sure to read our User Guides. For the best possible experience,
+              tune-up your web browser. For account changes click here. Need
+              help? See help and support options.
+            </Alert>
           </div>
           <div className='col-12 '>
             <div className='card p-2'>
@@ -29,18 +25,14 @@ const HomeConnect = props => {
                     CheckList for starting a Credit Repair Business
                   </span>
                 </p>
+                <ProgressBar
+                  animated
+                  striped
+                  variant='success'
+                  now={60}
+                  label={`${60}%`}
+                />
 
-                <div class='progress w-100'>
-                  <span
-                    className='progress-bar'
-                    style={{ width: 25 + "%" }}
-                    aria-valuenow='25'
-                    aria-valuemin='0'
-                    aria-valuemax='100'
-                  >
-                    Progress 25%
-                  </span>
-                </div>
                 <h6 className='text-center my-2'>
                   <Link className='text-success' to='/#'>
                     Open My CheckList

@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-
 const clientSchema = mongoose.Schema({
   person: {
     type: mongoose.Schema.Types.ObjectId,

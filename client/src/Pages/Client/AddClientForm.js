@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Button, Form, Col } from "react-bootstrap";
 import stateOfUsa from "../../utils/data/stateofUsa.json";
-import SelectCreatable from "../../components/Form-input/select-creatable";
+import { Redirect } from "react-router";
 
 import { loadCoworkers, addPerson } from "../../redux/actions/person";
 /////////////////////////////////////Dealing with Access Level////////////////////////////////////////////////////////
@@ -42,7 +42,7 @@ const AddClient = ({ loading, partners, addPerson, loadCoworkers }) => {
     middleName: "",
     Suffix: "",
     email: "",
-    hasEmail: false,
+    hasNoEmail: false,
     ssn: "",
     dob: "",
     phoneH: "",
@@ -58,6 +58,7 @@ const AddClient = ({ loading, partners, addPerson, loadCoworkers }) => {
     dateStarted: "",
     assignedTo: "",
     referedBy: "",
+    portalAccess: false,
     fireRedirect: false,
     AccessLevel: AccessLevel.Client,
   });
@@ -72,6 +73,7 @@ const AddClient = ({ loading, partners, addPerson, loadCoworkers }) => {
     e.preventDefault();
     console.log(formData);
     addPerson(formData);
+    setFormdata({ fireRedirect: true });
   };
   return (
     <div>
@@ -120,7 +122,13 @@ const AddClient = ({ loading, partners, addPerson, loadCoworkers }) => {
                 />
               </Col>
               <Col className='d-flex align-items-center'>
-                <Form.Check type='checkbox' label='Client has no Email' />
+                <Form.Check
+                  type='checkbox'
+                  label='Client has no Email'
+                  onChange={e =>
+                    setFormdata({ ...formData, hasNoEmail: e.target.checked })
+                  }
+                />
               </Col>
             </Form.Row>
 
@@ -343,11 +351,23 @@ const AddClient = ({ loading, partners, addPerson, loadCoworkers }) => {
               </Col>
             </Form.Row>
             <hr></hr>
-
+            {formData.email && (
+              <Form.Row className='my-3'>
+                <Form.Check
+                  nane='Portal access'
+                  type='checkbox'
+                  label='Give user Portal Access'
+                  onChange={e =>
+                    setFormdata({ ...formData, portalAccess: e.target.checked })
+                  }
+                />
+              </Form.Row>
+            )}
             <Button variant='primary' type='submit'>
               Submit
             </Button>
           </Form>
+          {formData.fireRedirect && <Redirect to={`/customers`} />}
         </div>
       </div>
     </div>

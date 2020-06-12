@@ -3,12 +3,11 @@ const router = express.Router();
 const Person = require("../../models/person");
 const Clients = require("../../models/client");
 const Level = require("../../utils/consts/Permitions/AccessLevel"); //require("../../utils/consts/Permitions/AccessLevel");
-console.log(10);
-console.log("aaaaaaaaa" + Level.client);
+
 //get one client
 router.get(`/client/:id`, async (req, res) => {
   try {
-    let client = await Clients.findById(req.params.id).populate(`persorn`);
+    let client = await Clients.findById(req.params.id).populate(`person`);
     return res.json(client);
   } catch (error) {
     console.log(`Error ${error}`);
@@ -19,14 +18,14 @@ router.get(`/client/:id`, async (req, res) => {
 });
 
 // get every clients
-router.get(`/`, async (req, res) => {
+router.get(`/customers`, async (req, res) => {
   try {
-    let clients = await Clients.find().populate(`persorn`);
+    let clients = await Clients.find().populate('person');
 
     return res.json(clients);
   } catch (error) {
     console.log(`Error ${error}`);
-    res.json({
+    res.status(500).json({
       msg: `The server is crash thus we can't fecth the clients' list ${error}`,
     });
   }
@@ -47,6 +46,7 @@ router.post("/", async (req, res) => {
     address,
     referredBy,
     assignedTo,
+    portalAccess,
 
     monitoringService,
     hasEmail,
@@ -82,8 +82,11 @@ router.post("/", async (req, res) => {
 
     await person.save();
 
+    // if(portalAccess) send
+
     if (AccessLevel < Level.Client) {
       return res.json(person);
+      //SendEmail(RegisterPartner, email)
     }
     let client = new Clients({
       person: person._id,
@@ -93,6 +96,7 @@ router.post("/", async (req, res) => {
     if (assignedTo) client.assignedTo = assignedTo;
     if (monitoringService) client.monitoringService;
     await client.save();
+    // if(portalAccess)  SendEmail(CLIENTPORTALACCESS, email)
 
     return res.json({ client });
   } catch (error) {

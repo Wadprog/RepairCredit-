@@ -6,11 +6,30 @@ import {
   ADD_PERSON_REQUEST,
   ADD_PERSON_FAIL,
   ADD_PERSON_SUCCESS,
+  GET_CUSTOMERS_SUCCESS,
+  GET_CUSTOMERS_REQUEST,
+  GET_CUSTOMER_FAIL,
 } from "../consts";
 
 import { setAlert } from "./alerts";
 
-export const loadCustomers = () => async dispatch => {};
+export const loadCustomers = () => async dispatch => {
+  dispatch({
+    type: GET_CUSTOMERS_REQUEST,
+  });
+  try {
+    const res = await api.get("/person/customers");
+    dispatch({
+      type: GET_CUSTOMERS_SUCCESS,
+      payload: res.data,
+    });
+  } catch (error) {
+    dispatch(setAlert(error, "danger"));
+    dispatch({
+      type: GET_CUSTOMER_FAIL,
+    });
+  }
+};
 
 export const loadCoworkers = () => async dispatch => {
   dispatch({

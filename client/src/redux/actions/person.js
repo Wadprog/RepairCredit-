@@ -62,11 +62,13 @@ export const addPerson = formData => async dispatch => {
       type: ADD_PERSON_SUCCESS,
       payload: res.data,
     });
+    return true;
   } catch (error) {
     dispatch({
       type: ADD_PERSON_FAIL,
     });
     dispatch(setAlert(`Error ${error.response.data.msg}`, "danger"));
+    return false;
   }
 };
 

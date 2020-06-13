@@ -1,9 +1,10 @@
 const mongoose = require("mongoose");
+const Status = require("../utils/consts/ClientStatus");
 const clientSchema = mongoose.Schema({
   person: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "person",
-    require:true
+    require: true,
   },
   ssn: {
     type: String,
@@ -15,8 +16,8 @@ const clientSchema = mongoose.Schema({
     },
   ],
   status: {
-    type: String,
-    default: "LEAD",
+    type: Number,
+    default: Status.LEAD,
   },
   referredBy: {
     type: mongoose.Schema.Types.ObjectId,
@@ -34,8 +35,6 @@ const clientSchema = mongoose.Schema({
     userName: { type: String },
     password: { type: String },
   },
-
-  
 });
 
 module.exports = Client = mongoose.model("client", clientSchema);

@@ -8,20 +8,16 @@ const personSchema = mongoose.Schema({
   },
   lastnName: {
     type: String,
-   
   },
 
   middleName: {
     type: String,
-    
   },
   suffix: {
     type: String,
-    
   },
   dob: {
     type: Date,
-    
   },
   address: {
     type: String,
@@ -45,7 +41,6 @@ const personSchema = mongoose.Schema({
   },
   email: {
     type: String,
-    
   },
   phoneH: { type: String },
   phoneW: { type: String },
@@ -53,7 +48,6 @@ const personSchema = mongoose.Schema({
   fax: { type: String },
   AccessLevel: {
     type: Number,
-    
   },
   assignedTo: {
     type: mongoose.Schema.Types.ObjectId,
@@ -67,4 +61,4 @@ const personSchema = mongoose.Schema({
   password: { type: String },
 });
 
-module.exports = Person = mongoose.model("pesorn", personSchema);
+module.exports = Person = mongoose.model("person", personSchema);

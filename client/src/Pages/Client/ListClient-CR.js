@@ -12,7 +12,7 @@ const ListClientCR = props => {
                 </div>
                 <div className='row'>
                     <div className='col-12 d-flex justify-content-between'>
-                        <Form inline>
+                        <Form className="form-inline">
                             <Form.Group>
                                 <Form.Row className='mt-3'>
                                     <Col>

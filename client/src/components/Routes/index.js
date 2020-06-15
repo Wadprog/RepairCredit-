@@ -5,8 +5,9 @@ import PrivateRoute from "./PrivateRoute";
 import HomeConnect from "../../Pages/Home/HomeConnect";
 import ListClient from "../../Pages/Client";
 import RegisterEmployee from "../../Pages/Client/AddClientForm";
+import ImportAudit from "../../Pages/import-audit/import-audit";
 import Company from "../../Pages/Company";
-const Routes = props => {
+const Routes = (props) => {
   return (
     <section className='container'>
       <Switch>
@@ -25,6 +26,7 @@ const Routes = props => {
         <PrivateRoute exact path='/customers' component={ListClient} />
         <PrivateRoute exact path='/homeconnect' component={HomeConnect} />
         <PrivateRoute path='/company' component={Company} />
+        <PrivateRoute path='/import-audit' component={ImportAudit} />
         <Route component={NotFound} />
       </Switch>
     </section>

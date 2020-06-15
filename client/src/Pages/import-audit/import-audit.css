@@ -1,0 +1,192 @@
+:root {
+  --main-bg-color: #f7f7f7;
+  --nav-bg-color: #404346;
+  --nav-txt-color: #b9babb;
+  --nav-active-txt-color: #ffffff;
+  --nav-active-bg-color: #26292c;
+  --white-color: #ffffff;
+  --black-color: #000000;
+  --txt-breadcrumb-color: #535558;
+  --border-color: #e7e7e7;
+}
+
+.import-audit {
+  width: 100%;
+  height: 100%;
+  background-color: rgb(211, 211, 211);
+  padding: 5px;
+  border: 0 solid black;
+  border-radius: 10px;
+}
+
+.import-container {
+  width: 100%;
+  height: 90%;
+  display: flex;
+  flex-direction: column;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #f2f2f2;
+}
+
+.header {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 20px;
+}
+
+.credit-report,
+.credit-analysis {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  border: 0 solid black;
+  border-radius: 10px 0;
+  overflow: hidden;
+}
+
+.credit-report h2,
+.credit-report h1,
+.credit-report span,
+.credit-analysis h2 {
+  text-align: center;
+}
+
+.credit-report h2 {
+  font-size: 1.2em;
+  font-weight: 700;
+  margin-top: 15px;
+}
+
+.credit-report h1 {
+  margin-top: 25px;
+}
+
+.credit-report i {
+  font-size: 100px;
+  text-align: center;
+  margin: 15px 0;
+  color: rgb(55, 95, 15);
+}
+
+.credit-report button {
+  width: 50%;
+  height: 30px;
+  margin: 0 auto;
+  background-color: rgb(16, 50, 161);
+  border: 0 solid black;
+  border-radius: 5px;
+  color: #fff;
+}
+
+.credit-analysis .analysis-title {
+  height: 40px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  background-color: rgb(99, 99, 99);
+  text-align: center;
+  font-size: 1.3em;
+}
+
+.analysis-title span {
+  display: block;
+  margin: auto 0;
+}
+
+.credit-analysis .item {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 15px;
+}
+
+.item-title {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.item-title h2 {
+  font-size: 1.3em;
+  font-weight: 400;
+  margin: 0;
+  margin-bottom: 10px;
+}
+
+.table {
+  border: 0.7px solid black;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.table thead {
+  background-color: rgba(119, 177, 179, 0.205);
+}
+
+.select-view-help {
+  width: 95%;
+  height: 40px;
+  padding: 0 20px;
+  background-color: #f2f2f2;
+  border: 0.7px solid black;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  cursor: pointer;
+  margin: 20px auto;
+}
+
+.select-view-help .label,
+.select-view-help i {
+  margin: auto 0;
+}
+
+a {
+  color: rgba(0, 0, 255, 0.712);
+  text-decoration: none;
+}
+
+.credit-report-form {
+  width: 48%;
+  display: flex;
+  flex-direction: column;
+  border: 0.7px solid black;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px;
+}
+
+.credit-report-form .form-title {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 10px 0;
+}
+
+.credit-report-form form {
+  margin: 0 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+form .row span {
+  display: block;
+  margin: 0 20px;
+}
+
+.row .button {
+  width: 120px;
+  height: 40px;
+  margin: 20px 40px;
+  color: #fff;
+  border-radius: 30px;
+}
+.row .input {
+  background-color: blue;
+}
+.row button {
+  background-color: brown;
+}

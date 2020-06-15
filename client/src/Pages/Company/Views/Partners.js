@@ -3,7 +3,7 @@ import { Alert, Form, Row, Col, Button } from "react-bootstrap";
 import { connect } from "react-redux";
 import { loadCoworkers } from "../../../redux/actions/person";
 
-import Addpartners from "../../../components/Addpartners";
+import Addpartners from "../../../components/AddPeople/AddPartnersModal";
 function Partners({ loadCoworkers, partners }) {
   useEffect(() => {
     loadCoworkers();

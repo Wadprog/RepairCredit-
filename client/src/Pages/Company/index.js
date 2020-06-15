@@ -18,7 +18,7 @@ const Profile = () => {
         }
         return null;
       })}
-      <Redirect from='/company' to='/company/' />
+      <Redirect from='/company' to='/company/main' />
     </Switch>
   );
 

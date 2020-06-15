@@ -5,7 +5,12 @@ import PrivateRoute from "./PrivateRoute";
 import HomeConnect from "../../Pages/Home/HomeConnect";
 import ListClient from "../../Pages/Client";
 import RegisterEmployee from "../../Pages/Client/AddClientForm";
+<<<<<<< HEAD
 import ImportAudit from "../../Pages/import-audit/import-audit";
+=======
+import ListClientCR from "../../Pages/Client/ListClient-CR";
+import ClientDashboard from "../../Pages/Client/ClientDashboard";
+>>>>>>> 0cd14d4f596b30e9397330e41f794ed0a0e3bd16
 import Company from "../../Pages/Company";
 const Routes = (props) => {
   return (
@@ -21,10 +26,12 @@ const Routes = (props) => {
         <PrivateRoute exact path="/add-experience" component={AddExperience} />
         <PrivateRoute exact path="/add-education" component={AddEducation} />
         <PrivateRoute exact path="/posts" component={Posts} />
-  <PrivateRoute exact path="/posts/:id" component={Post} />*/}
+        <PrivateRoute exact path="/posts/:id" component={Post} />*/}
         <PrivateRoute exact path='/register' component={RegisterEmployee} />
         <PrivateRoute exact path='/customers' component={ListClient} />
         <PrivateRoute exact path='/homeconnect' component={HomeConnect} />
+        <PrivateRoute exact path='/ListClientCR' component={ListClientCR} />
+        <PrivateRoute exact path='/ClientDashboard' component={ClientDashboard} />
         <PrivateRoute path='/company' component={Company} />
         <PrivateRoute path='/import-audit' component={ImportAudit} />
         <Route component={NotFound} />

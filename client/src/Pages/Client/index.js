@@ -51,7 +51,7 @@ const ListClient = ({ loadCustomers, customers }) => {
                     name={
                       customer.person.firstName + " " + customer.person.lastName
                     }
-                    id={customer.person._id}
+                    id={customer._id}
                   />
                 ))}
             </ul>
@@ -78,7 +78,7 @@ const ListClient = ({ loadCustomers, customers }) => {
                     name={
                       customer.person.firstName + " " + customer.person.lastName
                     }
-                    id={customer.person._id}
+                    id={customer._id}
                   />
                 ))}
             </ul>
@@ -105,7 +105,7 @@ const ListClient = ({ loadCustomers, customers }) => {
                     name={
                       customer.person.firstName + " " + customer.person.lastName
                     }
-                    id={customer.person._id}
+                    id={customer._id}
                   />
                 ))}
             </ul>

@@ -63,7 +63,7 @@ const HomeConnect = props => {
                   title='Select an existing client'
                   subTitile='Work with an existing client'
                   icontext='B'
-                  link='/#'
+                  link='/ListClientCR'
                 />
 
                 <MiniItem
@@ -85,7 +85,7 @@ const HomeConnect = props => {
                     iconColor='green'
                     title=' My company Profile'
                     subTitile='Configure users, permissions, billing'
-                    link='/#'
+                    link='/company'
                   />
 
                   <Item

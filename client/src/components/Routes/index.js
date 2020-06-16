@@ -6,7 +6,7 @@ import HomeConnect from "../../Pages/Home/HomeConnect";
 import ListClient from "../../Pages/Client";
 import RegisterEmployee from "../../Pages/Client/AddClientForm";
 
-  /*import ImportAudit from "../../Pages/import-audit/import-audit";*/
+  import ImportAudit from "../../Pages/import-audit/import-audit";
 
 import ListClientCR from "../../Pages/Client/ListClient-CR";
 import ClientDashboard from "../../Pages/Client/ClientDashboard";
@@ -26,9 +26,10 @@ const Routes = (props) => {
         <PrivateRoute exact path="/add-education" component={AddEducation} />
         <PrivateRoute exact path="/posts" component={Posts} />
         <PrivateRoute exact path="/posts/:id" component={Post} />
-          <PrivateRoute path='/import-audit' component={ImportAudit} />
+          
         */}
         
+        <PrivateRoute path='/import-audit' component={ImportAudit} />
         <PrivateRoute exact path="/register" component={RegisterEmployee} />
         <PrivateRoute exact path="/customers" component={ListClient} />
         <PrivateRoute exact path="/homeconnect" component={HomeConnect} />

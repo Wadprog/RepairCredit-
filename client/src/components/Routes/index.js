@@ -5,12 +5,9 @@ import PrivateRoute from "./PrivateRoute";
 import HomeConnect from "../../Pages/Home/HomeConnect";
 import ListClient from "../../Pages/Client";
 import RegisterEmployee from "../../Pages/Client/AddClientForm";
-<<<<<<< HEAD
 import ImportAudit from "../../Pages/import-audit/import-audit";
-=======
 import ListClientCR from "../../Pages/Client/ListClient-CR";
 import ClientDashboard from "../../Pages/Client/ClientDashboard";
->>>>>>> 0cd14d4f596b30e9397330e41f794ed0a0e3bd16
 import Company from "../../Pages/Company";
 const Routes = (props) => {
   return (

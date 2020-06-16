@@ -7,6 +7,9 @@ import {
   ADD_PERSON_SUCCESS,
   GET_CUSTOMERS_SUCCESS,
   GET_CUSTOMERS_REQUEST,
+  GET_CUSTOMERS_FAIL,
+  GET_CUSTOMER_SUCCESS,
+  GET_CUSTOMER_REQUEST,
   GET_CUSTOMER_FAIL,
 } from "../consts";
 const initialState = {
@@ -20,6 +23,7 @@ const initialState = {
 export default function (state = initialState, action) {
   const { type, payload } = action;
   switch (type) {
+    case GET_CUSTOMER_REQUEST:
     case GET_CUSTOMERS_REQUEST:
     case ADD_PERSON_REQUEST:
     case LOAD_COWORKER_REQUEST:
@@ -32,6 +36,12 @@ export default function (state = initialState, action) {
       return {
         ...state,
         customers: payload,
+      };
+
+    case GET_CUSTOMER_SUCCESS:
+      return {
+        ...state,
+        customer: payload,
       };
     case ADD_PERSON_SUCCESS:
       return {
@@ -54,10 +64,15 @@ export default function (state = initialState, action) {
         coworkers: [],
       };
 
-    case GET_CUSTOMER_FAIL:
+    case GET_CUSTOMERS_FAIL:
       return {
         ...state,
         customers: [],
+      };
+    case GET_CUSTOMER_FAIL:
+      return {
+        ...state,
+        customer: null,
       };
     case ADD_PERSON_FAIL:
       return {

@@ -28,7 +28,8 @@ router.get("/", async (req, res) => {
 
 router.get("/:id", async (req, res) => {
   try {
-    let client = await Client.findById(req.params.id);
+    let client =  await Client.findById(req.params.id)
+    console.log(client._id);
     if (!client) res.status(404).json({ msg: "This client does not exist" });
     return res.json(client);
   } catch (error) {

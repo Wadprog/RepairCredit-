@@ -6,12 +6,15 @@ import HomeConnect from "../../Pages/Home/HomeConnect";
 import ListClient from "../../Pages/Client";
 import RegisterEmployee from "../../Pages/Client/AddClientForm";
 import ImportAudit from "../../Pages/import-audit/import-audit";
+
+/*import ImportAudit from "../../Pages/import-audit/import-audit";*/
+
 import ListClientCR from "../../Pages/Client/ListClient-CR";
 import ClientDashboard from "../../Pages/Client/ClientDashboard";
 import Company from "../../Pages/Company";
 const Routes = (props) => {
   return (
-    <section className='container'>
+    <section className="container">
       <Switch>
         {/*<Route exact path="/register" component={} />
         <Route exact path="/login" component={Login} />
@@ -23,14 +26,21 @@ const Routes = (props) => {
         <PrivateRoute exact path="/add-experience" component={AddExperience} />
         <PrivateRoute exact path="/add-education" component={AddEducation} />
         <PrivateRoute exact path="/posts" component={Posts} />
-        <PrivateRoute exact path="/posts/:id" component={Post} />*/}
-        <PrivateRoute exact path='/register' component={RegisterEmployee} />
-        <PrivateRoute exact path='/customers' component={ListClient} />
-        <PrivateRoute exact path='/homeconnect' component={HomeConnect} />
-        <PrivateRoute exact path='/ListClientCR' component={ListClientCR} />
-        <PrivateRoute exact path='/ClientDashboard' component={ClientDashboard} />
-        <PrivateRoute path='/company' component={Company} />
-        <PrivateRoute path='/import-audit' component={ImportAudit} />
+        <PrivateRoute exact path="/posts/:id" component={Post} />
+          <PrivateRoute path='/import-audit' component={ImportAudit} />
+        */}
+
+        <PrivateRoute exact path="/register" component={RegisterEmployee} />
+        <PrivateRoute exact path="/customers" component={ListClient} />
+        <PrivateRoute exact path="/homeconnect" component={HomeConnect} />
+        <PrivateRoute exact path="/ListClientCR" component={ListClientCR} />
+        <PrivateRoute
+          exact
+          path="/customer/:id"
+          component={ClientDashboard}
+        />
+        <PrivateRoute path="/company" component={Company} />
+
         <Route component={NotFound} />
       </Switch>
     </section>

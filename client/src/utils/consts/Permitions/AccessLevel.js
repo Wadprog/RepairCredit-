@@ -4,3 +4,12 @@ export const AccessLevel = {
   Afilliate: 2,
   Client: 3,
 };
+export const PersonLevelName = (level) => {
+  return level == AccessLevel.Admin
+    ? "Admin"
+    : level == AccessLevel.Employee
+    ? "Employee"
+    : level == AccessLevel.Afilliate
+    ? "Affilliate"
+    : "Client";
+};

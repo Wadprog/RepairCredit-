@@ -76,15 +76,57 @@ export const CreditReport = () => {
                       </td>
                     </tr>
                     <tr>
-                      <td>2</td>
-                      <td>Jacob</td>
-                      <td>Thornton</td>
-                      <td>@fat</td>
+                      <td>Score</td>
+                      <td>437</td>
+                      <td>535</td>
+                      <td>@486</td>
                     </tr>
                     <tr>
-                      <td>3</td>
-                      <td colSpan='2'>Larry the Bird</td>
-                      <td>@twitter</td>
+                      <td>Credit Report Date</td>
+                      <td>05/06/2020 </td>
+                      <td>05/06/2020 </td>
+                      <td>05/06/2020 </td>
+                    </tr>
+
+                    <tr>
+                      <td>Name</td>
+                      <td>Gia Miller</td>
+                      <td></td>
+                      <td>Gia Miller</td>
+                    </tr>
+
+                    <tr>
+                      <td>Also Know as</td>
+                      <td> </td>
+                      <td>Gia Miller</td>
+                      <td> </td>
+                    </tr>
+                    <tr>
+                      <td>Date of Birth</td>
+                      <td>1976 </td>
+                      <td>1976</td>
+                      <td>1976 </td>
+                    </tr>
+
+                    <tr>
+                      <td>Current Address</td>
+                      <td>North Vickie </td>
+                      <td>North Vickie</td>
+                      <td>North Vickie </td>
+                    </tr>
+
+                    <tr>
+                      <td>Employer</td>
+                      <td>Bartell - Bauch </td>
+                      <td>Bartell - Bauch</td>
+                      <td>Bartell - Bauch </td>
+                    </tr>
+
+                    <tr>
+                      <td>Previous Address</td>
+                      <td>10381 Antonio Radial</td>
+                      <td>62281 Volkman Lights</td>
+                      <td>349 McLaughlin Fort</td>
                     </tr>
                   </tbody>
                 </Table>

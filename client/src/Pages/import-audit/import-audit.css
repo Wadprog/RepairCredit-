@@ -74,9 +74,14 @@
   height: 30px;
   margin: 0 auto;
   background-color: rgb(16, 50, 161);
-  border: 0 solid black;
+  border: 0.5 solid transparent;
+  padding: 2.5px;
   border-radius: 5px;
   color: #fff;
+}
+.credit-report button:hover {
+  border-color: black;
+  background-color: rgb(65, 84, 146);
 }
 
 .credit-analysis .analysis-title {

@@ -65,7 +65,7 @@ const ClientDashboard = ({
                           iconColor='blue'
                           title='1-Click Import and Audit'
                           subTitile='Pull reports & create audit'
-                          link='/#'
+                          link={`/import-audit/${id}`}
                         />
                       </div>
                       <div className='card-body mb-2 p-0'>

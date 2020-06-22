@@ -1,64 +1,63 @@
 import {
-	LOG_OUT,
-	LOG_IN_FAIL,
-	LOG_IN_SUCCESS,
-	LOG_IN_REQUEST,
-	LOAD_USER_REQUEST,
-	LOAD_USER_SUCCESS,
-	LOAD_USER_FAIL
-} from '../consts';
+  LOG_OUT,
+  LOG_IN_FAIL,
+  LOG_IN_SUCCESS,
+  LOG_IN_REQUEST,
+  LOAD_USER_REQUEST,
+  LOAD_USER_SUCCESS,
+  LOAD_USER_FAIL,
+} from "../consts";
 
 const initialState = {
-	token: localStorage.getItem('token'),
-	isAuthenticated: true,
-	loading: false,
-	user: {
-		email: "me@onkeydown.com",
-		  level: "Admin",
-		  status: true,
-		  
-	}
+  token: localStorage.getItem("token"),
+  isAuthenticated: true,
+  loading: false,
+  user: {
+    email: "me@onkeydown.com",
+    level: "0",
+    status: true,
+  },
 };
 
 export default function (state = initialState, action) {
-	const { type, payload } = action;
+  const { type, payload } = action;
 
-	switch (type) {
-		case LOG_IN_REQUEST:
-		case LOAD_USER_REQUEST:
-			return {
-				...state,
-				loading: true
-			};
+  switch (type) {
+    case LOG_IN_REQUEST:
+    case LOAD_USER_REQUEST:
+      return {
+        ...state,
+        loading: true,
+      };
 
-		case LOAD_USER_SUCCESS:
-			return {
-				...state,
-				isAuthenticated: true,
-				loading: false,
-				user: payload
-			};
+    case LOAD_USER_SUCCESS:
+      return {
+        ...state,
+        isAuthenticated: true,
+        loading: false,
+        user: payload,
+      };
 
-		case LOG_IN_SUCCESS:
-			localStorage.setItem('token', payload.token);
-			return {
-				...state,
-				...payload,
-				isAuthenticated: true,
-				loading: false
-			};
+    case LOG_IN_SUCCESS:
+      localStorage.setItem("token", payload.token);
+      return {
+        ...state,
+        ...payload,
+        isAuthenticated: true,
+        loading: false,
+      };
 
-		case LOG_IN_FAIL:
-		case LOAD_USER_FAIL:
-		case LOG_OUT:
-			return {
-				...state,
-				token: null,
-				isAuthenticated: false,
-				loading: false,
-				user: null
-			};
-		default:
-			return state;
-	}
+    case LOG_IN_FAIL:
+    case LOAD_USER_FAIL:
+    case LOG_OUT:
+      return {
+        ...state,
+        token: null,
+        isAuthenticated: false,
+        loading: false,
+        user: null,
+      };
+    default:
+      return state;
+  }
 }

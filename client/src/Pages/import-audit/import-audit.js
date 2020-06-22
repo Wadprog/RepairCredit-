@@ -161,8 +161,8 @@ function ImportAudit() {
                 </div>
                 {hide ? (
                   <div className='row'>
-                    <input className='button input' type='submit' text='Save' />
-                    <button className='button' onClick={IsHide}>
+                    <input className='buttonCancel input' type='submit' text='Save' />
+                    <button className='buttonCancel' onClick={IsHide}>
                       Cancel
                     </button>
                   </div>

@@ -23,7 +23,14 @@ const AdminHome = ({ isAuthenticated }) => {
           </SimpleCard>
         </Col>
         <Col>
-          <SimpleCard></SimpleCard>
+          <SimpleCard
+            titleIcon='calender'
+            titleLeft={`Sun Jun 21 2020`}
+            titleLinkName='Manage Schedule'
+            iconColor='success'
+          >
+            Missing the logic
+          </SimpleCard>
         </Col>
       </Row>
       <Row>

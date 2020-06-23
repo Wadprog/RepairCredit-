@@ -1,12 +1,14 @@
 import React from "react";
 import { Card, Table, Row, Col } from "react-bootstrap";
 import { dataByBureau, allFields } from "../../utils/creditItems";
-import { capitalLizeString, camelobjectToString } from "../../utils/StringOperations";
+import {
+  capitalLizeString,
+  camelobjectToString,
+} from "../../utils/StringOperations";
 function CreditItems({ bureauData }) {
   const creditBureaus = ["transUnion", "experian", "equifax"];
 
   const allKeys = allFields(bureauData.creditData[0]);
-
   return (
     <div>
       <Card>
@@ -14,7 +16,7 @@ function CreditItems({ bureauData }) {
           <Table striped bordered hover size='sm' className='text-center'>
             <thead>
               <tr>
-                <th></th>
+                <th className='bg-white'></th>
                 {creditBureaus.map(creditBureau => (
                   <th>{capitalLizeString(creditBureau)}</th>
                 ))}

@@ -6,7 +6,6 @@ function CreditItems({ bureauData }) {
   const creditBureaus = ["transUnion", "experian", "equifax"];
 
   const allKeys = allFields(bureauData.creditData[0]);
-
   return (
     <div>
       <Card>

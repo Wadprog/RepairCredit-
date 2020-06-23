@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, Table, Row, Col } from "react-bootstrap";
+import { Card, Table, Row, Col, Form } from "react-bootstrap";
 import { dataByBureau, allFields } from "../../utils/creditItems";
 import {
   capitalLizeString,
@@ -7,6 +7,17 @@ import {
 } from "../../utils/StringOperations";
 function CreditItems({ bureauData }) {
   const creditBureaus = ["transUnion", "experian", "equifax"];
+  const status = [
+    "Positive",
+    "Negative",
+    "Repaired",
+    "Deleted",
+    "In Dispute",
+    "Verified",
+    "Updated",
+    "Unspecified",
+    "Ignore",
+  ];
 
   const allKeys = allFields(bureauData.creditData[0]);
   return (
@@ -54,6 +65,58 @@ function CreditItems({ bureauData }) {
               <tr>
                 <td>Show more details </td>
                 <td colSpan={3}></td>
+              </tr>
+
+              <tr>
+                <td>Status </td>
+
+                {creditBureaus.map(burr => (
+                  <td key={`${burr}-key-status`}>
+                    <Form>
+                      <Form.Control
+                        as='select'
+                        name={`${burr}Status`}
+                        className='border border-danger'
+                      >
+                        <option></option>
+                        {status.map(stat => (
+                          <option
+                            key={`${stat}-key-status-option`}
+                            value={stat}
+                          >
+                            {stat}
+                          </option>
+                        ))}
+                      </Form.Control>
+                    </Form>
+                  </td>
+                ))}
+              </tr>
+
+              <tr>
+                <td className='pl-2 text-white bg-danger arrow-bg'>
+                  Add Reason{" "}
+                </td>
+                <td colSpan={3}>
+                  <Form>
+                    <Form.Control as='select' className='border border-danger'>
+                      <option></option>
+                    </Form.Control>
+                  </Form>
+                </td>
+              </tr>
+              <tr>
+                <td className='pl-2 text-white bg-danger arrow-bg'>
+                  Add instructions{" "}
+                </td>
+                <td colSpan={3}>
+                  <Form>
+                    <Form.Control
+                      as='select'
+                      className='border border-danger'
+                    ></Form.Control>
+                  </Form>
+                </td>
               </tr>
             </tbody>
           </Table>

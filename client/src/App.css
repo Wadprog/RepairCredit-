@@ -17,7 +17,12 @@
 body {
   background-color: #f0fff0;
 }
-
+.arrow-bg{
+  border-top-right-radius: 50%;
+  border-bottom-right-radius: 50%;
+  display: flex;
+  
+}
 .btn-shadow {
   display: inline-block;
   height: 35px;

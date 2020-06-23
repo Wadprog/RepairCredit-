@@ -17,7 +17,7 @@ router.get(`/person/:id`, async (req, res) => {
   try {
     const creditItems = await CreditItems.find({
       person: req.params.id,
-    }).populate("persorn");
+    }).populate("person");
     return res.json(creditItems);
   } catch (error) {
     console.log(error);

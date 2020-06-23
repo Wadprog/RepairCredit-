@@ -1,14 +1,11 @@
 
 
-
-
-
-
 import React from "react";
 import { Row, Col, Alert } from "react-bootstrap";
 function PageAlert({
   variant,
   icon,
+  children,
   msg,
   textColor = "dark",
   Inconcolor,
@@ -18,7 +15,7 @@ function PageAlert({
   return (
     <Alert
       variant={variant}
-      className={`${border && "border"} ${rounded && "rounded"}`}
+      className={`${border && "border"} ${rounded && "rounded"} ${"mt-3"}`}
     >
       <Row>
         {icon != null && icon != "" && (
@@ -28,7 +25,10 @@ function PageAlert({
         )}
 
         <Col>
-          <p className={`text-${textColor}`}>{msg}.</p>
+          <p className={`text-${textColor}`}>{msg}.  
+          {children != null && children != "" && (
+          <span>{children}</span>
+        )}</p>
         </Col>
       </Row>
     </Alert>

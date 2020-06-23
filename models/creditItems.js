@@ -1,9 +1,9 @@
 const mongoose = require("mongoose");
 
 const creditItemSchema = mongoose.Schema({
-  persorn: {
+  person: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "persorn",
+    ref: "person",
   },
 
   creditBureauData: [

@@ -12,6 +12,17 @@ router.get(`/`, async (req, res) => {
     console.log(error);
   }
 });
+
+router.get(`/person/:id`, async (req, res) => {
+  try {
+    const creditItems = await CreditItems.find({
+      person: req.params.id,
+    }).populate("persorn");
+    return res.json(creditItems);
+  } catch (error) {
+    console.log(error);
+  }
+});
 /*
 router.delete(`/`, async (req, res) => {
   try {

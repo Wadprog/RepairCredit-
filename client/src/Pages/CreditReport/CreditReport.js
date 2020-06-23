@@ -1,9 +1,14 @@
-import React from "react";
+import React, { useEffect, Fragment } from "react";
 import { connect } from "react-redux";
 import { Row, Col, Card, Button, Alert, Table } from "react-bootstrap";
 import { Link } from "react-router-dom";
-
-export const CreditReport = () => {
+import PageAlert from "../../components/PageAlert";
+import { getClientCreditReport } from "../../redux/actions/creditItems";
+import CreditItem from "./CreditItem";
+export const CreditReport = ({ creditItems, getClientCreditReport }) => {
+  useEffect(() => {
+    getClientCreditReport("5ee821d6e79bf43594c91f74");
+  }, []);
   return (
     <div>
       <Row>
@@ -27,7 +32,9 @@ export const CreditReport = () => {
             <Card.Body>
               <Alert variant='warning' className='text-dark'>
                 <Row>
-                  <Col>1</Col>
+                  <Col>
+                    <i className='fa fa-font fa-3x text-center text-info'></i>
+                  </Col>
                   <Col xs={11}>
                     <b>Instructions:</b> The first time you import a credit
                     report for a client, all items are flagged as "negative" or
@@ -50,7 +57,7 @@ export const CreditReport = () => {
               </Row>
 
               <Row>
-                <Table striped bordered hover size='md' className='text-center'>
+                <Table striped bordered hover size='sm' className='text-center'>
                   <thead>
                     <tr>
                       <th className='bg-white'></th>
@@ -130,6 +137,16 @@ export const CreditReport = () => {
                     </tr>
                   </tbody>
                 </Table>
+                {creditItems != null && creditItems.length > 0 && (
+                  <Row>
+                    <Col>
+                      {creditItems[0].creditBureauData.length > 0 &&
+                        creditItems[0].creditBureauData.map(bureauData => (
+                          <CreditItem bureauData={bureauData} />
+                        ))}
+                    </Col>
+                  </Row>
+                )}
               </Row>
             </Card.Body>
           </Card>
@@ -139,8 +156,10 @@ export const CreditReport = () => {
   );
 };
 
-const mapStateToProps = state => ({});
+const mapStateToProps = state => ({
+  creditItems: state.creditItems.creditItems,
+});
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = { getClientCreditReport };
 
 export default connect(mapStateToProps, mapDispatchToProps)(CreditReport);

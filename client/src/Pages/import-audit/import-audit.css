@@ -182,7 +182,7 @@ form .row span {
   margin: 0 20px;
 }
 
-.row .button {
+.row .buttonCancel {
   width: 120px;
   height: 40px;
   margin: 20px 40px;
@@ -192,6 +192,6 @@ form .row span {
 .row .input {
   background-color: blue;
 }
-.row button {
+.row .buttonCancel {
   background-color: brown;
 }

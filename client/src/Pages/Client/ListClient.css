@@ -1,93 +1,94 @@
 :root {
-    --main-bg-color: #F7F7F7;
-    --nav-bg-color : #404346;
-    --nav-txt-color: #B9BABB;
-    --nav-active-txt-color : #FFFFFF;
-    --nav-active-bg-color : #26292C;
-    --white-color: #FFFFFF;
-    --black-color: #000000;
-    --txt-breadcrumb-color : #535558;
-    --border-color : #e7e7e7;
-  }
+  --main-bg-color: #f7f7f7;
+  --nav-bg-color: #404346;
+  --nav-txt-color: #b9babb;
+  --nav-active-txt-color: #ffffff;
+  --nav-active-bg-color: #26292c;
+  --white-color: #ffffff;
+  --black-color: #000000;
+  --txt-breadcrumb-color: #535558;
+  --border-color: #e7e7e7;
+}
 
 body {
-    background-color: var(--main-bg-color);
+  background-color: var(--main-bg-color);
 }
 
 nav {
-    height: 40px !important;
+  height: 40px !important;
 }
 
 .navbar {
-    background-color: var(--nav-bg-color) !important;
+  background-color: var(--nav-bg-color) !important;
 }
 
 .navbar-brand {
-    color: var(--white-color) !important;
+  color: var(--white-color) !important;
 }
 
 .active a {
-    background: var(--nav-active-bg-color) !important;
-    color: var(--nav-active-txt-color) !important;
+  background: var(--nav-active-bg-color) !important;
+  color: var(--nav-active-txt-color) !important;
 }
 
 .navbar-nav li {
-    font-size: medium;
-    font-family: 'roboto';
-    font-weight: 400;
+  font-size: medium;
+  font-family: "roboto";
+  font-weight: 400;
 }
 
 .nav-item a {
-    color: var(--nav-txt-color) !important;
+  color: var(--nav-txt-color) !important;
 }
 
 .input-search {
-    align-items: center;
+  align-items: center;
 }
 
 .input-field {
-    padding: 0 10px 0 0px;
-    color: #555555;
-    border: 1px solid;
-    text-indent: 25px;
-    background: url('https://img.icons8.com/android/18/000000/search.png') no-repeat;
-    background-position: left center;
-    background-position-x: 5px;
-    width: 180px;
-    height: 29px;
-    overflow: hidden;
-  }
+  padding: 0 10px 0 0px;
+  color: #555555;
+  border: 1px solid;
+  text-indent: 25px;
+  background: url("https://img.icons8.com/android/18/000000/search.png")
+    no-repeat;
+  background-position: left center;
+  background-position-x: 5px;
+  width: 180px;
+  height: 29px;
+  overflow: hidden;
+}
 
-  .pagination {
-     /* background-color: var(--white-color);
+.pagination {
+  /* background-color: var(--white-color);
       border: 1px solid var(--nav-txt-color);*/
-      width: fit-content;
-  }
+  width: fit-content;
+}
 
-  .page-link {
-    background-color: var(--white-color) !important;
-    border: 1px solid var(--nav-txt-color) !important;
-    width: fit-content;
-  }
-    /*Breadcumbs custom css*/
+.page-link {
+  background-color: var(--white-color) !important;
+  border: 1px solid var(--nav-txt-color) !important;
+  width: fit-content;
+}
+/*Breadcumbs custom css*/
 
-  /* breadcrumb */
+/* breadcrumb */
 
-  .breadcrumb {
-    background-color: var(--main-bg-color) !important;
-    border-top: 1px solid #e7e7e7;
-    border-bottom: 1px solid #e7e7e7;
-    align-items: center !important;
-    text-align: left !important;
-  }
+.breadcrumb {
+  background-color: var(--main-bg-color) !important;
+  border-top: 1px solid #e7e7e7;
+  border-bottom: 1px solid #e7e7e7;
+  align-items: center !important;
+  text-align: left !important;
+}
 
-  .breadcrumb li a {
-    margin-left: 20px;
-    color: var(--black-color);
-    font-size: medium;
-    font-family: 'roboto';
-    font-weight: bold;
-  }
+.breadcrumb li a {
+  margin-left: 20px;
+  color: var(--black-color);
+  font-size: medium;
+  font-family: "roboto";
+  font-weight: bold;
+}
 
 .breadcrumb-arrow {
   min-height: 10px;
@@ -103,7 +104,6 @@ nav {
   margin-left: 20px;
 }
 
-
 /*create arrow with div */
 
 .arrow {
@@ -116,10 +116,9 @@ nav {
   margin-top: -5px;
   margin-bottom: -5px;
   z-index: 1;
-  transition: .5s;
+  transition: 0.5s;
   float: left;
   box-shadow: 1px 1px 0 var(--border-color);
-
 }
 
 .arrow {
@@ -127,7 +126,7 @@ nav {
 }
 
 tr {
-  border : 3px solid var(--main-bg-color) !important;
+  border: 3px solid var(--main-bg-color) !important;
 }
 
 /*Login styles*/

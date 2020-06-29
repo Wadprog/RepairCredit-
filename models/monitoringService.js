@@ -13,5 +13,5 @@ const monitoringServiceSchema = mongoose.Schema({
 
 module.exports = MonitoringService = mongoose.model(
   "monitoringService",
-  monitoring_serviceSchema
+  monitoringServiceSchema
 );

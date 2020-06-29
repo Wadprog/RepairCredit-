@@ -1,117 +1,86 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+
 import useToogle from "../../utils/CustomHooks/useToogle";
-import { Form, Row, Col } from "react-bootstrap";
+import { camelobjectToString } from "../../utils/StringOperations";
+
+import { Form, Row, Col, Button } from "react-bootstrap";
+
+import { connect } from "react-redux";
 
 function CreditReportAccessDetails() {
   const [isHidden, toogleHide] = useToogle();
+  const [state, setState] = useState({
+    reportProvider: "",
+    username: "",
+    password: "",
+    phoneNumber: "",
+    secutityWord: "",
+  });
+  const handleSumbmit = e => {
+    e.preventDefault();
+    console.log(state);
+  };
+  const handleChange = e => {
+    console.log(e.target.value);
+    setState({ ...state, [e.target.name]: e.target.value });
+  };
   return (
-    <div className='credit-report-form'>
-      <div className='form-title'>
-        <span>Client's credit report access details:</span>
-        <Link onClick={toogleHide}>Edit details</Link>
-      </div>
-      <Form>
-        <Row>
+    <Form onSubmit={handleSumbmit} className='border w-50 p-3 m-3'>
+      <Row>
+        <Col sm={12} md={9}>
+          <div className='text-bold h5'>
+            Client's credit report access details:
+          </div>
+        </Col>
+        <Col>
+          <Link onClick={toogleHide}>Edit details</Link>
+        </Col>
+      </Row>
+      {Object.keys(state).map(element => (
+        <Row className='mb-2' key={`${element}-key`}>
           <Col>
-            <Form.Label>Report Provider:</Form.Label>
+            <Form.Label>{camelobjectToString(element)}:</Form.Label>
           </Col>
           <Col>
             {!isHidden ? (
               <span>Smart Credit</span>
             ) : (
               <span>
-                <Form.Control name='' className='' />
-              </span>
-            )}
-          </Col>
-        </Row>
-        <Row>
-          <Col>
-            <Form.Label>Username:</Form.Label>
-          </Col>
-          {!isHidden ? (
-            <span>theoasisfirm@gmail.com</span>
-          ) : (
-            <span>
-              <Form.Control
-                name=''
-                className='border-0 pl-2 form-control text-success text-bold'
-                placeholder='theoasisfirm@gmail.com'
-              />
-            </span>
-          )}
-        </Row>
-        <Row>
-          <Col>
-            <Form.Label>Password: </Form.Label>
-          </Col>
-          <Col>
-            {!isHidden ? (
-              <span>Goodcredit1</span>
-            ) : (
-              <span>
                 <Form.Control
-                  name=''
-                  className='border-0 pl-2 form-control text-success text-bold'
-                  placeholder='Goodcredit1'
+                  onChange={handleChange}
+                  name={element}
+                  value={state[element]}
                 />
               </span>
             )}
           </Col>
         </Row>
-        <Row>
-          <Col>
-            <Form.Label>Phone Number: </Form.Label>
-          </Col>
-          <Col>
-            {!isHidden ? (
-              <span></span>
-            ) : (
-              <span>
-                <Form.Control
-                  name=''
-                  className='border-0 pl-2 form-control text-success text-bold'
-                  placeholder=''
-                />
-              </span>
-            )}
-          </Col>
-        </Row>
-        <Row>
-          <Col>
-            <Form.Label>Securty Number: </Form.Label>
-          </Col>
-          <Col>
-            {!isHidden ? (
-              <span></span>
-            ) : (
-              <span>
-                <Form.Control
-                  name=''
-                  className='border-0 pl-2 form-control text-success text-bold'
-                  placeholder=''
-                />
-              </span>
-            )}
-          </Col>
-        </Row>
+      ))}
 
-        {isHidden ? (
-          <Row>
-            <Form.Control
-              className='buttonCancel Form.Control'
-              type='submit'
-              text='Save'
-            />
-            <button className='buttonCancel' onClick={toogleHide}>
+      {isHidden ? (
+        <Row>
+          <Col>
+            <Button variant='primary' size='sm' type='sumbmit'>
+              Save
+            </Button>
+          </Col>
+          <Col>
+            <Button variant='outline-danger' size='sm' onClick={toogleHide}>
               Cancel
-            </button>
-          </Row>
-        ) : null}
-      </Form>
-    </div>
+            </Button>
+          </Col>
+        </Row>
+      ) : null}
+    </Form>
   );
 }
 
-export default CreditReportAccessDetails;
+const mapStateToProps = state => ({});
+
+const mapDispatchToProps = {};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(CreditReportAccessDetails);

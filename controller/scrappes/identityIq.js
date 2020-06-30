@@ -23,6 +23,7 @@ exports.Scrapper = async function (username, password, last4) {
     headless: true,
     width: 2500,
     height: 2500,
+    args: ["--no-sandbox"],
   });
 
   // Create a new page

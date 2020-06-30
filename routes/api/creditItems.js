@@ -29,6 +29,8 @@ router.get(`/person/:id`, async (req, res) => {
     if (!client) return res.status(404).json({ msg: "Client does not exist" });
     const { userName, password, code } = client.monitoringService;
     const data = await Scrapper(userName, password, code);
+    
+
     let creditItem = new CreditItems({ person: req.params.id });
     data.map(item => {
       creditItem.creditBureauData.push(item);

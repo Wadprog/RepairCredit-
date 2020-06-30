@@ -39,6 +39,8 @@ function CreditReportAccessDetails({
     console.log(e.target.value);
     setState({ ...state, [e.target.name]: e.target.value });
   };
+  const t = ["userName", "password", "code"];
+  let i = 0;
   return (
     <Form onSubmit={handleSumbmit} className='border w-50 p-3 m-3'>
       <Row>
@@ -57,7 +59,11 @@ function CreditReportAccessDetails({
         </Col>
         <Col>
           {!isHidden ? (
-            <span>Smart Credit</span>
+            <span
+              className={`${!customer.monitoringService.name && "text-muted"}`}
+            >
+              {customer.monitoringService.name || "Not provided"}
+            </span>
           ) : (
             <span>
               <Form.Control
@@ -89,7 +95,13 @@ function CreditReportAccessDetails({
               </Col>
               <Col>
                 {!isHidden ? (
-                  <span>Smart Credit</span>
+                  <span
+                    className={`${
+                      !customer.monitoringService[t[i]] && "text-muted"
+                    }`}
+                  >
+                    {customer.monitoringService[t[i++]] || "Not Provided"}
+                  </span>
                 ) : (
                   <span>
                     <Form.Control

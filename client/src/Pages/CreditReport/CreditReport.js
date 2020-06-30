@@ -5,9 +5,15 @@ import { Link } from "react-router-dom";
 import PageAlert from "../../components/PageAlert";
 import { getClientCreditReport } from "../../redux/actions/creditItems";
 import CreditItem from "./CreditItem";
-export const CreditReport = ({ creditItems, getClientCreditReport }) => {
+export const CreditReport = ({
+  creditItems,
+  getClientCreditReport,
+  match: {
+    params: { id },
+  },
+}) => {
   useEffect(() => {
-    getClientCreditReport("5ee821d6e79bf43594c91f74");
+    getClientCreditReport(id);
   }, []);
   return (
     <div>

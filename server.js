@@ -20,7 +20,7 @@ app.use("/api/credit-items", require("./routes/api/creditItems"));
 //app.use("/api/employee", require("./routes/api/employee"));
 app.use("/api/person", require("./routes/api/person"));
 app.use("/api/customer", require("./routes/api/customer"));
-//app.use("/api/monitoringService", require("./routes/api/monitoringService"));
+app.use("/api/monitoringService", require("./routes/api/monitoringService"));
 
 // Serve static assets in production
 //if (process.env.NODE_ENV === "production") {
@@ -31,8 +31,4 @@ app.get("*", (req, res) => {
 });
 //}
 const PORT = process.env.Port || 5000;
-app.listen(PORT, err =>
-  err
-    ? console.log(`Error ${err}`)
-    : console.log(`Server runing on port ${PORT}`)
-);
+app.listen(PORT, () => console.log(`Connected with success`));

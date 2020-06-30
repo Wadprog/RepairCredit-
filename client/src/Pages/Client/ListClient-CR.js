@@ -1,7 +1,7 @@
 import React, { Fragment, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Alert, Table, Form, Col, Button } from "react-bootstrap";
-import { loadCustomers } from "../../redux/actions/person";
+import { loadCustomers } from "../../redux/actions/customer";
 import { customerStatusName } from "../../utils/consts/ClientStatus";
 import { connect } from "react-redux";
 const ListClientCR = ({ loadCustomers, customers }) => {
@@ -185,7 +185,7 @@ const ListClientCR = ({ loadCustomers, customers }) => {
 };
 
 const mapStateToProps = state => ({
-  customers: state.person.customers,
+  customers: state.customer.customers,
 });
 
 export default connect(mapStateToProps, { loadCustomers })(ListClientCR);

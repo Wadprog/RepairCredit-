@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 import useToogle from "../../utils/CustomHooks/useToogle";
@@ -7,19 +7,33 @@ import { camelobjectToString } from "../../utils/StringOperations";
 import { Form, Row, Col, Button } from "react-bootstrap";
 
 import { connect } from "react-redux";
+import { getAllMonitoringService } from "../../redux/actions/monitoringService";
+import { updateClient } from "../../redux/actions/customer";
 
-function CreditReportAccessDetails() {
+function CreditReportAccessDetails({
+  getAllMonitoringService,
+  monitoringServices,
+  updateClient,
+  customer,
+}) {
+  useEffect(() => {
+    getAllMonitoringService();
+  }, []);
   const [isHidden, toogleHide] = useToogle();
   const [state, setState] = useState({
+    id: customer._id,
     reportProvider: "",
     username: "",
     password: "",
-    phoneNumber: "",
     secutityWord: "",
   });
   const handleSumbmit = e => {
     e.preventDefault();
     console.log(state);
+    const formData = {};
+    formData.id = state.id;
+    formData.monitoringService = state;
+    updateClient(formData);
   };
   const handleChange = e => {
     console.log(e.target.value);
@@ -37,28 +51,60 @@ function CreditReportAccessDetails() {
           <Link onClick={toogleHide}>Edit details</Link>
         </Col>
       </Row>
-      {Object.keys(state).map(element => (
-        <Row className='mb-2' key={`${element}-key`}>
-          <Col>
-            <Form.Label>{camelobjectToString(element)}:</Form.Label>
-          </Col>
-          <Col>
-            {!isHidden ? (
-              <span>Smart Credit</span>
-            ) : (
-              <span>
-                <Form.Control
-                  onChange={handleChange}
-                  name={element}
-                  value={state[element]}
-                />
-              </span>
-            )}
-          </Col>
-        </Row>
-      ))}
+      <Row className='mb-2'>
+        <Col>
+          <Form.Label>Report Provider:</Form.Label>
+        </Col>
+        <Col>
+          {!isHidden ? (
+            <span>Smart Credit</span>
+          ) : (
+            <span>
+              <Form.Control
+                as='select'
+                onChange={handleChange}
+                name='reportProvider'
+                value={state["reportProvider"]}
+              >
+                <option></option>
+                {monitoringServices != null &&
+                  monitoringServices.length > 0 &&
+                  monitoringServices.map(monitoringService => (
+                    <option key={monitoringService._id}>
+                      {monitoringService.name}
+                    </option>
+                  ))}
+              </Form.Control>
+            </span>
+          )}
+        </Col>
+      </Row>
 
-      {isHidden ? (
+      {Object.keys(state).map(element => {
+        if (element !== "reportProvider" && element !== "id")
+          return (
+            <Row className='mb-2' key={`${element}-key`}>
+              <Col>
+                <Form.Label>{camelobjectToString(element)}:</Form.Label>
+              </Col>
+              <Col>
+                {!isHidden ? (
+                  <span>Smart Credit</span>
+                ) : (
+                  <span>
+                    <Form.Control
+                      onChange={handleChange}
+                      name={element}
+                      value={state[element]}
+                    />
+                  </span>
+                )}
+              </Col>
+            </Row>
+          );
+      })}
+
+      {isHidden && (
         <Row>
           <Col>
             <Button variant='primary' size='sm' type='sumbmit'>
@@ -71,14 +117,17 @@ function CreditReportAccessDetails() {
             </Button>
           </Col>
         </Row>
-      ) : null}
+      )}
     </Form>
   );
 }
 
-const mapStateToProps = state => ({});
+const mapStateToProps = state => ({
+  monitoringServices: state.monitoringService.monitoringServices,
+  customer: state.customer.customer,
+});
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = { getAllMonitoringService, updateClient };
 
 export default connect(
   mapStateToProps,

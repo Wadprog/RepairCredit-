@@ -24,11 +24,15 @@ router.get(`/:id`, async (req, res) => {
 
 router.post(`/`, async (req, res) => {
   try {
-    const monitoringService = await MoniteringService.find({
+    let monitoringService;
+
+    /*= await MoniteringService.find({
       name: req.body.name,
     });
     if (monitoringService)
-      return res.status(400).json({ msg: `Monitoring service already exists` });
+      return res
+        .status(400)
+        .json({ msg: `Monitoring service already exists${monitoringService}` });*/
 
     monitoringService = new MoniteringService(req.body);
     await monitoringService.save();

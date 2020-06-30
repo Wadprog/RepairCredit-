@@ -3,13 +3,15 @@ import { Tab, Row, Col, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import CreditReportAccessDetails from "./CreditReportAccessDetails";
 import useToogle from "../../utils/CustomHooks/useToogle";
-function Tab1() {
+import { connect } from "react-redux";
+
+function Tab1({ customer }) {
   const [isExpanded, toggleExpand] = useToogle();
 
   const handleAudit = e => {
     console.log(e.target);
     //Temp
-    return (window.location.href = "/credit-report/1");
+    return (window.location.href = `/credit-report/${customer._id}`);
   };
   return (
     <div>
@@ -58,7 +60,9 @@ function Tab1() {
               </Col>
             </Row>
           </Card.Header>
-          {isExpanded && <Card.Body>Hello!This needs to be wrtten first</Card.Body>}
+          {isExpanded && (
+            <Card.Body>Hello!This needs to be wrtten first</Card.Body>
+          )}
         </Card>
 
         <CreditReportAccessDetails />
@@ -67,4 +71,10 @@ function Tab1() {
   );
 }
 
-export default Tab1;
+const mapStateToProps = state => ({
+  customer: state.customer.customer,
+});
+
+const mapDispatchToProps = {};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Tab1);

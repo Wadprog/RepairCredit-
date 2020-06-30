@@ -7,6 +7,7 @@ import customer from "./customer";
 import partners from "./partners";
 import person from "./person";
 import creditItems from "./creditItems";
+import monitoringService from "./monitoringService";
 export default combineReducers({
   alert,
   employee,
@@ -16,4 +17,5 @@ export default combineReducers({
   partners,
   person,
   creditItems,
+  monitoringService,
 });

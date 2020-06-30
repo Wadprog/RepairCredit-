@@ -37,6 +37,10 @@ const creditItemSchema = mongoose.Schema({
       ],
     },
   ],
+  datepulled: {
+    type: Date,
+    default: Date.now,
+  },
 });
 
 module.exports = CreditItem = mongoose.model("creditItem", creditItemSchema);

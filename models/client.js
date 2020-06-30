@@ -28,12 +28,10 @@ const clientSchema = mongoose.Schema({
     ref: "employee",
   },
   monitoringService: {
-    name: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "monitoringService",
-    },
+    name: { type: String },
     userName: { type: String },
     password: { type: String },
+    code: { type: String },
   },
 });
 

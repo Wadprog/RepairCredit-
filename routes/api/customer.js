@@ -50,89 +50,31 @@ router.post("/", async (req, res) => {
   }
 });
 
-router.put("/", async (req, res) => {
+router.put("/:id", async (req, res) => {
   try {
-    const { id } = req.body;
-    let client = await Client.findOne({ id });
+    let client = await Client.findById(req.params.id).populate("person");
     if (!client)
-      res.status(404).json({ msg: "Cannot Edit none- existing cliente" });
+      return res.status(404).json({ msg: "Cannot Edit none- existing client" });
 
     const modified = [];
 
-    if (req.body.name && req.body.name != "" && req.body.name != client.name) {
-      client.name = req.body.name;
-      modified.push(`nombre a ${client.name}`);
-    }
-    if (
-      req.body.apellido &&
-      req.body.apellido != "" &&
-      req.body.apellido != client.apellido
-    ) {
-      client.apellido = req.body.apellido;
-      modified.push(`apellido a ${client.apellido}`);
-    }
-    if (
-      req.body.cedula &&
-      req.body.cedula != "" &&
-      req.body.cedula != client.cedula
-    ) {
-      client.cedula = req.body.cedula;
-      modified.push(`cedula a ${client.cedula}`);
+    if (req.body.monitoringService) {
+      client.monitoringService = {
+        name: req.body.monitoringService.reportProvider,
+        userName: req.body.monitoringService.username,
+        password: req.body.monitoringService.password,
+        code: req.body.monitoringService.secutityWord,
+      };
+      await client.save();
+      console.log(client);
+      return res.json(client);
     }
 
-    if (
-      req.body.telefono &&
-      req.body.telefono != "" &&
-      req.body.telefono != client.telefono
-    ) {
-      client.telefono = req.body.telefono;
-      modified.push(`telefono a ${client.telefono}`);
-    }
-    if (
-      req.body.DirReferencia &&
-      req.body.DirReferencia != "" &&
-      req.body.DirReferencia != client.DirReferencia
-    ) {
-      client.DirReferencia = req.body.DirReferencia;
-      modified.push(`Referencia de dirreccion a ${client.DirReferencia}`);
-    }
-    if (
-      req.body.dirreccion &&
-      req.body.dirreccion != "" &&
-      req.body.dirreccion != client.dirreccion
-    ) {
-      client.dirreccion = req.body.dirreccion;
-      modified.push(`dirreccion a ${client.dirreccion}`);
-    }
-    if (
-      req.body.ciudad &&
-      req.body.ciudad != "" &&
-      req.body.ciudad != client.ciudad
-    ) {
-      client.ciudad = req.body.ciudad;
-      modified.push(`ciudad a ${client.ciudad}`);
-    }
-    if (
-      req.body.telefono2 &&
-      req.body.telefono2 != "" &&
-      req.body.telefono2 != client.telefono2
-    ) {
-      client.telefono2 = req.body.telefono2;
-      modified.push(`telefono2 a ${client.telefono2}`);
-    }
-    if (req.body.telefono2 && req.body.telefono2 == "") client.telefono2 = null;
-
-    if (
-      req.body.telefono3 &&
-      req.body.telefono3 != "" &&
-      req.body.telefono3 != client.telefono3
-    ) {
-      client.telefono3 = req.body.telefono3;
-      modified.push(`telefono3 a ${client.telefono3}`);
-    }
-    if (req.body.telefono3 && req.body.telefono3 == "") client.telefono2 = null;
-
-    await client.save();
+    Object.keys(req.body).forEach(field => {
+      const { body } = req;
+      if (!fieldEmptyOrEqual(field, client, body))
+        console.log("new Field not mServ", field);
+    });
 
     res.json({ modified, client });
   } catch (error) {
@@ -142,3 +84,6 @@ router.put("/", async (req, res) => {
 });
 
 module.exports = router;
+const fieldEmptyOrEqual = (field, model, data) => {
+  return model[field] === data[field] || data[field] === "";
+};

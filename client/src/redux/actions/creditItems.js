@@ -12,7 +12,7 @@ export const getClientCreditReport = id => async dispatch => {
     type: LOAD_CREDITITEMS_REQUEST,
   });
   try {
-    const res = await api.get("/credit-items/person/5ee821d6e79bf43594c91f74");
+    const res = await api.get(`/credit-items/person/${id}`);
     dispatch({
       type: LOAD_CREDITITEMS_SUCCESS,
       payload: res.data,

@@ -1,7 +1,7 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { Alert, OverlayTrigger, Tooltip, Card, Button } from "react-bootstrap";
 import { connect } from "react-redux";
-import { loadCoworkers } from "../../../redux/actions/person";
+import { loadCoworkers } from "../../../redux/actions/partners";
 
 import Addpartners from "../../../components/AddPeople/AddPartnersModal";
 function Partners({ loadCoworkers, partners }) {

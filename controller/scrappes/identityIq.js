@@ -11,7 +11,7 @@ exports.Scrapper = async function (username, password, last4) {
   // But disable headless mode !
   let dbObj = {};
   const browser = await puppeteer.launch({
-    headless: false,
+    headless: true,
     width: 2500,
     height: 2500,
   });
@@ -54,7 +54,7 @@ exports.Scrapper = async function (username, password, last4) {
       );
       let creditItems = [];
       let i = 0;
-      credits.forEach((creditElement) => {
+      credits.forEach(creditElement => {
         i++;
         let item = {};
         let bureauData = [];

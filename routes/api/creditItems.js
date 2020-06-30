@@ -17,14 +17,14 @@ router.get(`/`, async (req, res) => {
 router.get(`/person/:id`, async (req, res) => {
   console.log("I feel the call ");
   try {
-    let creditItems = await CreditItems.find({
+    /*let creditItems = await CreditItems.find({
       person: req.params.id,
     }).populate("person");
     const temp = creditItems;
     creditItems = [];
     creditItems.push(temp);
     if (creditItems.length > 0) return res.json(creditItems);
-
+*/
     let client = await Client.findById(req.params.id);
     if (!client) return res.status(404).json({ msg: "Client does not exist" });
     const { userName, password, code } = client.monitoringService;
@@ -34,9 +34,8 @@ router.get(`/person/:id`, async (req, res) => {
       creditItem.creditBureauData.push(item);
     });
     await creditItem.save();
-    creditItems = [];
-    creditItems.push(creditItem);
-    return res.json(creditItems);
+
+    return res.json(creditItem);
   } catch (error) {
     console.log(error);
   }

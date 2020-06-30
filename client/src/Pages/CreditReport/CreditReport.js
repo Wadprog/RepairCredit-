@@ -156,7 +156,8 @@ export const CreditReport = ({
                     {creditItems != null && (
                       <Row>
                         <Col>
-                          {creditItems.creditBureauData.length > 0 &&
+                          {creditItems.creditBureauData != null &&
+                            creditItems.creditBureauData.length > 0 &&
                             creditItems.creditBureauData.map(bureauData => (
                               <CreditItem bureauData={bureauData} />
                             ))}

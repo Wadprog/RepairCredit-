@@ -1,8 +1,22 @@
-import React from "react";
-import { Form, Table, Button } from "react-bootstrap";
+import React, { useEffect, useState } from "react";
+import { Form, Table, Button, DropdownButton, Dropdown } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import Modal from "../../components/Modals";
+import CreditAnalisis from "../../components/CreditAnalisis";
 import PageAlert from "../../components/PageAlert";
-function Tab2() {
+import { connect } from "react-redux";
+import { getALLClientCreditReport } from "../../redux/actions/creditItems";
+
+const Tab2 = ({ customer, getALLClientCreditReport, creditItems }) => {
+  useEffect(() => {
+    getALLClientCreditReport(customer._id);
+    return () => {
+      console.log("cleaned");
+    };
+  }, []);
+
+  const [show, handleShow] = useState(false);
+  const [creditItemId, setCreditItemId] = useState();
   return (
     <div>
       <PageAlert
@@ -48,41 +62,74 @@ function Tab2() {
           Generate Simple Audit
         </Button>
       </div>
-      <div className='mt-4'>
-        <span className='h4'>Save Audit</span>
-        <Table size='sm' className='table-border small'>
-          <thead className='border-bottom-0 table-borderless'>
-            <tr>
-              <th>Audit Name</th>
-              <th>Date Created</th>
-              <th>Team Member</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr className='border-bottom p-0 m-0'>
-              <td>John Doe Credit Analysis</td>
-              <td>Jun 18 2020 03:26 pm</td>
-              <td>Carl</td>
-              <td>
-                <Form className=''>
-                  <Form.Group>
-                    <Form.Control md={4} size='sm' as='select' custom>
-                      <option>Actions</option>
-                    </Form.Control>
-                  </Form.Group>
-                </Form>
-              </td>
-            </tr>
-          </tbody>
-          <p className='mt-2'>
-            <span className='text-primary'>Total: </span>
-            <span>1</span>
-          </p>
-        </Table>
-      </div>
+      {creditItems != null && creditItems.length > 0 && (
+        <div className='mt-4'>
+          <span className='h4'>Saved Audit</span>
+          <Table size='sm' className='table-border small'>
+            <thead className='border-bottom-0 table-borderless'>
+              <tr>
+                <th>Audit Name</th>
+                <th>Date Created</th>
+                <th>Team Member</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {creditItems.map(creditItem => (
+                <tr key={creditItem._id} className='border-bottom p-0 m-0'>
+                  <td>{customer.person.firstName} Credit Analisys</td>
+                  <td>{creditItem.datepulled}</td>
+                  <td>Carl</td>
+                  <td>
+                    <Dropdown>
+                      <Dropdown.Toggle variant='success' size='sm'>
+                        Actions
+                      </Dropdown.Toggle>
+
+                      <Dropdown.Menu>
+                        <Dropdown.Item
+                          onClick={() => {
+                            setCreditItemId(creditItem._id);
+                            handleShow(true);
+                          }}
+                        >
+                          View
+                        </Dropdown.Item>
+                        <Dropdown.Item href='#/action-2'>Delete</Dropdown.Item>
+                        <Dropdown.Item href='#/action-3'>Edit</Dropdown.Item>
+                      </Dropdown.Menu>
+                    </Dropdown>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+            <small className='mt-2'>
+              <span className='text-primary'>Total: </span>
+              <span>{creditItems.length}</span>
+            </small>
+          </Table>
+        </div>
+      )}
+      <Modal
+        title={`${customer.person.firstName} credit analisys`}
+        show={show}
+        onHide={() => {
+          handleShow(false);
+        }}
+      >
+        <p>ok</p>
+        <CreditAnalisis customer={customer} creditItemId={creditItemId} />
+        <p>ok</p>
+      </Modal>
     </div>
   );
-}
+};
 
-export default Tab2;
+const mapStateToProps = state => ({
+  customer: state.customer.customer,
+  creditItems: state.creditItems.creds,
+});
+
+const mapDispatchToProps = { getALLClientCreditReport };
+
+export default connect(mapStateToProps, mapDispatchToProps)(Tab2);

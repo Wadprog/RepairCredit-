@@ -24,7 +24,7 @@ function ImportAudit({
           </Tab>
 
           <Tab eventKey='simpleImport' title='Simple Audit(Credit Analysis)'>
-            <Tab2Content />
+            <Tab2Content customer={customer} />
           </Tab>
         </Tabs>
       )}

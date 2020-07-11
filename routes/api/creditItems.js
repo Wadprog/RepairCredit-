@@ -14,6 +14,17 @@ router.get(`/`, async (req, res) => {
   }
 });
 
+router.get(`/:id`, async (req, res) => {
+  try {
+    const creditItem = await CreditItems.findById(req.params.id).populate(
+      "person"
+    );
+    return res.json(creditItem);
+  } catch (error) {
+    console.log(error);
+  }
+});
+
 router.get(`/person/:id`, async (req, res) => {
   console.log("I feel the call ");
   try {
@@ -27,21 +38,49 @@ router.get(`/person/:id`, async (req, res) => {
 */
     let client = await Client.findById(req.params.id);
     if (!client) return res.status(404).json({ msg: "Client does not exist" });
-    const { userName, password, code } = client.monitoringService;
-    const data = await Scrapper(userName, password, code);
-    
 
-    let creditItem = new CreditItems({ person: req.params.id });
-    data.map(item => {
-      creditItem.creditBureauData.push(item);
-    });
-    await creditItem.save();
+    let [creditItem] = await CreditItems.find({ person: req.params.id });
+    console.log(creditItem);
+    if (!creditItem) {
+      const { userName, password, code } = client.monitoringService;
+      const data = await Scrapper(userName, password, code);
+      creditItem = new CreditItems({ person: req.params.id });
+      data.map(item => {
+        creditItem.creditBureauData.push(item);
+      });
+      await creditItem.save();
+    }
 
     return res.json(creditItem);
   } catch (error) {
     console.log(error);
   }
 });
+
+router.get(`/all/person/:id`, async (req, res) => {
+  console.log("I feel the call ");
+  try {
+    let client = await Client.findById(req.params.id);
+    if (!client) return res.status(404).json({ msg: "Client does not exist" });
+
+    let creditItems = await CreditItems.find({ person: req.params.id });
+    console.log(creditItems);
+    if (!creditItems) {
+      const { userName, password, code } = client.monitoringService;
+      const data = await Scrapper(userName, password, code);
+      creditItems = new CreditItems({ person: req.params.id });
+      data.map(item => {
+        creditItem.creditBureauData.push(item);
+      });
+      await creditItem.save();
+    }
+
+    return res.json(creditItems);
+  } catch (error) {
+    console.log(error);
+  }
+});
+
 /*
 router.delete(`/`, async (req, res) => {
   try {

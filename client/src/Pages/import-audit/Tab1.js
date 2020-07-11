@@ -1,6 +1,5 @@
-import React, { useState } from "react";
-import { Tab, Row, Col, Card } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import React from "react";
+import { Row, Col, Card } from "react-bootstrap";
 import CreditReportAccessDetails from "./CreditReportAccessDetails";
 import useToogle from "../../utils/CustomHooks/useToogle";
 import { connect } from "react-redux";

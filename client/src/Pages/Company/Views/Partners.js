@@ -4,6 +4,8 @@ import { connect } from "react-redux";
 import { loadCoworkers } from "../../../redux/actions/partners";
 
 import Addpartners from "../../../components/AddPeople/AddPartnersModal";
+
+
 function Partners({ loadCoworkers, partners }) {
   useEffect(() => {
     loadCoworkers();

@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { getCreditItemById } from "../../redux/actions/creditItems";
-import  Page1  from "./PdfPages/Page1";
+import Page1 from "./PdfPages/Page1";
+import "./index.css";
 const CreditAnalisis = ({ creditItemId, getCreditItemById, creditItem }) => {
   useEffect(() => {
     getCreditItemById(creditItemId);
@@ -10,8 +11,12 @@ const CreditAnalisis = ({ creditItemId, getCreditItemById, creditItem }) => {
     };
   }, []);
   return (
-    <div>
-      <Page1 />
+    <div style={{ fontFmily: ["Roboto", "Arial", "Helvetica", "sans-serif"] }}>
+      <div id='pdf-cover'>
+        <div className='container-fluid'>
+          <Page1 />
+        </div>
+      </div>
     </div>
   );
 };

@@ -117,9 +117,7 @@ const Tab2 = ({ customer, getALLClientCreditReport, creditItems }) => {
           handleShow(false);
         }}
       >
-        <p>ok</p>
         <CreditAnalisis customer={customer} creditItemId={creditItemId} />
-        <p>ok</p>
       </Modal>
     </div>
   );

@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-
 import useToogle from "../../utils/CustomHooks/useToogle";
 import { camelobjectToString } from "../../utils/StringOperations";
 
 import { Form, Row, Col, Button } from "react-bootstrap";
-
 import { connect } from "react-redux";
 import { getAllMonitoringService } from "../../redux/actions/monitoringService";
 import { updateClient } from "../../redux/actions/customer";
@@ -19,6 +17,7 @@ function CreditReportAccessDetails({
   useEffect(() => {
     getAllMonitoringService();
   }, []);
+
   const [isHidden, toogleHide] = useToogle();
   const [state, setState] = useState({
     id: customer._id,
@@ -29,7 +28,6 @@ function CreditReportAccessDetails({
   });
   const handleSumbmit = e => {
     e.preventDefault();
-    console.log(state);
     const formData = {};
     formData.id = state.id;
     formData.monitoringService = state;
@@ -40,6 +38,9 @@ function CreditReportAccessDetails({
     setState({ ...state, [e.target.name]: e.target.value });
   };
   const t = ["userName", "password", "code"];
+
+  let name = null;
+  if (customer.monitoringService) name = customer.monitoringService.name;
   let i = 0;
   return (
     <Form onSubmit={handleSumbmit} className='border w-50 p-3 m-3'>
@@ -59,10 +60,8 @@ function CreditReportAccessDetails({
         </Col>
         <Col>
           {!isHidden ? (
-            <span
-              className={`${!customer.monitoringService.name && "text-muted"}`}
-            >
-              {customer.monitoringService.name || "Not provided"}
+            <span className={`${name != null && !name && "text-muted"}`}>
+              {name || "Not provided"}
             </span>
           ) : (
             <span>
@@ -97,10 +96,13 @@ function CreditReportAccessDetails({
                 {!isHidden ? (
                   <span
                     className={`${
-                      !customer.monitoringService[t[i]] && "text-muted"
+                      name == null ||
+                      (!customer.monitoringService[t[i]] && "text-muted")
                     }`}
                   >
-                    {customer.monitoringService[t[i++]] || "Not Provided"}
+                    {name == null ||
+                      customer.monitoringService[t[i++]] ||
+                      "Not Provided"}
                   </span>
                 ) : (
                   <span>

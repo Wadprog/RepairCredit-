@@ -1,6 +1,14 @@
 import React from "react";
 
 const Page7 = ({ items }) => {
+  /*const Items = items.filter(item => {
+    if (
+      item.status == "Derogatory" ||
+      item.accountType == "collections " ||
+      item.accountType == "charge-off"
+    )
+      return item;
+  });*/
   return (
     <div style={{ pageBreakBefore: "always", marginTop: "100px" }}>
       <p>
@@ -49,59 +57,63 @@ const Page7 = ({ items }) => {
               Issue
             </th>
           </tr>
-          <tr
-            style={{
-              backgroundColor: "#ffffff !important",
-              webkitPrintColorAdjust: "exact",
-              textAlign: "center",
-            }}
-          >
-            <td
-              style={{
-                width: "25%",
-                padding: "5px",
-                border: "1.5px solid #D44247",
-              }}
-            >
-              TD BANK N.A.{" "}
-            </td>
-            <td
-              style={{
-                width: "10%",
-                padding: "5px",
-                border: "1.5px solid #D44247",
-              }}
-            >
-              11/13{" "}
-            </td>
-            <td
-              style={{
-                width: "10%",
-                padding: "5px",
-                border: "1.5px solid #D44247",
-              }}
-            >
-              11/13
-            </td>
-            <td
-              style={{
-                width: "10%",
-                padding: "5px",
-                border: "1.5px solid #D44247",
-              }}
-            >
-              11/13{" "}
-            </td>
-            <td
-              style={{
-                width: "45%",
-                padding: "5px",
-                border: "1.5px solid #D44247",
-              }}
-            >
-              Was 90 days late 1 time(s).
-            </td>
-          </tr>
+          {items != null &&
+            items.length > 0 &&
+            items.map(item => (
+              <tr
+                style={{
+                  backgroundColor: "#ffffff !important",
+                  webkitPrintColorAdjust: "exact",
+                  textAlign: "center",
+                }}
+              >
+                <td
+                  style={{
+                    width: "25%",
+                    padding: "5px",
+                    border: "1.5px solid #D44247",
+                  }}
+                >
+                  {item.creditor}{" "}
+                </td>
+                <td
+                  style={{
+                    width: "10%",
+                    padding: "5px",
+                    border: "1.5px solid #D44247",
+                  }}
+                >
+                  11/13{" "}
+                </td>
+                <td
+                  style={{
+                    width: "10%",
+                    padding: "5px",
+                    border: "1.5px solid #D44247",
+                  }}
+                >
+                  11/13
+                </td>
+                <td
+                  style={{
+                    width: "10%",
+                    padding: "5px",
+                    border: "1.5px solid #D44247",
+                  }}
+                >
+                  11/13{" "}
+                </td>
+                <td
+                  style={{
+                    width: "45%",
+                    padding: "5px",
+                    border: "1.5px solid #D44247",
+                  }}
+                >
+                  Was 90 days late 1 time(s).
+                </td>
+              </tr>
+            ))}
           <tr
             style={{
               backgroundColor: "#FBB0C1 !important",

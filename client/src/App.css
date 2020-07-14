@@ -17,11 +17,10 @@
 body {
   background-color: #f0fff0;
 }
-.arrow-bg{
+.arrow-bg {
   border-top-right-radius: 50%;
   border-bottom-right-radius: 50%;
   display: flex;
-  
 }
 .btn-shadow {
   display: inline-block;
@@ -83,6 +82,11 @@ input {
 
 input:hover {
   box-shadow: inset 1px 2px 8px rgba(0, 0, 0, 0.02);
+}
+
+hr.rounded {
+  border-top: 8px solid #bbb;
+  border-radius: 5px;
 }
 
 input:focus {

@@ -13,6 +13,7 @@ import Page7 from "./PdfPages/Page7";
 import Page8 from "./PdfPages/Page8";
 import Page9 from "./PdfPages/Page9";
 import Page10 from "./PdfPages/Page10";
+
 import "./index.css";
 const CreditAnalisis = ({
   creditItemId,
@@ -33,25 +34,7 @@ const CreditAnalisis = ({
   return creditItemLoading ? (
     <Loading />
   ) : (
-    <div style={{ fontFamily: ["Roboto", "Arial", "Helvetica", "sans-serif"] }}>
-      {creditItem != null && (
-        <div id='pdf-cover'>
-          <div className='container-fluid'>
-            <Page1 datePulled={creditItem.datePulled} />
-            <Page2 customerName='Wadson Vaval ' company={tempCom} />
-            <Page3 />
-            <Page4 />
-            <Page5 />
-            <Page6 />
-            <Page7 items= {creditItem.creditBureauData}/>
-
-            <Page8 />
-            <Page9 />
-            <Page10 />
-          </div>
-        </div>
-      )}
-    </div>
+    <PdfPage tempCom={tempCom} creditItem={creditItem} />
   );
 };
 
@@ -62,3 +45,39 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = { getCreditItemById };
 export default connect(mapStateToProps, mapDispatchToProps)(CreditAnalisis);
+
+const PdfPage = ({ creditItem, tempCom }) => {
+  return (
+    <div style={{ fontFamily: ["Roboto", "Arial", "Helvetica", "sans-serif"] }}>
+      <button id='generate' className='btn btn-outline-success'>
+        Generate Pdf
+      </button>
+
+      {creditItem != null && (
+        <div id='pdf-cover'>
+          <div className='container-fluid'>
+            <Page1 datePulled={creditItem.datePulled} />
+            <hr className='rounded w-100' />
+            <Page2 customerName='Wadson Vaval ' company={tempCom} />
+            <hr className='rounded w-100' />
+            <Page3 />
+            <hr className='rounded w-100' />
+            <Page4 />
+            <hr className='rounded' />
+            <Page5 />
+            <hr className='rounded' />
+            <Page6 />
+            <hr className='rounded' />
+            <Page7 items={creditItem.creditBureauData} />
+            <hr className='rounded' />
+            <Page8 />
+            <hr className='rounded' />
+            <Page9 />
+            <hr className='rounded' />
+            <Page10 />
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};

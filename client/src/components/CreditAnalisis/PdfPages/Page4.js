@@ -1,4 +1,5 @@
 import React from "react";
+import graphCredit from "../../../assets/img/graphCredit.jpg";
 
 const Page4 = () => {
   return (
@@ -28,7 +29,7 @@ const Page4 = () => {
         <strong>How Credit Bureaus Determine your Credit Score</strong>
       </p>
       <p>
-        <img src='/Credit_Repair/Credit_repair_bot/pages/img-pdf1.jpg' />
+        <img src={graphCredit} />
       </p>
       <p>
         The percentages in this chart show how important each of the categories

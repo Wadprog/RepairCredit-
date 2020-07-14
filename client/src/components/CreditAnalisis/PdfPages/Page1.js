@@ -1,6 +1,8 @@
 import React from "react";
+import moment from "moment";
+
 import logo from "../../../assets/img/Logo/OasisLogo.png";
-const Page1 = () => {
+const Page1 = ({datePulled}) => {
   return (
     <div style={{ marginTop: "200px", marginBottom: "100px" }}>
       <div>
@@ -10,7 +12,7 @@ const Page1 = () => {
               display: "block",
               marginLeft: "auto",
               marginRight: "auto",
-              marginBottom: "100px"
+              marginBottom: "100px",
             }}
             src={logo}
           />
@@ -25,7 +27,7 @@ const Page1 = () => {
         <p style={{ margin: "0px" }}>
           <strong>Carl Cyrius</strong>
         </p>
-        <p style={{ margin: "0px" }}>(03/15/2018)</p>
+        <p style={{ margin: "0px" }}>{moment(datePulled).format("l")}</p>
       </div>
 
       <div style={{ marginTop: "250px", textAlign: "center" }}>

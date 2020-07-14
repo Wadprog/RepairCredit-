@@ -1,16 +1,17 @@
 import React from "react";
 
-const Page2 = ({ customerName }) => {
+const Page2 = ({ customerName, company }) => {
   return (
     <div style={{ pageBreakBefore: "always", marginTop: "100px" }}>
       <p>
         <p>
-          <strong> Dear Carl Cyrius,</strong>
+          <strong> Dear {customerName},</strong>
         </p>
         <p>
           {" "}
-          On behalf of The Oasis Firm, I'd like to take this opportunity to
-          welcome you as a new client! We are thrilled to have you with us.{" "}
+          On behalf of The {company.name} Firm, I'd like to take this
+          opportunity to welcome you as a new client! We are thrilled to have
+          you with us.{" "}
         </p>
         <p>
           {" "}
@@ -46,9 +47,9 @@ const Page2 = ({ customerName }) => {
           in the following ways:{" "}
         </p>
         <ul style={{ listStyle: "none" }}>
-          <li> - Email: ccyrius@theoasisfirm.com </li>
-          <li> - Phone: (833) 886-2747 </li>
-          <li> - Website: www.theoasisfirm.com </li>
+          <li> - Email: {company.email} </li>
+          <li> - Phone: {company.phone} </li>
+          <li> - Website: {company.website}</li>
         </ul>
         <p>
           {" "}
@@ -56,7 +57,7 @@ const Page2 = ({ customerName }) => {
           your credit. We are honored to help you achieve your financial goals.{" "}
         </p>
         <p style={{ marginBottom: "0px" }}> Best, </p>
-        <p style={{ marginTop: "0px" }}> Carl Cyrius </p>
+        <p style={{ marginTop: "0px" }}> {company.adminName} </p>
       </p>
     </div>
   );

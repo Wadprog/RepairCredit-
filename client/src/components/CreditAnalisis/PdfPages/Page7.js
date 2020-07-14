@@ -1,6 +1,6 @@
 import React from "react";
 
-const Page7 = () => {
+const Page7 = ({ items }) => {
   return (
     <div style={{ pageBreakBefore: "always", marginTop: "100px" }}>
       <p>
@@ -12,7 +12,7 @@ const Page7 = () => {
       <p>
         You have{" "}
         <span>
-          <strong>9</strong>
+          <strong>{items.length}</strong>
         </span>{" "}
         items marked as delinquent or derogatory. Recent late payments,
         collections, and other derogatory items within the last six months will

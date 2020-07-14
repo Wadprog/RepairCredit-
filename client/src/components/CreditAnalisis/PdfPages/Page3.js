@@ -1,4 +1,5 @@
 import React from "react";
+import carImg from "../../../assets/img/toyota-camry.jpg";
 
 const Page3 = () => {
   return (
@@ -12,7 +13,7 @@ const Page3 = () => {
       <p>
         <img
           style={{ display: "block", marginLeft: "auto", marginRight: "auto" }}
-          src='/Credit_Repair/Credit_repair_bot/pages/toyota-camry.jpg'
+          src={carImg}
         />
       </p>
 

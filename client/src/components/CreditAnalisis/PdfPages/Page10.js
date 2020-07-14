@@ -16,7 +16,7 @@ const Page10 = () => {
         your reports. A difficult item may take multiple letters to multiple
         parties, so patience is key. Thanks to technology (and by logging into
         our client portal), you'll receive real-time updates of the work we're
-        doing every step of the way.
+        doing every step of the way. 
       </p>
 
       <p>

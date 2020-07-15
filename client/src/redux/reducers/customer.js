@@ -8,6 +8,8 @@ import {
   UPDATE_CUSTOMER_REQUEST,
   UPDATED_CUSTOMER_SUCCESS,
   UPDATE_CUSTOMER_FAIL,
+  DELETE_CUSTOMER_FAIL,
+  DELETE_CUSTOMER_SUCCESS,
 } from "../consts";
 const initialState = {
   customer: null,
@@ -63,6 +65,20 @@ export default function (state = initialState, action) {
         ...state,
         loading: false,
         customer: null,
+      };
+
+    case DELETE_CUSTOMER_FAIL:
+      return {
+        ...state,
+        loading: false,
+      };
+    case DELETE_CUSTOMER_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        customers: state.customers.filter(
+          customer => customer._id != payload.id
+        ),
       };
     default:
       return state;

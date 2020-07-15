@@ -9,6 +9,8 @@ import {
   UPDATE_CUSTOMER_REQUEST,
   UPDATED_CUSTOMER_SUCCESS,
   UPDATE_CUSTOMER_FAIL,
+  DELETE_CUSTOMER_FAIL,
+  DELETE_CUSTOMER_SUCCESS,
 } from "../consts";
 
 import { setAlert } from "../actions/alerts";
@@ -66,5 +68,16 @@ export const updateClient = formData => async dispatch => {
       type: UPDATE_CUSTOMER_FAIL,
     });
     // dispatch(setAlert(`Error ${error.response.data.msg}`, "danger"));
+  }
+};
+
+export const deleteCustomer = id => async dispatch => {
+  try {
+    let res = await api.delete(`/client/:${id}`);
+    dispatch({ type: DELETE_CUSTOMER_SUCCESS, payload: res.data });
+    dispatch(setAlert(`Deleted with success`, "success"));
+  } catch (error) {
+    dispatch({ type: DELETE_CUSTOMER_FAIL });
+    dispatch(setAlert(`error deleting ${error}`, "danger"));
   }
 };

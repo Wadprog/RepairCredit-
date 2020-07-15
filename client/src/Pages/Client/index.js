@@ -1,9 +1,10 @@
 import React, { Fragment, useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { ButtonGroup, Button, Dropdown, SplitButton } from "react-bootstrap";
-import { loadCustomers } from "../../redux/actions/customer";
+import { loadCustomers, deleteCustomer } from "../../redux/actions/customer";
 import { ClientStatus } from "../../utils/consts/ClientStatus";
-const ListClient = ({ loadCustomers, customers }) => {
+
+const ListClient = ({ deleteCustomer, loadCustomers, customers }) => {
   useEffect(() => {
     loadCustomers();
   }, []);
@@ -28,6 +29,10 @@ const ListClient = ({ loadCustomers, customers }) => {
     filterCustomerByStatus(customer, ClientStatus.Pause)
   );
 
+  const handleDeleteCustomer = e => {
+    deleteCustomer(e.target.id);
+  };
+
   return (
     <Fragment>
       <div className='row row-cols-4 no-gutters pt-3 text-dark'>
@@ -48,6 +53,7 @@ const ListClient = ({ loadCustomers, customers }) => {
               {Leads !== null &&
                 Leads.map(customer => (
                   <ClientCard
+                    deleteSelf={handleDeleteCustomer}
                     name={
                       customer.person.firstName + " " + customer.person.lastName
                     }
@@ -75,6 +81,7 @@ const ListClient = ({ loadCustomers, customers }) => {
               {CustomersMissinInfo !== null &&
                 Leads.map(customer => (
                   <ClientCard
+                    deleteSelf={handleDeleteCustomer}
                     name={
                       customer.person.firstName + " " + customer.person.lastName
                     }
@@ -146,9 +153,9 @@ const mapStateToProps = state => ({
   customers: state.customer.customers,
 });
 
-export default connect(mapStateToProps, { loadCustomers })(ListClient);
+export default connect(mapStateToProps, { loadCustomers, deleteCustomer })(ListClient);
 
-const ClientCard = ({ name, id }) => {
+const ClientCard = ({ name, id, deleteSelf }) => {
   return (
     <li className='list-group-item mb-2 p-2'>
       <div className='row ml-2 p-0'>
@@ -161,14 +168,17 @@ const ClientCard = ({ name, id }) => {
             <Dropdown.Toggle variant='white' className=' btn-shadow bt-white' />
             <Dropdown.Menu>
               <Dropdown.Item href={`/customer/${id}`}>
-                <i className='fa fa-eye'></i> View
+                View <i className='fa fa-eye'></i>
               </Dropdown.Item>
               <Dropdown.Item href='#/action-2'>Move Next</Dropdown.Item>
               <Dropdown.Divider />
-              <Dropdown.Item className='text-warning' href='#/action-3'>
-                Pause
-              </Dropdown.Item>
-              <Dropdown.Item className='text-danger' href='#/action-3'>
+              <Dropdown.Item
+                className='text-danger'
+                id={id}
+                onClick={e => {
+                  deleteSelf(e);
+                }}
+              >
                 Delete
               </Dropdown.Item>
             </Dropdown.Menu>

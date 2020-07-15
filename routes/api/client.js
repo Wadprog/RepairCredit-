@@ -1,6 +1,8 @@
 const express = require(`express`);
 const router = express.Router();
 const Client = require("../../models/client");
+const Person = require("../../models/person");
+//const CreditItems = require("../../models/CreditItems");
 
 //const { fillData } = require(`../../controller/creditItems`);
 //router.post(`/`, fillData);
@@ -85,3 +87,40 @@ module.exports = router;
 const fieldEmptyOrEqual = (field, model, data) => {
   return model[field] === data[field] || data[field] === "";
 };
+
+router.delete("/:id", async (req, res) => {
+  try {
+    console.log(` Id is : ${req.params.id}`);
+    let client = await Client.findById(req.params.id);
+    
+    if (!client) return res.status(404).json({ msg: "no client found " });
+
+    /*
+    await CreditItems.deleteMany({ person: client.person }, (err, data) => {
+      if (err)
+        return res.status(500).json({
+          msg: `Could not delete credit item for client with id ${req.params.id}, ${err}`,
+        });
+    });*/
+    await Person.findByIdAndDelete(client.person, (error, data) => {
+      if (error) {
+        console.log("error in deleting yo!", error);
+        res.status(500).json({ msg: `Error deleting client ${error}` });
+      } else {
+        console.log("data all gone and deleted yo");
+        return res.json(req.params.id);
+      }
+    });
+    await client.findByIdAndDelete(req.params.id, (error, data) => {
+      if (error) {
+        console.log("error in deleting yo!", error);
+        res.status(500).json({ msg: `Error deleting client ${error}` });
+      } else {
+        console.log("data all gone and deleted yo");
+      }
+    });
+    return res.json(req.params.id);
+  } catch (error) {
+    return res.status(500).json({ msg: error });
+  }
+});

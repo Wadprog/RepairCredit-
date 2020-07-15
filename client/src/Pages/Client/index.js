@@ -1,33 +1,33 @@
 import React, { Fragment, useState, useEffect } from "react";
+import { Dropdown } from "react-bootstrap";
 import { connect } from "react-redux";
-import { ButtonGroup, Button, Dropdown, SplitButton } from "react-bootstrap";
 import { loadCustomers, deleteCustomer } from "../../redux/actions/customer";
-import { ClientStatus } from "../../utils/consts/ClientStatus";
 
 const ListClient = ({ deleteCustomer, loadCustomers, customers }) => {
   useEffect(() => {
     loadCustomers();
   }, []);
 
-  const filterCustomerByStatus = (customer, criteria) => {
-    console.log(customer.status == criteria, customer.status, criteria);
-    if (customer.status === criteria) return customer;
-    else console.log("doing nothing");
+  const categories = [
+    "LEADS",
+    "With Monitoring Service ",
+    "On Automation",
+    "Paused Customers",
+  ];
+  const catArray = [];
+
+  categories.forEach(category => {
+    catArray.push([]);
+  });
+  // Grouping by status
+  const filterCustomerByStatus = customers => {
+    if (!customers.length > 0) return;
+    customers.forEach(customer => {
+      catArray[parseInt(customer.status)].push(customer);
+    });
+    return catArray;
   };
-  const Leads = customers.filter(customer =>
-    filterCustomerByStatus(customer, ClientStatus.LEAD)
-  );
-
-  const CustomersMissinInfo = customers.filter(customer =>
-    filterCustomerByStatus(customer, ClientStatus.MissingInfo)
-  );
-
-  const CustomersOnCampaign = customers.filter(customer =>
-    filterCustomerByStatus(customer, ClientStatus.OnCampaign)
-  );
-  const CustomersPaused = customers.filter(customer =>
-    filterCustomerByStatus(customer, ClientStatus.Pause)
-  );
+  filterCustomerByStatus(customers);
 
   const handleDeleteCustomer = e => {
     deleteCustomer(e.target.id);
@@ -35,115 +35,39 @@ const ListClient = ({ deleteCustomer, loadCustomers, customers }) => {
 
   return (
     <Fragment>
-      <div className='row row-cols-4 no-gutters pt-3 text-dark'>
-        <div className='col'>
-          <ol className='breadcrumb breadcrumb-arrow'>
-            <li className=''>
-              <a href='#'>Lead in</a>
-              <div className='pt-3 h4-custom-margin'>
-                <span id='total-money'>0 $</span>
-                <span>•</span>
-                <span id='deals'>8 deals</span>
+      <div className='row  no-gutters pt-3 text-dark'>
+        {catArray != null &&
+          catArray.length > 0 &&
+          catArray.map((category, idx) => (
+            <div className='col' key={idx}>
+              <ol className='breadcrumb breadcrumb-arrow'>
+                <li className=''>
+                  <a href='#'>{categories[idx]}</a>
+                  <div className='pt-3 h4-custom-margin'>
+                    <span id='deals'> Total : {category.length}</span>
+                  </div>
+                </li>
+              </ol>
+              <span className='arrow'></span>
+              <div className='px-1'>
+                <ul className='list-group'>
+                  {category.length > 0 &&
+                    category.map(customer => (
+                      <ClientCard
+                        key={customer._id}
+                        id={customer._id}
+                        deleteSelf={handleDeleteCustomer}
+                        name={
+                          customer.person.firstName +
+                          " " +
+                          customer.person.lastName
+                        }
+                      />
+                    ))}
+                </ul>
               </div>
-            </li>
-          </ol>
-          <span className='arrow'></span>
-          <div className='px-1'>
-            <ul className='list-group'>
-              {Leads !== null &&
-                Leads.map(customer => (
-                  <ClientCard
-                    deleteSelf={handleDeleteCustomer}
-                    name={
-                      customer.person.firstName + " " + customer.person.lastName
-                    }
-                    id={customer._id}
-                  />
-                ))}
-            </ul>
-          </div>
-        </div>
-
-        <div className='col'>
-          <ol className='breadcrumb breadcrumb-arrow'>
-            <li className=''>
-              <a href='#'>Waiting on Reports</a>
-              <div className='pt-3 h4-custom-margin'>
-                <span id='total-money'>0 $</span>
-                <span>•</span>
-                <span id='deals'>8 deals</span>
-              </div>
-            </li>
-          </ol>
-          <span className='arrow'></span>
-          <div className='px-1'>
-            <ul className='list-group'>
-              {CustomersMissinInfo !== null &&
-                Leads.map(customer => (
-                  <ClientCard
-                    deleteSelf={handleDeleteCustomer}
-                    name={
-                      customer.person.firstName + " " + customer.person.lastName
-                    }
-                    id={customer._id}
-                  />
-                ))}
-            </ul>
-          </div>
-        </div>
-
-        <div className='col'>
-          <ol className='breadcrumb breadcrumb-arrow'>
-            <li className=''>
-              <a href='#'>LEAD CAMPAIGN</a>
-              <div className='pt-3 h4-custom-margin'>
-                <span id='total-money'>0 $</span>
-                <span>•</span>
-                <span id='deals'>2 deals</span>
-              </div>
-            </li>
-          </ol>
-          <span className='arrow'></span>
-          <div className='px-1'>
-            <ul className='list-group'>
-              {CustomersOnCampaign !== null &&
-                Leads.map(customer => (
-                  <ClientCard
-                    name={
-                      customer.person.firstName + " " + customer.person.lastName
-                    }
-                    id={customer._id}
-                  />
-                ))}
-            </ul>
-          </div>
-        </div>
-
-        <div className='col'>
-          <ol className='breadcrumb breadcrumb-arrow'>
-            <li className=''>
-              <a href='#'>Pause Campaign</a>
-              <div className='pt-3 h4-custom-margin'>
-                <span id='total-money'>0 $</span>
-                <span>•</span>
-                <span id='deals'>16 deals</span>
-              </div>
-            </li>
-          </ol>
-          <div className='px-1'>
-            <ul className='list-group'>
-              {CustomersPaused !== null &&
-                Leads.map(customer => (
-                  <ClientCard
-                    name={
-                      customer.person.firstName + " " + customer.person.lastName
-                    }
-                    id={customer.person._id}
-                  />
-                ))}
-            </ul>
-          </div>
-        </div>
+            </div>
+          ))}
       </div>
     </Fragment>
   );
@@ -153,7 +77,9 @@ const mapStateToProps = state => ({
   customers: state.customer.customers,
 });
 
-export default connect(mapStateToProps, { loadCustomers, deleteCustomer })(ListClient);
+export default connect(mapStateToProps, { loadCustomers, deleteCustomer })(
+  ListClient
+);
 
 const ClientCard = ({ name, id, deleteSelf }) => {
   return (

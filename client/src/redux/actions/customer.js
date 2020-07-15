@@ -73,7 +73,7 @@ export const updateClient = formData => async dispatch => {
 
 export const deleteCustomer = id => async dispatch => {
   try {
-    let res = await api.delete(`/client/:${id}`);
+    let res = await api.delete(`/client/${id}`);
     dispatch({ type: DELETE_CUSTOMER_SUCCESS, payload: res.data });
     dispatch(setAlert(`Deleted with success`, "success"));
   } catch (error) {

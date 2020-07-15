@@ -69,7 +69,7 @@
   color: rgb(55, 95, 15);
 }
 
-.credit-report button {
+.imp-btn {
   width: 50%;
   height: 30px;
   margin: 0 auto;
@@ -78,8 +78,9 @@
   padding: 2.5px;
   border-radius: 5px;
   color: #fff;
+  text-align: center;
 }
-.credit-report button:hover {
+.imp-btn {
   border-color: black;
   background-color: rgb(65, 84, 146);
 }

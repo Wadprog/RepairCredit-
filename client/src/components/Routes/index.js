@@ -13,9 +13,9 @@ import ListClientCR from "../../Pages/Client/ListClient-CR";
 import ClientDashboard from "../../Pages/Client/ClientDashboard";
 import Company from "../../Pages/Company";
 import CreditReport from "../../Pages/CreditReport/CreditReport";
-const Routes = props => {
+const Routes = (props) => {
   return (
-    <section className='container'>
+    <section className="container">
       <Switch>
         {/*<Route exact path="/register" component={} />
         <Route exact path="/login" component={Login} />
@@ -30,28 +30,14 @@ const Routes = props => {
         <PrivateRoute exact path="/posts/:id" component={Post} />
           
         */}
-<<<<<<< HEAD
-
+        <PrivateRoute exact path="/homeconnect" component={HomeConnect} />
         <PrivateRoute exact path="/register" component={RegisterEmployee} />
         <PrivateRoute exact path="/customers" component={ListClient} />
-        <PrivateRoute exact path="/homeconnect" component={HomeConnect} />
         <PrivateRoute exact path="/ListClientCR" component={ListClientCR} />
-        <PrivateRoute
-          exact
-          path="/customer/:id"
-          component={ClientDashboard}
-        />
+        <PrivateRoute exact path="/customer/:id" component={ClientDashboard} />
+        <PrivateRoute path="/import-audit/:id" component={ImportAudit} />
+        <PrivateRoute path="/credit-report/:id" component={CreditReport} />
         <PrivateRoute path="/company" component={Company} />
-=======
-        <PrivateRoute exact path='/homeconnect' component={HomeConnect} />
-        <PrivateRoute exact path='/register' component={RegisterEmployee} />
-        <PrivateRoute exact path='/customers' component={ListClient} />
-        <PrivateRoute exact path='/ListClientCR' component={ListClientCR} />
-        <PrivateRoute exact path='/customer/:id' component={ClientDashboard} />
-        <PrivateRoute path='/import-audit/:id' component={ImportAudit} />
-        <PrivateRoute path='/credit-report/:id' component={CreditReport} />
-        <PrivateRoute path='/company' component={Company} />
->>>>>>> 89e139886417731057d1f05c00975838e12ae0c8
 
         <Route component={NotFound} />
       </Switch>

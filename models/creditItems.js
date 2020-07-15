@@ -1,9 +1,9 @@
 const mongoose = require("mongoose");
 
 const creditItemSchema = mongoose.Schema({
-  persorn: {
+  person: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "persorn",
+    ref: "person",
   },
 
   creditBureauData: [
@@ -37,6 +37,10 @@ const creditItemSchema = mongoose.Schema({
       ],
     },
   ],
+  datepulled: {
+    type: Date,
+    default: Date.now,
+  },
 });
 
 module.exports = CreditItem = mongoose.model("creditItem", creditItemSchema);

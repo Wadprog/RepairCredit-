@@ -1,17 +1,21 @@
-import { combineReducers } from 'redux';
-import employee from './employee';
-import phonetag from './phonetag';
-import alert from './alert';
-import auth from './auth';
-import customer from './customer';
-import partners from './partners'
-import person from './person'
+import { combineReducers } from "redux";
+import employee from "./employee";
+import phonetag from "./phonetag";
+import alert from "./alert";
+import auth from "./auth";
+import customer from "./customer";
+import partners from "./partners";
+import person from "./person";
+import creditItems from "./creditItems";
+import monitoringService from "./monitoringService";
 export default combineReducers({
-	alert,
-	employee,
-	phonetag,
-	auth,
-	customer,
-	partners,
-	person
+  alert,
+  employee,
+  phonetag,
+  auth,
+  customer,
+  partners,
+  person,
+  creditItems,
+  monitoringService,
 });

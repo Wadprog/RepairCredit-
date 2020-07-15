@@ -20,7 +20,7 @@ router.get(`/client/:id`, async (req, res) => {
 // get every clients
 router.get(`/customers`, async (req, res) => {
   try {
-    let clients = await Clients.find().populate('person');
+    let clients = await Clients.find().populate("person");
 
     return res.json(clients);
   } catch (error) {
@@ -105,49 +105,11 @@ router.post("/", async (req, res) => {
   }
 });
 
-router.post(`/i`, async (req, res) => {
-  try {
-    if (email === "") console.log("no mail");
-    let person = await Persons.findOne({ email: email });
+router.delete("/:id", async (req, res) => {
+  let client = await Clients.findOne({ person: req.params.id });
+  if (client) await client.delete();
 
-    persorn = new Persons({
-      firstname,
-      lastname,
-      dob,
-      email,
-      levelAccess,
-      username,
-      password,
-    });
-
-    phones.map(phone => {
-      persorn.phones.push(phone);
-    });
-
-    await persorn.save();
-
-    if (levelAccess !== "client") return res.json(persorn);
-    else {
-      clientData.persorn = persorn._id;
-      clientData.referredBy = referredBy;
-      clientData.assignedTo = assignedTo;
-      console.log(`jnjnjasd ${clientData.ssn}`);
-      let client = new Clients(clientData);
-
-      monitoringService
-        ? monitoringService.map(item => {
-            client.monitoringService.add(item);
-          })
-        : null;
-
-      client.addresses.push(address);
-      await client.save();
-      return res.json({ persorn, client });
-    }
-  } catch (error) {
-    console.log(`Error creating new employee${error}`);
-    res.json({ msg: `Error creating new employee ${error}` });
-  }
+  Per
 });
 
 // get one cowrocker

@@ -5,7 +5,8 @@ import { Button, Form, Col } from "react-bootstrap";
 import stateOfUsa from "../../utils/data/stateofUsa.json";
 import { Redirect } from "react-router";
 
-import { loadCoworkers, addPerson } from "../../redux/actions/person";
+import {addPerson } from "../../redux/actions/person";
+import {loadCoworkers} from "../../redux/actions/partners"
 /////////////////////////////////////Dealing with Access Level////////////////////////////////////////////////////////
 import { AccessLevel } from "../../utils/consts/Permitions/AccessLevel";
 /********************************************************************************************************************/
@@ -382,7 +383,7 @@ AddClient.prototype = {
 };
 const mapStateToProps = state => ({
   loading: state.partners.loading,
-  partners: state.person.coworkers,
+  partners: state.partners.coworkers,
 });
 
 const mapDispatchToProps = {

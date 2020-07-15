@@ -25,11 +25,11 @@
  }
 
  .table-middle {
-    width: 75% !important;
+    width: 64% !important;
 }
 
 .table-right {
-    width: 20% !important;
+    width: 31% !important;
     background-color: #3af8ff;
     border-top-right-radius: 10px !important;
     border-bottom-right-radius: 10px !important;
@@ -51,4 +51,26 @@
 
 .no-pie-data { 
     border-top-right-radius: 10px !important;
+}
+
+.dashed {
+    border-right: 2px dashed #c9c9c9 !important;
+}
+
+/*Text color like bootstrap*/
+
+.text-blueLight {
+    color: #3ad8ff;
+}
+
+.text-greenLight {
+    color: #2caf1a;
+}
+
+.text-apricotLight {
+    color: #ff933a;
+}
+
+.text-redLight {
+    color: #ff3a3a;
 }

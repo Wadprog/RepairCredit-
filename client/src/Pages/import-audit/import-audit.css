@@ -69,14 +69,20 @@
   color: rgb(55, 95, 15);
 }
 
-.credit-report button {
+.imp-btn {
   width: 50%;
   height: 30px;
   margin: 0 auto;
   background-color: rgb(16, 50, 161);
-  border: 0 solid black;
+  border: 0.5 solid transparent;
+  padding: 2.5px;
   border-radius: 5px;
   color: #fff;
+  text-align: center;
+}
+.imp-btn {
+  border-color: black;
+  background-color: rgb(65, 84, 146);
 }
 
 .credit-analysis .analysis-title {
@@ -177,7 +183,7 @@ form .row span {
   margin: 0 20px;
 }
 
-.row .button {
+.row .buttonCancel {
   width: 120px;
   height: 40px;
   margin: 20px 40px;
@@ -187,6 +193,6 @@ form .row span {
 .row .input {
   background-color: blue;
 }
-.row button {
+.row .buttonCancel {
   background-color: brown;
 }

@@ -23,7 +23,7 @@ const initialState = {
 export default function (state = initialState, action) {
   const { type, payload } = action;
   switch (type) {
-    case GET_CUSTOMER_REQUEST:
+    /*case GET_CUSTOMER_REQUEST:
     case GET_CUSTOMERS_REQUEST:
     case ADD_PERSON_REQUEST:
     case LOAD_COWORKER_REQUEST:
@@ -79,7 +79,7 @@ export default function (state = initialState, action) {
         ...state,
         loading: false,
         people: [],
-      };
+      };*/
     default:
       return state;
   }

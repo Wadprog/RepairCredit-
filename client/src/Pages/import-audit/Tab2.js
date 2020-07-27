@@ -1,19 +1,19 @@
-import React, { useEffect, useState } from "react";
-import { Form, Table, Button, DropdownButton, Dropdown } from "react-bootstrap";
-import { Link } from "react-router-dom";
-import Modal from "../../components/Modals";
-import CreditAnalisis from "../../components/CreditAnalisis";
-import PageAlert from "../../components/PageAlert";
-import { connect } from "react-redux";
-import { getALLClientCreditReport } from "../../redux/actions/creditItems";
+import React, { useEffect, useState } from 'react';
+import { Form, Table, Button, DropdownButton, Dropdown } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import Modal from '../../components/Modals';
+import CreditAnalisis from '../../components/CreditAnalisis';
+import PageAlert from '../../components/PageAlert';
+import { connect } from 'react-redux';
+import { getALLClientCreditReport } from '../../redux/actions/creditItems';
 
-import PageTestPdf from "../../components/CreditAnalisis/PageTestPdf";
+import PageTestPdf from '../../components/CreditAnalisis/PageTestPdf';
 
 const Tab2 = ({ customer, getALLClientCreditReport, creditItems }) => {
   useEffect(() => {
     getALLClientCreditReport(customer._id);
     return () => {
-      console.log("cleaned");
+      console.log('cleaned');
     };
   }, []);
 
@@ -122,17 +122,6 @@ const Tab2 = ({ customer, getALLClientCreditReport, creditItems }) => {
       )}
 
       <Modal
-        title={"Credit Analisis"}
-        show={show}
-        onHide={() => {
-          handleShow(false);
-        }}
-      >
-        <PageTestPdf />
-      </Modal>
-
-      {/*
-      <Modal
         title={`${customer.person.firstName} credit analisys`}
         show={show}
         onHide={() => {
@@ -140,7 +129,7 @@ const Tab2 = ({ customer, getALLClientCreditReport, creditItems }) => {
         }}
       >
         <CreditAnalisis customer={customer} creditItemId={creditItemId} />
-      </Modal> */}
+      </Modal>
     </div>
   );
 };

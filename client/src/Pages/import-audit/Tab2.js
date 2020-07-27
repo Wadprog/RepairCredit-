@@ -7,6 +7,8 @@ import PageAlert from "../../components/PageAlert";
 import { connect } from "react-redux";
 import { getALLClientCreditReport } from "../../redux/actions/creditItems";
 
+import PageTestPdf from "../../components/CreditAnalisis/PageTestPdf";
+
 const Tab2 = ({ customer, getALLClientCreditReport, creditItems }) => {
   useEffect(() => {
     getALLClientCreditReport(customer._id);
@@ -27,46 +29,54 @@ const Tab2 = ({ customer, getALLClientCreditReport, creditItems }) => {
         name and your company information with no editing needed. you can modify
          it or add your own templates, but we recommend not making any changes at
           all"
-        variant='warning'
+        variant="warning"
         children={
           <span>
-            <i class='fa fa-play-circle text-primary'></i>
-            <Link to='#'> Watch a quick video</Link>
+            <i class="fa fa-play-circle text-primary"></i>
+            <Link to="#"> Watch a quick video</Link>
           </span>
         }
       />
 
-      <div className='d-flex justify-content-center mt-2'>
-        <span className='h4'>Generate simple Audit Now</span>
+      <div className="d-flex justify-content-center mt-2">
+        <span className="h4">Generate simple Audit Now</span>
       </div>
-      <div className='d-flex justify-content-center mt-2'>
-        <span className=''>Using data from SmartCredit imported report</span>
+      <div className="d-flex justify-content-center mt-2">
+        <span className="">Using data from SmartCredit imported report</span>
       </div>
-      <div className='d-flex justify-content-center'>
-        <span className=''>(Last imported 3 days ago)</span>
+      <div className="d-flex justify-content-center">
+        <span className="">(Last imported 3 days ago)</span>
       </div>
-      <div className='d-flex justify-content-center mt-2'>
-        <span className=''>using template</span>
+      <div className="d-flex justify-content-center mt-2">
+        <span className="">using template</span>
       </div>
-      <div className='d-flex justify-content-center mt-2'>
-        <Form className='p-3'>
+      <div className="d-flex justify-content-center mt-2">
+        <Form className="p-3">
           <Form.Group>
-            <Form.Control md={6} size='sm' as='select' custom>
+            <Form.Control md={6} size="sm" as="select" custom>
               <option>Simple Audit (default)</option>
             </Form.Control>
           </Form.Group>
         </Form>
       </div>
-      <div className='d-flex justify-content-center mt-2 mb-4'>
-        <Button size='sm' variant='primary' className='px-2'>
+      <div className="d-flex justify-content-center mt-2 mb-4">
+        <Button
+          size="sm"
+          variant="primary"
+          className="px-2"
+          onClick={() => {
+            handleShow(true);
+          }}
+        >
           Generate Simple Audit
         </Button>
+        <div></div>
       </div>
       {creditItems != null && creditItems.length > 0 && (
-        <div className='mt-4'>
-          <span className='h4'>Saved Audit</span>
-          <Table size='sm' className='table-border small'>
-            <thead className='border-bottom-0 table-borderless'>
+        <div className="mt-4">
+          <span className="h4">Saved Audit</span>
+          <Table size="sm" className="table-border small">
+            <thead className="border-bottom-0 table-borderless">
               <tr>
                 <th>Audit Name</th>
                 <th>Date Created</th>
@@ -75,14 +85,14 @@ const Tab2 = ({ customer, getALLClientCreditReport, creditItems }) => {
               </tr>
             </thead>
             <tbody>
-              {creditItems.map(creditItem => (
-                <tr key={creditItem._id} className='border-bottom p-0 m-0'>
+              {creditItems.map((creditItem) => (
+                <tr key={creditItem._id} className="border-bottom p-0 m-0">
                   <td>{customer.person.firstName} Credit Analisys</td>
                   <td>{creditItem.datepulled}</td>
                   <td>Carl</td>
                   <td>
                     <Dropdown>
-                      <Dropdown.Toggle variant='success' size='sm'>
+                      <Dropdown.Toggle variant="success" size="sm">
                         Actions
                       </Dropdown.Toggle>
 
@@ -95,21 +105,33 @@ const Tab2 = ({ customer, getALLClientCreditReport, creditItems }) => {
                         >
                           View
                         </Dropdown.Item>
-                        <Dropdown.Item href='#/action-2'>Delete</Dropdown.Item>
-                        <Dropdown.Item href='#/action-3'>Edit</Dropdown.Item>
+                        <Dropdown.Item href="#/action-2">Delete</Dropdown.Item>
+                        <Dropdown.Item href="#/action-3">Edit</Dropdown.Item>
                       </Dropdown.Menu>
                     </Dropdown>
                   </td>
                 </tr>
               ))}
             </tbody>
-            <small className='mt-2'>
-              <span className='text-primary'>Total: </span>
+            <small className="mt-2">
+              <span className="text-primary">Total: </span>
               <span>{creditItems.length}</span>
             </small>
           </Table>
         </div>
       )}
+
+      <Modal
+        title={"Credit Analisis"}
+        show={show}
+        onHide={() => {
+          handleShow(false);
+        }}
+      >
+        <PageTestPdf />
+      </Modal>
+
+      {/*
       <Modal
         title={`${customer.person.firstName} credit analisys`}
         show={show}
@@ -118,12 +140,12 @@ const Tab2 = ({ customer, getALLClientCreditReport, creditItems }) => {
         }}
       >
         <CreditAnalisis customer={customer} creditItemId={creditItemId} />
-      </Modal>
+      </Modal> */}
     </div>
   );
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   customer: state.customer.customer,
   creditItems: state.creditItems.creds,
 });

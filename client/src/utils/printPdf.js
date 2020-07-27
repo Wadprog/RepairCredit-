@@ -1,5 +1,6 @@
 import print from "print-js";
 
+/*
 export default function pdf() {
   console.log("Why you clicked me");
   print({
@@ -11,3 +12,5 @@ export default function pdf() {
     targetStyles: ["*"],
   });
 }
+*/
+

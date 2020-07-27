@@ -7,7 +7,7 @@ const { fillData } = require(`../../controller/creditItems`);
 
 router.get(`/`, async (req, res) => {
   try {
-    const creditItems = await CreditItems.find().populate("persorn");
+    const creditItems = await CreditItems.find().populate("person");
     return res.json(creditItems);
   } catch (error) {
     console.log(error);
@@ -45,7 +45,7 @@ router.get(`/person/:id`, async (req, res) => {
       const { userName, password, code } = client.monitoringService;
       const data = await Scrapper(userName, password, code);
       creditItem = new CreditItems({ person: req.params.id });
-      data.map(item => {
+      data.map((item) => {
         creditItem.creditBureauData.push(item);
       });
       await creditItem.save();
@@ -69,7 +69,7 @@ router.get(`/all/person/:id`, async (req, res) => {
       const { userName, password, code } = client.monitoringService;
       const data = await Scrapper(userName, password, code);
       creditItems = new CreditItems({ person: req.params.id });
-      data.map(item => {
+      data.map((item) => {
         creditItem.creditBureauData.push(item);
       });
       await creditItem.save();

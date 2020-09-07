@@ -2,10 +2,13 @@ import React from "react";
 import Navbar from "../NavBar";
 import Alert from "../../Alert";
 const PageWraper = props => {
-  return <div className=''>
+  return (
+    <>
       <Navbar />
-          <Alert />
-      {props.children}</div>;
+      <Alert />
+      {props.children}
+    </>
+  );
 };
 
 export default PageWraper;

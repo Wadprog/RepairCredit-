@@ -2,7 +2,7 @@ import React, { useEffect, Fragment } from "react";
 import { connect } from "react-redux";
 import { Row, Col, Card, Spinner, Alert, Table } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import PageAlert from "../../components/PageAlert";
+//import PageAlert from "../../components/Alert/PageAlert";
 import { getClientCreditReport } from "../../redux/actions/creditItems";
 import CreditItem from "./CreditItem";
 export const CreditReport = ({

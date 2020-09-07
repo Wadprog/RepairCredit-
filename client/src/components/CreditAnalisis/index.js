@@ -4,7 +4,10 @@ import { saveAs } from 'file-saver';
 import { connect } from 'react-redux';
 import { getCreditItemById } from '../../redux/actions/creditItems';
 
-import Loading from '../Loading';
+import Loading from '../layouts/Loading';
+
+
+
 import Page1 from './PdfPages/Page1';
 import Page2 from './PdfPages/Page2';
 import Page3 from './PdfPages/Page3';

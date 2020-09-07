@@ -1,19 +1,22 @@
-import React, { Component, Fragment } from "react";
+import React, { Fragment } from "react";
+import { Table, Row, Col, Alert } from "react-bootstrap";
+
+//customs imports
+import SimpleCard from "../Cards/SimpleCard";
+import PageAlert from "../Alert/PageAlert";
+//Redux Imports
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
-import { Card, Table, Row, Col, Alert } from "react-bootstrap";
-import SimpleCard from "./SimpleCard";
-import PageAlert from "./PageAlert";
-const RecentLogs = ({ limit }) => {
+
+const RecentLogs = ({ limit = 5, title, titleIcon, goTopage, logs }) => {
   return (
     <Fragment>
       <Row>
         <Col>
           <SimpleCard
-            titleIcon='key'
-            titleLeft='Recent Login Activity'
-            titleLinkName='Full History'
+            titleIcon={titleIcon ? titleIcon : "key"}
+            titleLeft={title ? title : "Recent Login Activity"}
+            titleLinkName={goTopage ? goTopage : "Full History"}
           >
             <Table responsive hover size='sm'>
               <thead>

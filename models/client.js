@@ -25,7 +25,11 @@ const clientSchema = mongoose.Schema({
   },
   assignedTo: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "employee",
+    ref: "person",
+  },
+  lastAction: {
+    type: Date,
+    default: Date.now,
   },
   monitoringService: {
     name: { type: String },

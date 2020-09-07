@@ -2,7 +2,7 @@ import React, { useEffect, Link, Button } from 'react';
 import axios from 'axios';
 import { saveAs } from 'file-saver';
 
-import Loading from '../Loading';
+import Loading from '../layouts/Loading';
 import Page1 from './PdfPages/Page1';
 
 import './index.css';

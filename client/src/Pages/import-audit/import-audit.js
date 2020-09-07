@@ -5,6 +5,9 @@ import Tab2Content from "./Tab2";
 import "./import-audit.css";
 import { loadClientById } from "../../redux/actions/customer";
 import { connect } from "react-redux";
+import HtmlPasrser from "../../components/Modals/ManualImport";
+import MainModal from "../../components/Modals";
+import useToogle from "../../utils/CustomHooks/useToogle";
 function ImportAudit({
   customer,
   loadClientById,
@@ -15,12 +18,14 @@ function ImportAudit({
   useEffect(() => {
     loadClientById(id);
   }, []);
+
+  const [showModal, ToggleShowModal] = useToogle(true);
   return (
     <Fragment>
       {customer !== null && (
         <Tabs defaultActiveKey='MainImport'>
           <Tab eventKey='MainImport' title='Import Credit Report'>
-            <Tab1Content />
+            <Tab1Content ToggleShowModal={ToggleShowModal} />
           </Tab>
 
           <Tab eventKey='simpleImport' title='Simple Audit(Credit Analysis)'>
@@ -28,6 +33,9 @@ function ImportAudit({
           </Tab>
         </Tabs>
       )}
+      <MainModal show={showModal} onHide={ToggleShowModal}>
+        <HtmlPasrser />
+      </MainModal>
     </Fragment>
   );
 }

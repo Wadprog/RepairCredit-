@@ -1,25 +1,34 @@
-import React, { useEffect, Fragment } from 'react';
-import AdminHome from './AdminHome';
-//import EmployeeHome from './EmployeeLink';
-//import AffiliateHome from './AffiliateLink';
+/**
+ * 
+ If Someone Logs into the app it's either an affilliate or an admin
+ */
 
-import { connect } from 'react-redux';
+import React from "react";
 
-const Authenticated = ({ user, logout }) => {
-	return (
-		<Fragment>
-			{user != null &&
-			user && (
-				<Fragment>
-					{user.level < 1 ? <AdminHome /> : user.level < 2 ? <p>He is an Employee</p> : <p>He is just aff</p>}
-				</Fragment>
-			)}
-		</Fragment>
-	);
+//custom imports
+import AdminHome from "./AdminHome";
+import helper from "../../utils/helper";
+//reduc
+import { connect } from "react-redux";
+
+const Authenticated = ({ user }) => {
+  return (
+    <>
+      {user != null && user && (
+        <>
+          {helper.userType(user) === "ADMIN" ? (
+            <AdminHome />
+          ) : (
+            <p>Here is an Affilitate module not built yet </p>
+          )}
+        </>
+      )}
+    </>
+  );
 };
 
 const mapStateToProps = state => ({
-	isAuthenticated: state.auth.isAuthenticated,
-	user: state.auth.user
+  isAuthenticated: state.auth.isAuthenticated,
+  user: state.auth.user,
 });
 export default connect(mapStateToProps, {})(Authenticated);

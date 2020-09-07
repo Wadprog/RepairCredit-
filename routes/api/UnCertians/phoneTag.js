@@ -1,6 +1,6 @@
 const express = require(`express`);
 const router = express.Router();
-const Tags = require("../../models/phoneTag");
+const Tags = require("../../../models/phoneTag");
 
 router.get("/", async (req, res) => {
   try {

@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React from "react";
 //Components and pages
 import PageWraper from "./components/layouts/PageWraper";
 import Home from "./Pages/Home/";

@@ -3,7 +3,7 @@ import { Alert, OverlayTrigger, Tooltip, Card, Button } from "react-bootstrap";
 import { connect } from "react-redux";
 import { loadCoworkers } from "../../../redux/actions/partners";
 
-import Addpartners from "../../../components/AddPeople/AddPartnersModal";
+import Addpartners from "../../../components/Forms/AddPartnersModal";
 
 
 function Partners({ loadCoworkers, partners }) {

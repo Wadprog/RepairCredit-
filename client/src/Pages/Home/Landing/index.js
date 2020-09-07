@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import Loading from "../../../components/Loading";
+import Loading from "../../../components/layouts/Loading";
 import happyFace from "../../../assets/img/happyFace2.jpg";
 import "./index.css";
 const Landing = () => {
@@ -10,7 +10,7 @@ const Landing = () => {
           <div className='row h-100'>
             <div className='col-lg-7 my-auto'>
               <div className='header-content mx-auto'>
-                <h1 className='mb-5'>Dream Credit Repair Software</h1>
+                <h1 className='mb-5'>Dream Credit Repair Softwar</h1>
                 <a
                   href='#signup'
                   className='btn btn-outline btn-xl js-scroll-trigger mt-5'

@@ -1,4 +1,5 @@
 const express = require(`express`);
+const cheerio = require("cheerio");
 const router = express.Router();
 const CreditItems = require("../../models/creditItems");
 const Client = require("../../models/client");
@@ -45,7 +46,7 @@ router.get(`/person/:id`, async (req, res) => {
       const { userName, password, code } = client.monitoringService;
       const data = await Scrapper(userName, password, code);
       creditItem = new CreditItems({ person: req.params.id });
-      data.map((item) => {
+      data.map(item => {
         creditItem.creditBureauData.push(item);
       });
       await creditItem.save();
@@ -69,7 +70,7 @@ router.get(`/all/person/:id`, async (req, res) => {
       const { userName, password, code } = client.monitoringService;
       const data = await Scrapper(userName, password, code);
       creditItems = new CreditItems({ person: req.params.id });
-      data.map((item) => {
+      data.map(item => {
         creditItem.creditBureauData.push(item);
       });
       await creditItem.save();
@@ -81,16 +82,52 @@ router.get(`/all/person/:id`, async (req, res) => {
   }
 });
 
-/*
-router.delete(`/`, async (req, res) => {
-  try {
-    await CreditItems.deleteMany();
-    return res.json("ok");
-  } catch (error) {
-    console.log(error);
-  }
-});*/
+router.post(`/manual`, async (req, res) => {
+  const { monitoringService, htmlData } = req.body;
+  manualScrapping(htmlData, monitoringService, res);
+});
 
 router.post(`/`, fillData);
 
+const manualScrapping = (html, monitoringService, res) => {
+  try {
+    const $ = cheerio.load(html);
+    if (monitoringService.includes("mart")) {
+      //Getting the scores:
+      const scoreRows = $(".crTableHeader").parent().next();
+      const creditBureauScoreValues = getScoresByBureau(scoreRows, $);
+      console.log(creditBureauScoreValues);
+
+      console.log("SmartCredit");
+      return res.json({ msg: "Good" });
+    } else {
+      const scores = $(".crTableHeader");
+      console.log(scores.html());
+      return res.json({ msg: "Good" });
+    }
+    const paragraph = $(".crTableHeader");
+    console.log(paragraph.html());
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+const getScoresByBureau = (socres, $) => {
+  const creditBureaus = ["tranunion", "experian", "equifax"];
+  const creditBureauScoreValues = {
+    tranunion: "",
+    experian: "",
+    equifax: "",
+  };
+
+  const scoreRows = $(".crTableHeader").parent().next();
+  const scores = scoreRows.find("td");
+  scores.each((idx, el) => {
+    if (idx > 0 && idx < 4) {
+      const item = $(el).text();
+      creditBureauScoreValues[creditBureaus[idx - 1]] = item;
+    }
+  });
+  return creditBureauScoreValues;
+};
 module.exports = router;

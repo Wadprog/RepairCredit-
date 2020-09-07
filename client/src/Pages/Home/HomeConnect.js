@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
-import Home from "@material-ui/icons/Home";
 import { Alert, ProgressBar } from "react-bootstrap";
+
 const HomeConnect = props => {
   const f = "folder";
   return (
@@ -63,7 +63,7 @@ const HomeConnect = props => {
                   title='Select an existing client'
                   subTitile='Work with an existing client'
                   icontext='B'
-                  link='/ListClientCR'
+                  link='/customers'
                 />
 
                 <MiniItem

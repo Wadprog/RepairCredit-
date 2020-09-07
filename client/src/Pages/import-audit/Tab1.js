@@ -6,10 +6,16 @@ import { connect } from "react-redux";
 import { getALLClientCreditReport } from "../../redux/actions/creditItems";
 import { useEffect } from "react";
 import moment from "moment";
-import Loading from "../../components/Loading";
+import Loading from "../../components/layouts/Loading";
 import { camelobjectToString } from "../../utils/StringOperations";
 
-function Tab1({ customer, getALLClientCreditReport, creditItems, loading }) {
+function Tab1({
+  customer,
+  getALLClientCreditReport,
+  creditItems,
+  loading,
+  ToggleShowModal,
+}) {
   const [isExpanded, toggleExpand] = useToogle();
 
   useEffect(() => {
@@ -34,9 +40,9 @@ function Tab1({ customer, getALLClientCreditReport, creditItems, loading }) {
   const maxDaysForReimporting = 30;
   return (
     <div>
-      <div className="import-container">
-        <div className="header">
-          <div className="credit-report">
+      <div className='import-container'>
+        <div className='header'>
+          <div className='credit-report'>
             <h2>Credit Report</h2>
 
             {!loading ? (
@@ -44,7 +50,7 @@ function Tab1({ customer, getALLClientCreditReport, creditItems, loading }) {
                 {maxdays == null ? (
                   <span>
                     {" "}
-                    <b>Never Imported</b>{" "}
+                    <b>Never Importe</b>{" "}
                   </span>
                 ) : (
                   <span>Last imported {maxdays} days ago</span>
@@ -58,21 +64,29 @@ function Tab1({ customer, getALLClientCreditReport, creditItems, loading }) {
                   } fa-5x`}
                 ></i>
 
-                <a href={`/credit-report/${customer._id}`} className="imp-btn">
+                <a href={`/credit-report/${customer._id}`} className='imp-btn'>
                   {`${
                     maxdays == null || maxdays > maxDaysForReimporting
                       ? "Im"
                       : "Reim"
                   }port Credit Report`}
                 </a>
+
+                <a onClick={ToggleShowModal} className='imp-btn mt-2'>
+                  {`${
+                    maxdays == null || maxdays > maxDaysForReimporting
+                      ? "Im"
+                      : "Reim"
+                  }port with  Html`}
+                </a>
               </Fragment>
             ) : (
               <span>Calculating...</span>
             )}
           </div>
-          <div className="credit-analysis">
-            <div className="item">
-              <div className="item-title">
+          <div className='credit-analysis'>
+            <div className='item'>
+              <div className='item-title'>
                 <h2>Import Log</h2>
 
                 {customer.monitoringService && (
@@ -82,8 +96,8 @@ function Tab1({ customer, getALLClientCreditReport, creditItems, loading }) {
                   </h2>
                 )}
               </div>
-              <div className="table-responsive table-wrapper">
-                <table className="table table-hover mb-0">
+              <div className='table-responsive table-wrapper'>
+                <table className='table table-hover mb-0'>
                   <thead>
                     <tr>
                       <th>Date Imported</th>
@@ -92,7 +106,7 @@ function Tab1({ customer, getALLClientCreditReport, creditItems, loading }) {
                     </tr>
                   </thead>
                   {loading ? (
-                    <div className="d-flex justify-content-center align-items-center w-100 bg-danger">
+                    <div className='d-flex justify-content-center align-items-center w-100 bg-danger'>
                       <Loading />
                     </div>
                   ) : (
@@ -109,15 +123,15 @@ function Tab1({ customer, getALLClientCreditReport, creditItems, loading }) {
                                   </td>
                                   <td>Carl</td>
                                   <td>
-                                    <ButtonGroup size="sm">
-                                      <Button size="sm" variant="info">
-                                        <i className="fa fa-eye"></i>
+                                    <ButtonGroup size='sm'>
+                                      <Button size='sm' variant='info'>
+                                        <i className='fa fa-eye'></i>
                                       </Button>
-                                      <Button size="sm" variant="success">
-                                        <i className="fa fa-pencil"></i>
+                                      <Button size='sm' variant='success'>
+                                        <i className='fa fa-pencil'></i>
                                       </Button>
-                                      <Button size="sm" variant="danger">
-                                        <i className="fa fa-trash"></i>
+                                      <Button size='sm' variant='danger'>
+                                        <i className='fa fa-trash'></i>
                                       </Button>
                                     </ButtonGroup>
                                   </td>
@@ -156,7 +170,7 @@ function Tab1({ customer, getALLClientCreditReport, creditItems, loading }) {
   );
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   customer: state.customer.customer,
   creditItems: state.creditItems.creds,
   loading: state.creditItems.loading,

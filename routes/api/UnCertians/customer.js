@@ -1,6 +1,6 @@
 const express = require(`express`);
 const router = express.Router();
-const Client = require("../../models/client");
+const Client = require("../../../models/client");
 
 //const { fillData } = require(`../../controller/creditItems`);
 //router.post(`/`, fillData);
@@ -84,6 +84,7 @@ router.put("/:id", async (req, res) => {
 });
 
 module.exports = router;
+
 const fieldEmptyOrEqual = (field, model, data) => {
   return model[field] === data[field] || data[field] === "";
 };

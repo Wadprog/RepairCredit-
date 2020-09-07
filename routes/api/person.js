@@ -20,7 +20,7 @@ router.get(`/client/:id`, async (req, res) => {
 // get every clients
 router.get(`/customers`, async (req, res) => {
   try {
-    let clients = await Clients.find().populate("person");
+    let clients = await Clients.find().populate(["person", "assignedTo"]);
 
     return res.json(clients);
   } catch (error) {
@@ -109,7 +109,7 @@ router.delete("/:id", async (req, res) => {
   let client = await Clients.findOne({ person: req.params.id });
   if (client) await client.delete();
 
-  Per
+  Per;
 });
 
 // get one cowrocker

@@ -1,10 +1,17 @@
 import React, { Fragment } from "react";
+
+// BootStrap Components ...
+import { Container, Row, Col } from "react-bootstrap";
+import RecentLogs from "../../components/Logs";
+
+//Custom Components ..
+import SimpleCard from "../../components/Cards/SimpleCard";
+import HomeConnect from "./HomeConnect";
+
+//Redux Component ....
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import HomeConnect from "./HomeConnect";
-import { Container, Row, Col } from "react-bootstrap";
-import RecentLogs from "../../components/RecentLogs";
-import SimpleCard from "../../components/SimpleCard";
+
 const AdminHome = ({ isAuthenticated }) => {
   return (
     <Container>

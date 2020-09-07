@@ -3,17 +3,15 @@ import { Route, Switch } from "react-router-dom";
 import NotFound from "../../Pages/NotFound";
 import PrivateRoute from "./PrivateRoute";
 import HomeConnect from "../../Pages/Home/HomeConnect";
-import ListClient from "../../Pages/Client";
 import RegisterEmployee from "../../Pages/Client/AddClientForm";
 import ImportAudit from "../../Pages/import-audit/import-audit";
-
-import ListClientCR from "../../Pages/Client/ListClient-CR";
 import ClientDashboard from "../../Pages/Client/ClientDashboard";
 import Company from "../../Pages/Company";
+import Customers from "../../Pages/Customers";
 import CreditReport from "../../Pages/CreditReport/CreditReport";
-const Routes = (props) => {
+const Routes = props => {
   return (
-    <section className="container">
+    <section className='container'>
       <Switch>
         {/*<Route exact path="/register" component={} />
         <Route exact path="/login" component={Login} />
@@ -28,14 +26,13 @@ const Routes = (props) => {
         <PrivateRoute exact path="/posts/:id" component={Post} />
           
         */}
-        <PrivateRoute exact path="/homeconnect" component={HomeConnect} />
-        <PrivateRoute exact path="/register" component={RegisterEmployee} />
-        <PrivateRoute exact path="/customers" component={ListClient} />
-        <PrivateRoute exact path="/ListClientCR" component={ListClientCR} />
-        <PrivateRoute exact path="/customer/:id" component={ClientDashboard} />
-        <PrivateRoute path="/import-audit/:id" component={ImportAudit} />
-        <PrivateRoute path="/credit-report/:id" component={CreditReport} />
-        <PrivateRoute path="/company" component={Company} />
+        <PrivateRoute exact path='/homeconnect' component={HomeConnect} />
+        <PrivateRoute exact path='/register' component={RegisterEmployee} />
+        <PrivateRoute exact path='/customers' component={Customers} />
+        <PrivateRoute exact path='/customer/:id' component={ClientDashboard} />
+        <PrivateRoute path='/import-audit/:id' component={ImportAudit} />
+        <PrivateRoute path='/credit-report/:id' component={CreditReport} />
+        <PrivateRoute path='/company' component={Company} />
 
         <Route component={NotFound} />
       </Switch>

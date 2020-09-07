@@ -14,7 +14,7 @@ module.exports = router;
 //@desc access public temp
 
 const Afiliate = require(`../../models/afilliate`);
-const PhoneTag = require(`../../models/phoneTag`);
+const PhoneTag = require(`../../../models/phoneTag`);
 
 router.post('/', async (req, res) => {
     try {

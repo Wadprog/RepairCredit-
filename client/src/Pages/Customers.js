@@ -1,13 +1,25 @@
-import React, { Fragment, useEffect } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+
+//Boostrap components
 import { Alert, Table, Form, Col, Button } from "react-bootstrap";
-import { loadCustomers } from "../../redux/actions/customer";
-import { customerStatusName } from "../../utils/consts/ClientStatus";
+// Redux imports
 import { connect } from "react-redux";
-const ListClientCR = ({ loadCustomers, customers }) => {
+
+//Custom imports ..
+import { loadCustomers } from "../redux/actions/customer";
+import LoadingCircle from "../components/layouts/Loading";
+import TableList from "../components/Client/TableList";
+import CardList from "../components/Client/CardList";
+
+const Customers = ({ loadCustomers, customers, Loading }) => {
   useEffect(() => {
     loadCustomers();
   }, []);
+
+  const [filrteredClientsName, setFilrteredClientsName] = useState("");
+  const [assignedTo, setAssignedTo] = useState("");
+  const [viewTable, setViewTable] = useState(true);
 
   return (
     <Fragment>
@@ -32,6 +44,7 @@ const ListClientCR = ({ loadCustomers, customers }) => {
             </span>
           </div>
         </div>
+
         <div className='row my-3'>
           <div className='col-12 d-flex justify-content-between'>
             <Form className='form-inline'>
@@ -42,26 +55,17 @@ const ListClientCR = ({ loadCustomers, customers }) => {
                 <Col sm='4'>
                   <Form.Control
                     id='search'
-                    onChange={""}
+                    onChange={e => {
+                      setFilrteredClientsName(e.target.value);
+                    }}
                     name='search'
-                    value={""}
+                    value={filrteredClientsName}
                     type='search'
                     size='sm'
                     className='box'
                   />
                 </Col>
               </Form.Group>
-              <Link to='#' className='mx-3'>
-                Advanced search
-              </Link>
-              <Button
-                variant='primary'
-                type='submit'
-                size='sm'
-                className='mx-3'
-              >
-                Search
-              </Button>
             </Form>
           </div>
         </div>
@@ -81,12 +85,45 @@ const ListClientCR = ({ loadCustomers, customers }) => {
             </Alert>
           </div>
         </div>
+
         <div className='row mb-3'>
           <div className='col-12 d-flex justify-content-between'>
             <Form className='form-inline'>
               <Form.Group>
                 <Form.Label column sm='6'>
                   Quick Filter:
+                </Form.Label>
+                <Col sm='6'>
+                  <Form.Control
+                    size='sm'
+                    as='select'
+                    value={assignedTo}
+                    onChange={e => {
+                      setAssignedTo(e.target.value);
+                      console.log(e.target.value);
+                    }}
+                  >
+                    <option selected disabled>
+                      All
+                    </option>
+                    {customers
+                      .reduce((acc, cust) => {
+                        const assigned = cust.assignedTo
+                          ? cust.assignedTo.firstName
+                          : "Carl ";
+                        return acc + "," + assigned;
+                      }, "")
+                      .split(",")
+                      .map(assign => (
+                        <option>{assign}</option>
+                      ))}
+                  </Form.Control>
+                </Col>
+              </Form.Group>
+
+              <Form.Group>
+                <Form.Label column sm='6'>
+                  Category
                 </Form.Label>
                 <Col sm='6'>
                   <Form.Control
@@ -100,12 +137,18 @@ const ListClientCR = ({ loadCustomers, customers }) => {
                   </Form.Control>
                 </Col>
               </Form.Group>
-              <span>Learn how to find clients faster:</span>
-              <Link to='#' className='mx-2'>
-                click here
-              </Link>
             </Form>
             <div className='align-self-center'>
+              <a
+                href='#'
+                className='mx-3'
+                onClick={() => {
+                  setViewTable(!viewTable);
+                }}
+              >
+                <i className={`fa fa-${viewTable ? "th" : "list"}`}></i>
+              </a>
+
               <Link to='#' className='mx-2'>
                 Import CSV
               </Link>
@@ -118,67 +161,24 @@ const ListClientCR = ({ loadCustomers, customers }) => {
             </div>
           </div>
         </div>
-        <div className='Row'>
-          <div className='col-12 mb-2'>
-            {customers != null && customers.length > 0 ? (
-              <Table responsive className='border-bottom'>
-                <thead>
-                  <tr>
-                    <th>
-                      <u>Name</u>
-                    </th>
-                    <th>Assigned To</th>
-                    <th>
-                      <u>Referred By</u>
-                    </th>
-                    <th>
-                      <u>Added</u>
-                    </th>
-                    <th>
-                      <u>Start Date</u>
-                    </th>
-                    <th>Last Login</th>
-                    <th>
-                      <u>Status</u>
-                    </th>
-                    <th></th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {customers.map(customer => {
-                    return (
-                      <tr>
-                        <td>{`${customer.person.firstName} ${customer.person.lastName}`}</td>
-                        <td>Carl C</td>
-                        <td></td>
-                        <td>06/01/2020</td>
-                        <td>06/01/2020</td>
-                        <td></td>
-                        <td>{customerStatusName(customer.status)}</td>
-                        <td className='text-right'>
-                          <Link to='#' className='text-success'>
-                            <i className='fa fa-pencil-square-o mx-2'></i>
-                          </Link>
-                          <Link to='#' className='text-primary'>
-                            <i className='fa fa-user mx-2'></i>
-                          </Link>
-                          <Link to='#' className='text-warning'>
-                            <i className='fa fa-pencil mx-2'></i>
-                          </Link>
-                          <Link to='#' className='text-danger'>
-                            <i className='fa fa-times mx-2'></i>
-                          </Link>
-                        </td>
-                      </tr>
-                    );
-                  })}
-                </tbody>
-              </Table>
+        {Loading ? (
+          <LoadingCircle />
+        ) : (
+          <Fragment>
+            {viewTable ? (
+              <TableList
+                customers={customers}
+                filrteredClientsName={filrteredClientsName}
+                setFilrteredClientsName={setFilrteredClientsName}
+                setFilrteredClientsName={setFilrteredClientsName}
+                assignedTo={assignedTo}
+                setAssignedTo={setAssignedTo}
+              />
             ) : (
-              <p>There are no client's yet</p>
+              <CardList customers={customers} />
             )}
-          </div>
-        </div>
+          </Fragment>
+        )}
       </div>
     </Fragment>
   );
@@ -186,6 +186,7 @@ const ListClientCR = ({ loadCustomers, customers }) => {
 
 const mapStateToProps = state => ({
   customers: state.customer.customers,
+  Loading: state.customer.loading,
 });
 
-export default connect(mapStateToProps, { loadCustomers })(ListClientCR);
+export default connect(mapStateToProps, { loadCustomers })(Customers);

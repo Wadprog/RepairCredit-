@@ -49,14 +49,11 @@ const personSchema = mongoose.Schema({
   AccessLevel: {
     type: Number,
   },
-  assignedTo: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "person",
+  addedDate: {
+    type: Date,
+    default: Date.now,
   },
-  referredBy: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "person",
-  },
+
   userName: { type: String },
   password: { type: String },
 });

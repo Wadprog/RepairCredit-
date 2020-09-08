@@ -105,8 +105,7 @@ const manualScrapping = (html, monitoringService, res) => {
       console.log(scores.html());
       return res.json({ msg: "Good" });
     }
-    const paragraph = $(".crTableHeader");
-    console.log(paragraph.html());
+    
   } catch (error) {
     console.log(error);
   }

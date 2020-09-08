@@ -2,15 +2,17 @@ import React, { Fragment, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 //Boostrap components
-import { Alert, Table, Form, Col, Button } from "react-bootstrap";
+import { Alert, Form, Col, Button } from "react-bootstrap";
 // Redux imports
 import { connect } from "react-redux";
 
 //Custom imports ..
+import AddClientForm from "../components/Client/AddClientForm";
+import CardList from "../components/Client/CardList";
 import { loadCustomers } from "../redux/actions/customer";
 import LoadingCircle from "../components/layouts/Loading";
+import Modal from "../components/Modals";
 import TableList from "../components/Client/TableList";
-import CardList from "../components/Client/CardList";
 
 const Customers = ({ loadCustomers, customers, Loading }) => {
   useEffect(() => {
@@ -20,6 +22,7 @@ const Customers = ({ loadCustomers, customers, Loading }) => {
   const [filrteredClientsName, setFilrteredClientsName] = useState("");
   const [assignedTo, setAssignedTo] = useState("");
   const [viewTable, setViewTable] = useState(true);
+  const [addClientModal, setAddClientModal] = useState(false);
 
   return (
     <Fragment>
@@ -37,6 +40,7 @@ const Customers = ({ loadCustomers, customers, Loading }) => {
                 type='submit'
                 size='sm'
                 className='mx-3'
+                onClick={() => setAddClientModal(true)}
               >
                 <i className='fa fa-plus-circle mx-2 text-success'></i>
                 Add New Client
@@ -180,6 +184,13 @@ const Customers = ({ loadCustomers, customers, Loading }) => {
           </Fragment>
         )}
       </div>
+      <Modal
+        title='Add a new customer '
+        show={addClientModal}
+        onHide={() => setAddClientModal(false)}
+      >
+        <AddClientForm cust={customers[0]} />
+      </Modal>
     </Fragment>
   );
 };

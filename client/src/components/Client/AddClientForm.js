@@ -1,31 +1,26 @@
 import React, { useState, useEffect } from "react";
-import PropTypes from "prop-types";
-import { connect } from "react-redux";
-import { Button, Form, Col } from "react-bootstrap";
-import stateOfUsa from "../../utils/data/stateofUsa.json";
 import { Redirect } from "react-router";
 
-import {addPerson } from "../../redux/actions/person";
-import {loadCoworkers} from "../../redux/actions/partners"
-/////////////////////////////////////Dealing with Access Level////////////////////////////////////////////////////////
+//Bootstrap imports
+import { Button, Form, Col } from "react-bootstrap";
+
+//ReDux imports /////////////////////////////////////Dealing with Access Level////////////////////////////////////////////////////////
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+///Custom Imports
 import { AccessLevel } from "../../utils/consts/Permitions/AccessLevel";
+import { addPerson } from "../../redux/actions/person";
+import { loadCoworkers } from "../../redux/actions/partners";
+import stateOfUsa from "../../utils/data/stateofUsa.json";
+import helper from "../../utils/helper";
 /********************************************************************************************************************/
 /////////////////////////////////// Defining the Component////////////////////////////////////////////////////////////
 /*********************************************************************************************************************/
 
-const AddClient = ({ loading, partners, addPerson, loadCoworkers }) => {
+const AddClient = ({ cust, loading, partners, addPerson, loadCoworkers }) => {
   useEffect(() => {
     loadCoworkers();
   }, []);
-
-  /**
-   * TODO: We need to Shrink this file my ideas is to create a custom Form.row
-   * INFO: We are getting the employes for the partners array
-   * ? REASON FOR Const Employess Because clients can be only assigned only to employess not to affiliates
-   * ** Partnes will pull both Affiliate and Employes
-   * @Gervens and @Fenley  and Admin is just an employee with all access level
-   *
-   */
 
   const Employees = partners.filter(partner => {
     if (
@@ -38,25 +33,27 @@ const AddClient = ({ loading, partners, addPerson, loadCoworkers }) => {
   });
 
   const [formData, setFormdata] = useState({
-    firstName: "",
-    lastName: "",
-    middleName: "",
-    Suffix: "",
-    email: "",
-    hasNoEmail: false,
-    ssn: "",
-    dob: "",
-    phoneH: "",
-    phoneW: "",
-    phoneM: "",
-    fax: "",
-    address: "",
-    city: "",
-    state: "",
-    country: "United States",
-    zipCode: "",
-    status: "",
-    dateStarted: "",
+    person: {
+      firstName: "",
+      lastName: "",
+      middleName: "",
+      Suffix: "",
+      email: "",
+      hasNoEmail: false,
+      ssn: "",
+      dob: "",
+      phoneH: "",
+      phoneW: "",
+      phoneM: "",
+      fax: "",
+      address: "",
+      city: "",
+      state: "",
+      country: "United States",
+      zipCode: "",
+      status: "",
+      dateStarted: "",
+    },
     assignedTo: "",
     referedBy: "",
     portalAccess: false,
@@ -64,6 +61,7 @@ const AddClient = ({ loading, partners, addPerson, loadCoworkers }) => {
     AccessLevel: AccessLevel.Client,
   });
 
+  if (!helper.isObjEmpty(cust)) setFormdata({...cust});
   const handleChange = e => {
     console.log(e.target.type);
     setFormdata({ ...formData, [e.target.name]: e.target.value });
@@ -78,20 +76,12 @@ const AddClient = ({ loading, partners, addPerson, loadCoworkers }) => {
   };
   return (
     <div>
-      <div className='row'>
-        <div className='col-12 d-flex justify-content-between'>
-          <h6 className=' text-bold '>Add Client</h6>
-          <Button variant='outline-secondary' href='/'>
-            <i className='fa fa-arrow-left'></i>Back
-          </Button>
-        </div>
-      </div>
       <div className='row mt-2'>
         <div className='col-12'>
           <Form onSubmit={handleSubmit}>
             <FormRow
               labe1='First name*'
-              value1={formData.firstName}
+              value1={formData.person.firstName}
               name1='firstName'
               label2='Middle name'
               value2={formData.middleName}
@@ -101,7 +91,7 @@ const AddClient = ({ loading, partners, addPerson, loadCoworkers }) => {
 
             <FormRow
               labe1='Last name*'
-              value1={formData.lastName}
+              value1={formData.person.lastName}
               name1='lastName'
               label2='Suffix (Jr, Sr, etc)'
               value2={formData.Suffix}
@@ -115,7 +105,7 @@ const AddClient = ({ loading, partners, addPerson, loadCoworkers }) => {
                 <Form.Control
                   onChange={handleChange}
                   name='email'
-                  value={formData.email}
+                  value={formData.person.email}
                   type='email'
                   size='sm'
                   className='box'
@@ -139,7 +129,7 @@ const AddClient = ({ loading, partners, addPerson, loadCoworkers }) => {
                 <Form.Control
                   onChange={handleChange}
                   name='ssn'
-                  value={formData.ssn}
+                  value={formData.person.ssn}
                   size='sm'
                   className='box'
                   placeholder='9999'
@@ -151,7 +141,7 @@ const AddClient = ({ loading, partners, addPerson, loadCoworkers }) => {
                   type='date'
                   name='dob'
                   onChange={handleChange}
-                  value={formData.dob}
+                  value={formData.person.dob}
                   size='sm'
                   className='box'
                   placeholder='First name'
@@ -166,7 +156,7 @@ const AddClient = ({ loading, partners, addPerson, loadCoworkers }) => {
                   type='tel'
                   name='phoneH'
                   onChange={handleChange}
-                  value={formData.phoneH}
+                  value={formData.person.phoneH}
                   size='sm'
                   className='box'
                   placeholder='First name'
@@ -178,7 +168,7 @@ const AddClient = ({ loading, partners, addPerson, loadCoworkers }) => {
                   type='tel'
                   name='phoneW'
                   onChange={handleChange}
-                  value={formData.phoneW}
+                  value={formData.person.phoneW}
                   size='sm'
                   className='box'
                   placeholder='First name'
@@ -193,7 +183,7 @@ const AddClient = ({ loading, partners, addPerson, loadCoworkers }) => {
                   type='tel'
                   name='phoneM'
                   onChange={handleChange}
-                  value={formData.phoneM}
+                  value={formData.person.phoneM}
                   size='sm'
                   className='box'
                   placeholder='First name'
@@ -219,7 +209,7 @@ const AddClient = ({ loading, partners, addPerson, loadCoworkers }) => {
                 <Form.Control
                   name='address'
                   onChange={handleChange}
-                  value={formData.address}
+                  value={formData.person.address}
                   as='textarea'
                   size='sm'
                   className='box'
@@ -271,7 +261,7 @@ const AddClient = ({ loading, partners, addPerson, loadCoworkers }) => {
                   placeholder='First name'
                   onChange={handleChange}
                   name='zipCode'
-                  value={formData.state}
+                  value={formData.person.state}
                 />
               </Col>
               <Col>
@@ -283,7 +273,7 @@ const AddClient = ({ loading, partners, addPerson, loadCoworkers }) => {
                   placeholder='First name'
                   onChange={handleChange}
                   name='zipCode'
-                  value={formData.country}
+                  value={formData.person.country}
                 />
               </Col>
             </Form.Row>

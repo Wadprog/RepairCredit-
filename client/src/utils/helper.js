@@ -46,5 +46,9 @@ helper.filterObj = (array, options, subObj) => {
   return result;
 };
 
+helper.isObjEmpty = obj => {
+  for (var prop in obj) if (obj.hasOwnProperty(prop)) return false;
+  return true;
+};
 /////////////////////////////////////////////////
 export default helper;

@@ -2,19 +2,13 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 //Boostrap components
-import { Alert, Table, Form, Col, Button } from "react-bootstrap";
-//Custom imports ..
+import { Table } from "react-bootstrap";
 
+//Custom imports ..
 import { customerStatusName } from "../../utils/consts/ClientStatus";
 import helper from "../../utils/helper";
 
-const TableList = ({
-  customers,
-  filrteredClientsName,
-  setFilrteredClientsName,
-  assignedTo,
-  setAssignedTo,
-}) => {
+const TableList = ({ customers, filrteredClientsName, assignedTo }) => {
   return (
     <div className='Row'>
       <div className='col-12 mb-2'>
@@ -22,21 +16,12 @@ const TableList = ({
           <Table responsive className='border-bottom'>
             <thead>
               <tr>
-                <th>
-                  <u>Name</u>
-                </th>
+                <th>Name</th>
                 <th>Assigned To</th>
-                <th>
-                  <u>Referred B</u>
-                </th>
-                <th>
-                  <u>Added</u>
-                </th>
-
+                <th>Referred BY</th>
+                <th>Added</th>
                 <th>Last update</th>
-                <th>
-                  <u>Status</u>
-                </th>
+                <th>Status</th>
                 <th></th>
               </tr>
             </thead>

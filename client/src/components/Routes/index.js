@@ -3,7 +3,7 @@ import { Route, Switch } from "react-router-dom";
 import NotFound from "../../Pages/NotFound";
 import PrivateRoute from "./PrivateRoute";
 import HomeConnect from "../../Pages/Home/HomeConnect";
-import RegisterEmployee from "../../Pages/Client/AddClientForm";
+import RegisterEmployee from "../Client/AddClientForm";
 import ImportAudit from "../../Pages/import-audit/import-audit";
 import ClientDashboard from "../../Pages/Client/ClientDashboard";
 import Company from "../../Pages/Company";
